@@ -1,0 +1,83 @@
+//===========================TRICK HEADER=====================
+// PURPOSE:
+//=============================================================================
+// This simulation provides a example implementation of a Lunar station using
+// JSC Engineering Orbital Dynamics (JEOD) package.
+//
+// This simulation models a single space vehicle (lunar_station) in orbit around
+// the Moon (Earth-Moon System).
+//
+//           sys - Trick runtime executive and data recording routines
+//      dynamics - Orbital dynamics
+//          time - Universal time
+//           env - Environment: ephemeris, gravity
+//           sun - Sun planetary model
+//         earth - Earth planetary model
+//          moon - Moon planetary model
+// lunar_station - Space vehicle dynamics model
+//
+//=============================================================================
+
+
+// Define job calling intervals
+#define LOW_RATE_ENV  1.00    // Low-rate environment update interval
+#define DYNAMICS      0.01    // Vehicle and plantary dynamics interval (100Hz)
+
+// Include the default system classes
+// (these are required for Trick and JEOD simulation)
+#include "sim_objects/default_trick_sys.sm"
+#include "jeod_sys.sm"
+#include "default_priority_settings.sm"
+
+//------------------------------------------------------------------------------
+// Include the time model
+#define TIME_CALENDAR_UPDATE_INTERVAL DYNAMICS
+#include "time_TAI_UTC_UT1_TT_GMST.sm"
+
+// Include the JEOD dynamics manager: it handles all the dynamic jobs including
+// integration, attach/detach, state initialization, etc
+#include "dynamics.sm"
+
+// Include the JEOD environment manger: it handles all the environment updates
+// including ephemeris, gravity, and planetary RNP
+#include "environment.sm"
+
+// Include the basic Earth model
+#include "earth_basic.sm"
+
+// Include the basic Moon model
+#include "moon_basic.sm"
+
+
+//------------------------------------------------------------------------------
+// Define a basic vehicle model
+//***************************************************************
+// CLASS: (VehicleSimObject)
+// PURPOSE:
+//  ( This sim object models a vehicle in space.)
+//***************************************************************
+#include "Base/vehicle_baseline.sm"
+class VehicleSimObject: public VehicleBasicSimObject
+{
+ public:
+  jeod::SphericalHarmonicsGravityControls  earth_grav_control;
+  jeod::SphericalHarmonicsGravityControls  moon_grav_control;
+
+//Constructor
+    VehicleSimObject( jeod::DynManager     & dyn_mngr_)
+        :
+        VehicleBasicSimObject( dyn_mngr_)
+   {
+    }
+
+  private:
+    VehicleSimObject (const VehicleSimObject&);
+    VehicleSimObject & operator = (const VehicleSimObject&);
+
+};
+// create a instance of basic vehicle model
+VehicleSimObject lunar_station (dynamics.dyn_manager);
+
+//------------------------------------------------------------------------------
+// Setup integration loop
+IntegLoop sim_integ_loop  (DYNAMICS) earth, moon, lunar_station, dynamics;

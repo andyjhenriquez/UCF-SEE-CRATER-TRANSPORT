@@ -1,0 +1,15 @@
+[submodule "HLA-tool-kit/SEE-HLA-Starter-Kit"]
+	path = Simulation-tools/SEE-HLA-Starter-Kit
+	url = https://github.com/SMASH-Lab/SEE-HLA-Starter-Kit.git
+[submodule "HLA-tool-kit/TrickHLA"]
+	path = Simulation-tools/TrickHLA
+	url = https://github.com/nasa/TrickHLA.git
+[submodule "Graphics/DON-Federate-HLA2MPC"]
+	path = Graphics/DON-Federate-HLA2MPC
+	url = https://github.com/nasa/DON-Federate-HLA2MPC.git
+[submodule "HLA-tool-kit/trick"]
+	path = Simulation-tools/trick
+	url = https://github.com/nasa/trick.git
+[submodule "HLA-tool-kit/jeod"]
+	path = Simulation-tools/jeod
+	url = https://github.com/nasa/jeod.git

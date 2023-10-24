@@ -1,0 +1,15 @@
+{
+  "asynchronousDelivery" : true,
+  "crcHost" : "localhost",
+  "crcPort" : 8989,
+  "federateName" : "LunarRover",
+  "federateType" : "Rover",
+  "federateRole" : "LATE",
+  "federationName" : "SEE 2021",
+  "fomDirectory" : "foms",
+  "realtime" : false,
+  "simulationScenarioTimeEphoc" : 17131.83333333334,
+  "timeConstrained" : true,
+  "timeRegulating" : false,
+  "lookahead": 1000000
+}
