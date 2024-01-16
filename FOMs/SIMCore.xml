@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>New Module</name>
+        <type>FOM</type>
+        <version>1.0</version>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain></applicationDomain>
+        <description>Description of New Module</description>
+        <useLimitation></useLimitation>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>PhysicalEntity</name>
+                <objectClass>
+                    <name>DynamicalEntity</name>
+                    <objectClass>
+                        <name>Payload</name>
+                        <sharing>Neither</sharing>
+                        <semantics></semantics>
+                        <attribute>
+                            <name>position</name>
+                            <dataType>PositionVector</dataType>
+                            <updateType>Periodic</updateType>
+                            <updateCondition>when changes</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>3-Vector that specifies the position of the launcher</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>velocity</name>
+                            <dataType>VelocityVector</dataType>
+                            <updateType>Periodic</updateType>
+                            <updateCondition>when changes</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>payload velocity</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>health</name>
+                            <dataType>Health</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>when changes</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Scalar representing health</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+                <objectClass>
+                    <name>Launcher</name>
+                    <sharing>Publish</sharing>
+                    <semantics>Launcher that will lauch payload out of crater</semantics>
+                    <attribute>
+                        <name>position</name>
+                        <dataType>PositionVector</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>3-Vector that represents the position of the launcher</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>mass</name>
+                        <dataType>Mass</dataType>
+                        <updateType>Static</updateType>
+                        <updateCondition>NA</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Mass of launcher</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>energy</name>
+                        <dataType>Energy</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When item is launched</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Amount of energy left in launcher. Launching a payload would cost some amount of energy</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>PhysicalInterface</name>
+            </objectClass>
+            <objectClass>
+                <name>ReferenceFrame</name>
+                <objectClass>
+                    <name>Moon</name>
+                    <sharing>Neither</sharing>
+                    <semantics>Moon parent reference frame</semantics>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>Start_Stop</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics></semantics>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <switches>
+        <autoProvide isEnabled="false"/>
+        <conveyRegionDesignatorSets isEnabled="false"/>
+        <conveyProducingFederate isEnabled="false"/>
+        <attributeScopeAdvisory isEnabled="false"/>
+        <attributeRelevanceAdvisory isEnabled="false"/>
+        <objectClassRelevanceAdvisory isEnabled="false"/>
+        <interactionRelevanceAdvisory isEnabled="false"/>
+        <serviceReporting isEnabled="false"/>
+        <exceptionReporting isEnabled="false"/>
+        <delaySubscriptionEvaluation isEnabled="false"/>
+        <automaticResignAction resignAction="CancelThenDeleteThenDivest"/>
+    </switches>
+    <dataTypes>
+        <simpleDataTypes>
+            <simpleData>
+                <name>Health</name>
+                <representation>HLAfloat64LE</representation>
+                <units>NA</units>
+                <resolution></resolution>
+                <accuracy></accuracy>
+                <semantics>Scalar representing health</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes/>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes/>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>
