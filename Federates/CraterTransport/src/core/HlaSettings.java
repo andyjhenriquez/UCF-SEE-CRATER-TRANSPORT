@@ -49,7 +49,7 @@ crcPort = 8989
 localSettingsDesignator = 
 
 # Federate name
-federateName = DevStudio
+federateName = Devvvy
 
 # Federation name
 federationName = Federation
@@ -124,7 +124,7 @@ public class HlaSettings {
    protected String _crcHost;
    protected int _crcPort;
    protected String _localSettingsDesignator = getSetting(LOCAL_SETTINGS_DESIGNATOR, "");
-   protected String _federateName = getSetting(FEDERATE_NAME_KEY, "DevStudio");
+   protected String _federateName = getSetting(FEDERATE_NAME_KEY, "Devvvy");
    protected String _federateType = getSetting(FEDERATE_TYPE_KEY, "DevStudio");
    protected String _federationName = getSetting(FEDERATION_NAME_KEY, "Federation");
    protected String _fedUrl = getSetting(FED_URL_KEY, getSetting(FOM_URL_KEY, ""));
