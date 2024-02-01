@@ -1,3 +1,11 @@
 .DS_Store
 *.u3d
 *.u3d.info
+/bin/
+
+# Project specific ignores
+.project
+.classpath
+.class
+/build/
+/.settings/
