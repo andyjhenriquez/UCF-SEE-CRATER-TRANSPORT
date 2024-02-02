@@ -6,6 +6,8 @@
 # Project specific ignores
 .project
 .classpath
-.class
+.properties
+*.class
 /build/
 /.settings/
+/.vscode/
