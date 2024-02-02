@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "rti_driver.jar",
+        "c:\\Program Files\\Pitch\\prti1516e\\lib\\prti1516e.jar",
+        "SEE_Crater_Transport.jar"
+    ]
+}

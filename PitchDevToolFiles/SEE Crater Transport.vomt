@@ -43,8 +43,8 @@
    </void>
    <void method="add">
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule1">
-     <string>Master</string>
-     <string>Master.xml</string>
+     <string>SimCore</string>
+     <string>C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\FOMs\SIMCore.xml</string>
      <boolean>false</boolean>
      <boolean>false</boolean>
      <boolean>true</boolean>
@@ -53,37 +53,14 @@
       <void method="add">
        <int>0</int>
       </void>
-     </object>
-     <boolean>false</boolean>
-     <boolean>false</boolean>
-     <object class="java.awt.Color">
-      <int>177</int>
-      <int>221</int>
-      <int>250</int>
-      <int>255</int>
-     </object>
-    </object>
-   </void>
-   <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule2">
-     <string>SimCore</string>
-     <string>C:\Users\guida\Desktop\SIMCore.xml</string>
-     <boolean>false</boolean>
-     <boolean>false</boolean>
-     <boolean>true</boolean>
-     <boolean>true</boolean>
-     <object class="java.util.ArrayList">
       <void method="add">
-       <int>0</int>
+       <int>2</int>
       </void>
       <void method="add">
        <int>3</int>
       </void>
       <void method="add">
        <int>4</int>
-      </void>
-      <void method="add">
-       <int>5</int>
       </void>
      </object>
      <boolean>false</boolean>
@@ -97,7 +74,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule3">
+    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule2">
      <string>SISO_SpaceFOM_entity</string>
      <string>C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE-Sim-Smackdown\FOMs\SpaceFOM\SISO_SpaceFOM_entity.xml</string>
      <boolean>true</boolean>
@@ -109,7 +86,7 @@
        <int>0</int>
       </void>
       <void method="add">
-       <int>4</int>
+       <int>3</int>
       </void>
      </object>
      <boolean>false</boolean>
@@ -123,7 +100,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule4">
+    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule3">
      <string>SISO_SpaceFOM_datatypes</string>
      <string>C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE-Sim-Smackdown\FOMs\SpaceFOM\SISO_SpaceFOM_datatypes.xml</string>
      <boolean>true</boolean>
@@ -146,7 +123,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule5">
+    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule4">
      <string>SISO_SpaceFOM_environment</string>
      <string>C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE-Sim-Smackdown\FOMs\SpaceFOM\SISO_SpaceFOM_environment.xml</string>
      <boolean>true</boolean>
@@ -158,7 +135,7 @@
        <int>0</int>
       </void>
       <void method="add">
-       <int>4</int>
+       <int>3</int>
       </void>
      </object>
      <boolean>false</boolean>
@@ -172,7 +149,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule6">
+    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule5">
      <string>SISO_SpaceFOM_management</string>
      <string>C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE-Sim-Smackdown\FOMs\SpaceFOM\SISO_SpaceFOM_management.xml</string>
      <boolean>true</boolean>
@@ -184,7 +161,7 @@
        <int>0</int>
       </void>
       <void method="add">
-       <int>4</int>
+       <int>3</int>
       </void>
      </object>
      <boolean>false</boolean>
@@ -198,7 +175,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule7">
+    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule6">
      <string>SISO_SpaceFOM_switches</string>
      <string>C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE-Sim-Smackdown\FOMs\SpaceFOM\SISO_SpaceFOM_switches.xml</string>
      <boolean>true</boolean>
@@ -229,40 +206,24 @@
    <void method="add">
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentView">
      <boolean>true</boolean>
-     <object class="java.lang.Enum" method="valueOf">
-      <class>se.pitch.vomt2.model.TableType</class>
-      <string>SWITCHES_TABLE</string>
-     </object>
-     <object idref="PersistentProjectHelper$PersistentModule1"/>
-     <int>5</int>
-     <int>85</int>
-     <int>1602</int>
-     <int>377</int>
-     <object class="java.util.Collections" id="Collections$EmptySet0" method="emptySet"/>
-     <object idref="Collections$EmptySet0"/>
-    </object>
-   </void>
-   <void method="add">
-    <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentView">
-     <boolean>true</boolean>
      <object class="java.lang.Enum" id="TableType0" method="valueOf">
       <class>se.pitch.vomt2.model.TableType</class>
       <string>OBJECT_CLASS_TABLE</string>
      </object>
-     <object idref="PersistentProjectHelper$PersistentModule2"/>
+     <object idref="PersistentProjectHelper$PersistentModule1"/>
      <int>1</int>
      <int>3</int>
      <int>1602</int>
      <int>357</int>
      <object class="java.util.LinkedHashSet"/>
-     <object class="java.util.LinkedHashSet"/>
+     <object class="java.util.Collections" id="Collections$EmptySet0" method="emptySet"/>
     </object>
    </void>
    <void method="add">
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentView">
      <boolean>true</boolean>
      <object idref="TableType0"/>
-     <object idref="PersistentProjectHelper$PersistentModule3"/>
+     <object idref="PersistentProjectHelper$PersistentModule2"/>
      <int>0</int>
      <int>32</int>
      <int>1602</int>
@@ -276,9 +237,9 @@
      <boolean>true</boolean>
      <object class="java.lang.Enum" method="valueOf">
       <class>se.pitch.vomt2.model.TableType</class>
-      <string>DATATYPE_TABLE</string>
+      <string>ARRAY_DATATYPE_TABLE</string>
      </object>
-     <object idref="PersistentProjectHelper$PersistentModule4"/>
+     <object idref="PersistentProjectHelper$PersistentModule3"/>
      <int>5</int>
      <int>125</int>
      <int>1602</int>
@@ -294,7 +255,7 @@
       <class>se.pitch.vomt2.model.TableType</class>
       <string>IDENTIFICATION_TABLE</string>
      </object>
-     <object idref="PersistentProjectHelper$PersistentModule5"/>
+     <object idref="PersistentProjectHelper$PersistentModule4"/>
      <int>0</int>
      <int>0</int>
      <int>1612</int>
@@ -307,7 +268,7 @@
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentView">
      <boolean>true</boolean>
      <object idref="TableType1"/>
-     <object idref="PersistentProjectHelper$PersistentModule6"/>
+     <object idref="PersistentProjectHelper$PersistentModule5"/>
      <int>5</int>
      <int>5</int>
      <int>640</int>
@@ -320,7 +281,7 @@
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentView">
      <boolean>true</boolean>
      <object idref="TableType1"/>
-     <object idref="PersistentProjectHelper$PersistentModule7"/>
+     <object idref="PersistentProjectHelper$PersistentModule6"/>
      <int>5</int>
      <int>25</int>
      <int>640</int>
@@ -335,16 +296,13 @@
     <object idref="PersistentProjectHelper$PersistentModule0"/>
    </void>
    <void method="add">
-    <object idref="PersistentProjectHelper$PersistentModule1"/>
+    <object idref="PersistentProjectHelper$PersistentModule4"/>
    </void>
    <void method="add">
     <object idref="PersistentProjectHelper$PersistentModule5"/>
    </void>
    <void method="add">
     <object idref="PersistentProjectHelper$PersistentModule6"/>
-   </void>
-   <void method="add">
-    <object idref="PersistentProjectHelper$PersistentModule7"/>
    </void>
   </object>
   <boolean>false</boolean>
