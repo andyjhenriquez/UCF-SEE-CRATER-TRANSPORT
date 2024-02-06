@@ -20,7 +20,7 @@
                     <name>DynamicalEntity</name>
                     <objectClass>
                         <name>Payload</name>
-                        <sharing>Neither</sharing>
+                        <sharing>PublishSubscribe</sharing>
                         <semantics></semantics>
                         <attribute>
                             <name>position</name>
@@ -59,7 +59,7 @@
                 </objectClass>
                 <objectClass>
                     <name>Launcher</name>
-                    <sharing>Publish</sharing>
+                    <sharing>PublishSubscribe</sharing>
                     <semantics>Launcher that will lauch payload out of crater</semantics>
                     <attribute>
                         <name>position</name>
@@ -103,7 +103,7 @@
                 <name>ReferenceFrame</name>
                 <objectClass>
                     <name>Moon</name>
-                    <sharing>Neither</sharing>
+                    <sharing>PublishSubscribe</sharing>
                     <semantics>Moon parent reference frame</semantics>
                 </objectClass>
             </objectClass>
@@ -114,7 +114,7 @@
             <name>HLAinteractionRoot</name>
             <interactionClass>
                 <name>Start_Stop</name>
-                <sharing>Neither</sharing>
+                <sharing>PublishSubscribe</sharing>
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
                 <semantics></semantics>
