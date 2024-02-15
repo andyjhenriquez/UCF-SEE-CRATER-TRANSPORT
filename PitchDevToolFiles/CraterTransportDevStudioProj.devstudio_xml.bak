@@ -1,4 +1,4 @@
-<developerStudio projectFileVersion="10" projectName="SEE Crater Transport" projectDescription="Transporting materials out of permanently shadowed region of moon" projectJavaBaseDir="C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\Federates\CraterTransport" projectCppBaseDir="C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\FOMVOMT\cpp project" projectCliBaseDir="C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\FOMVOMT\New Folder" javaPackageName="core" cppCompiler="Visual Studio 2022 (VC 14.3)" cliCompiler="Visual Studio 2022 (VC 14.3)" timeConstrained="true" timeRegulating="true" uuidSeed="1705280362513">
+<developerStudio projectFileVersion="10" projectName="SEE Crater Transport" projectDescription="Transporting materials out of permanently shadowed region of moon" projectJavaBaseDir="C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\Federates\CraterTransportNew" projectCppBaseDir="C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\FOMVOMT\cpp project" projectCliBaseDir="C:\Users\guida\Desktop\Schoolwork\Senior Design\SEE Crater Transport\UCF-SEE-CRATER-TRANSPORT\FOMVOMT\New Folder" javaPackageName="core" cppCompiler="Visual Studio 2022 (VC 14.3)" cliCompiler="Visual Studio 2022 (VC 14.3)" timeConstrained="true" timeRegulating="true" uuidSeed="1705280362513">
   <fom format="HLAEvolvedModules" src="file:/C:/Users/guida/Desktop/Schoolwork/Senior%20Design/SEE%20Crater%20Transport/UCF-SEE-CRATER-TRANSPORT/FOMVOMT/combined.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelIdentification>
@@ -943,10 +943,10 @@ projected.</semantics>
     </dataTypes>
 </objectModel>]]></fom>
   <objects>
-    <objectClass name="HLAobjectRoot" srcName="HLAobjectRoot" sharing="NEITHER" isLocal="true" isRemote="false">
-      <objectClass name="PhysicalEntity" srcName="PhysicalEntity" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="false">
-        <objectClass name="DynamicalEntity" srcName="DynamicalEntity" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="false">
-          <objectClass name="Payload" srcName="Payload" sharing="NEITHER" isLocal="true" isRemote="false">
+    <objectClass name="HLAobjectRoot" srcName="HLAobjectRoot" sharing="NEITHER" isLocal="true" isRemote="true">
+      <objectClass name="PhysicalEntity" srcName="PhysicalEntity" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="true">
+        <objectClass name="DynamicalEntity" srcName="DynamicalEntity" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="true">
+          <objectClass name="Payload" srcName="Payload" sharing="NEITHER" isLocal="true" isRemote="true">
             <attribute name="position" srcName="position" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
             <attribute name="velocity" srcName="velocity" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
             <attribute name="health" srcName="health" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
@@ -958,7 +958,7 @@ projected.</semantics>
           <attribute name="inertia" srcName="inertia" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
           <attribute name="inertia_rate" srcName="inertiaRate" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         </objectClass>
-        <objectClass name="Launcher" srcName="Launcher" sharing="PUBLISH" isLocal="true" isRemote="false">
+        <objectClass name="Launcher" srcName="Launcher" sharing="PUBLISH" isLocal="true" isRemote="true">
           <attribute name="position" srcName="position" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
           <attribute name="mass" srcName="mass" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
           <attribute name="energy" srcName="energy" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
@@ -973,19 +973,19 @@ projected.</semantics>
         <attribute name="center_of_mass" srcName="centerOfMass" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="body_wrt_structural" srcName="bodyWrtStructural" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
       </objectClass>
-      <objectClass name="PhysicalInterface" srcName="PhysicalInterface" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="false">
+      <objectClass name="PhysicalInterface" srcName="PhysicalInterface" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="true">
         <attribute name="name" srcName="name" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="parent_name" srcName="parentName" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="position" srcName="position" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="attitude" srcName="attitude" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
       </objectClass>
-      <objectClass name="ReferenceFrame" srcName="ReferenceFrame" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="false">
-        <objectClass name="Moon" srcName="Moon" sharing="NEITHER" isLocal="true" isRemote="false" />
+      <objectClass name="ReferenceFrame" srcName="ReferenceFrame" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="true">
+        <objectClass name="Moon" srcName="Moon" sharing="NEITHER" isLocal="true" isRemote="true" />
         <attribute name="name" srcName="name" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="parent_name" srcName="parentName" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="state" srcName="state" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
       </objectClass>
-      <objectClass name="ExecutionConfiguration" srcName="ExecutionConfiguration" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="false">
+      <objectClass name="ExecutionConfiguration" srcName="ExecutionConfiguration" sharing="PUBLISH_SUBSCRIBE" isLocal="true" isRemote="true">
         <attribute name="root_frame_name" srcName="rootFrameName" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="scenario_time_epoch" srcName="scenarioTimeEpoch" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
         <attribute name="current_execution_mode" srcName="currentExecutionMode" isCreate="false" isInit="false" isLookup="false" isSend="false" sharing="PublishSubscribe" isUsed="true" />
