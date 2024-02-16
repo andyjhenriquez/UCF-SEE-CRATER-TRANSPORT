@@ -809,5 +809,8 @@
     <ClCompile Include="src\LunarSimulation\datatypes\AccelerationVector.cpp">
       <Filter>Source Files\LunarSimulation\datatypes</Filter>
     </ClCompile>
+    <ClCompile Include="src\TestFederate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
