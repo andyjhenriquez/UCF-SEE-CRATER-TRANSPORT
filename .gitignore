@@ -28,3 +28,13 @@
 [Oo]bj/
 [Ll]og/
 
+# CMake ignores
+*.stamp
+*.stamp.depend
+*.vcxproj
+*.vcxproj.filters
+*.cmake
+*.sln
+CMakeFiles/
+
+
