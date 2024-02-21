@@ -3,6 +3,7 @@
 #include <LunarSimulation\HlaPayloadManager.h>
 
 #include <iostream>
+#include <vector>
 
 using namespace LunarSimulation;
 
@@ -25,23 +26,12 @@ int main(void) {
 
     // Single Payload instance, extends Dynamical Entity and has a number
     // of functions to retrive its values such as acceleration and position
-    HlaPayloadPtr payload = payloadManager->createLocalHlaPayload();
+    std::vector<HlaPayloadPtr> list = payloadManager->getAllHlaPayloads();
 
     // TODO: Find a stopping point for our federate
     while (true) {
         try {
-            // Manages variable/state changes and communicates them to the federation.
-            // New instance must be created on every loop.
-            HlaPayloadUpdaterPtr updater = payload->getHlaPayloadUpdater();
-
-            // Example of how to update a variable (in this case of a Payload instance)
-            // Ideally we'll call something like Physics.calculateAcceleration() or an
-            // equivalent function.
-            updater->setAcceleration({100.0, 100.0, 100.0});
-
-            // Packages all state/variable changes and sends them out to the federation
-            // where other federates can pull the new values in and use them as needed.
-            updater->sendUpdate();
+            list[0]->getAcceleration();
         }
         catch (std::exception& e) {
             // TODO Auto-generated catch block
