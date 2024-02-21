@@ -2,6 +2,8 @@
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
 
+#include "PhysX/PxPhysicsAPI.h"
+
 #include <iostream>
 #include <vector>
 
@@ -30,14 +32,6 @@ int main(void) {
 
     // TODO: Find a stopping point for our federate
     while (true) {
-        try {
-            list[0]->getAcceleration();
-        }
-        catch (std::exception& e) {
-            // TODO Auto-generated catch block
-            std::cout << e.what() << std::endl;
-        }
-
         hlaWorld->advanceToNextFrame();
     }
 
