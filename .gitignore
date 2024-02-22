@@ -36,5 +36,6 @@
 *.cmake
 *.sln
 CMakeFiles/
+CMakeCache.txt
 
 
