@@ -11,3 +11,31 @@
 /build/
 /.settings/
 /.vscode/
+.vs/
+
+# User-specific ignores
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# CMake ignores
+*.stamp
+*.stamp.depend
+*.vcxproj
+*.vcxproj.filters
+*.cmake
+*.sln
+CMakeFiles/
+CMakeCache.txt
+
+
