@@ -12,7 +12,7 @@ int main(void) {
     // Creates federation if this is the first federate connected,
     // connects to existing federation otherwise
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
-    Physics::CraterTransport_Physics* physicsManager;
+    Physics::CraterTransport_Physics* physicsManager = new Physics::CraterTransport_Physics();
     physicsManager->initPhysics();
     try {
         hlaWorld->connect();
@@ -34,6 +34,7 @@ int main(void) {
     while (true) {
         try {
             physicsManager->simulateStep();
+
             // Manages variable/state changes and communicates them to the federation.
             // New instance must be created on every loop.
             HlaPayloadUpdaterPtr updater = payload->getHlaPayloadUpdater();

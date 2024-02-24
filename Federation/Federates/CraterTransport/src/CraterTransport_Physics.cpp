@@ -1,5 +1,7 @@
 #include "CraterTransport_Physics.h"
 
+#include <iostream>
+
 namespace Physics {
     PxDefaultAllocator CraterTransport_Physics::gAllocator;
     PxDefaultErrorCallback CraterTransport_Physics::gErrorCallback;
@@ -34,12 +36,14 @@ namespace Physics {
         PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
         gScene->addActor(*groundPlane);
 
-        createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
+        defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
     }
 
     void CraterTransport_Physics::simulateStep() {
         gScene->simulate(1.0f / 60.0f);
         gScene->fetchResults(true);
+        PxVec3 velocity = defaultActor->getLinearVelocity();
+        std::cout << velocity.y << std::endl;
     }
 
     void CraterTransport_Physics::cleanupPhysics() {
