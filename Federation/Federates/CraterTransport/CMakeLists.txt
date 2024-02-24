@@ -13,14 +13,18 @@ target_include_directories(${TARGET_NAME}
 )
 
 set(PHYSX_LIBS
-	"${CMAKE_SOURCE_DIR}/build/Release/PhysX_64.lib"
-	"${CMAKE_SOURCE_DIR}/build/Release/PhysXCommon_64.lib"
-	"${CMAKE_SOURCE_DIR}/build/Release/PhysXFoundation_64.lib"
-	"${CMAKE_SOURCE_DIR}/build/Release/PhysXCooking_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXExtensions_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXVehicle_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXCharacterKinematic_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/LowLevelDynamics_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysX_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXCommon_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXCooking_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXFoundation_64.lib"
 )
 
 target_link_libraries(${TARGET_NAME}
-	"${CMAKE_SOURCE_DIR}/build/Release/SEE_Crater_Transport.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/SEE_Crater_Transport.lib"
 	"${DEVSTUDIO_LIBDIR}"
 	"${PHYSX_LIBS}"
 )

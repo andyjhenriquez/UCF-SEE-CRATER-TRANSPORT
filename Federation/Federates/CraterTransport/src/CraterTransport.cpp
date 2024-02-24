@@ -2,7 +2,7 @@
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
 
-#include <PhysX/PxPhysicsAPI.h>
+#include "CraterTransport_Physics.h"
 
 #include <iostream>
 
@@ -12,7 +12,8 @@ int main(void) {
     // Creates federation if this is the first federate connected,
     // connects to existing federation otherwise
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
-
+    Physics::CraterTransport_Physics* physicsManager;
+    physicsManager->initPhysics();
     try {
         hlaWorld->connect();
     }
@@ -32,6 +33,7 @@ int main(void) {
     // TODO: Find a stopping point for our federate
     while (true) {
         try {
+            physicsManager->simulateStep();
             // Manages variable/state changes and communicates them to the federation.
             // New instance must be created on every loop.
             HlaPayloadUpdaterPtr updater = payload->getHlaPayloadUpdater();
@@ -52,6 +54,8 @@ int main(void) {
 
         hlaWorld->advanceToNextFrame();
     }
+
+    physicsManager->cleanupPhysics();
 
     // Here we will do all of the federate cleanup necessary after it has finished running.
     // Unfortunately we can't run this code right now because we don't have a valid stopping
