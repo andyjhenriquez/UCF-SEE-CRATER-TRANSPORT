@@ -2,6 +2,8 @@
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
 
+#include <PhysX/PxPhysicsAPI.h>
+
 #include <iostream>
 
 using namespace LunarSimulation;
@@ -19,7 +21,7 @@ int main(void) {
         std::cout << e.what() << std::endl;
     }
     std::cout << "Connected\n";
-
+   
     // Manages Payload instances, allows you to handle and find different instances
     HlaPayloadManagerPtr payloadManager = hlaWorld->getHlaPayloadManager();
 
