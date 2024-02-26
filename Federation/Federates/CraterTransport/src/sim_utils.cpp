@@ -71,6 +71,8 @@ std::vector<double> sim_utils::forceCalc(double mass, double acc[3]) {
 	for (int i = 0; i < 3; i++) {
 		force[i] = mass * acc[i];
 	}
+
+	return force;
 }
 
 // Calculates
