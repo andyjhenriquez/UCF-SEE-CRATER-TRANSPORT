@@ -41,12 +41,3 @@ target_link_libraries(${TARGET_NAME}
 	optimized "${PHYSX_LIBS_RELEASE}"
 	          "${DEVSTUDIO_LIBDIR}"
 )
-
-target_compile_definitions(${TARGET_NAME}
-	PRIVATE
-	_CRT_SECURE_NO_WARNINGS
-	PUBLIC
-	$<$<CONFIG:Debug>:Debug>
-	$<$<CONFIG:Release>:Release>
-)
-
