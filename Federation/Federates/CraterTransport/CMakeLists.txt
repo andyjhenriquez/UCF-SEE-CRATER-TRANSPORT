@@ -4,6 +4,7 @@ add_executable(${TARGET_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport_Physics.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport_Physics.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
 )
 
 target_include_directories(${TARGET_NAME}
