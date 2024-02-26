@@ -1,5 +1,9 @@
-#include <CraterTransport_Physics.h>
+#include <sim_utils.h>
+
+bool run_tests() {
+    return true;
+}
 
 int main(void) {
-    return 0;
+    return run_tests();
 }

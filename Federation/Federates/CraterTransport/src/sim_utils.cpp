@@ -1,7 +1,4 @@
-#include <PxPhysicsAPI.h>
-#include <iostream>
-
-using namespace physx;
+#include "sim_utils.h"
 
 /*
 What function covers what payload class attribute 
@@ -30,8 +27,8 @@ No function yet:
 
 
 // Converts PxVec3 invInertia to double[3]
-public double[] vec3ToDoub3(PxVec3 vec) {
-	double conv[3];
+std::vector<double> sim_utils::vec3ToDouble3(PxVec3 vec) {
+	std::vector<double> conv(3);
 
 	conv[0] = static_cast<double>(vec.x);
 	conv[1] = static_cast<double>(vec.y);
@@ -43,8 +40,8 @@ public double[] vec3ToDoub3(PxVec3 vec) {
 /*
 * Converts PxMat33 to double[9]
 */
-public double[] mat33ToDoub9(PxMat33 mat) {
-	double conv[9] = { 0, 0, 0, 0, 0, 0, 0, 0 ,0 };
+std::vector<double> sim_utils::mat33ToDouble9(PxMat33 mat) {
+	std::vector<double> conv{ 0, 0, 0, 0, 0, 0, 0, 0 ,0 };
 
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -56,9 +53,9 @@ public double[] mat33ToDoub9(PxMat33 mat) {
 }
 
 // Calculates acceleration 
-public double[] accelerationCalc(double[3] curVel, double[3] oldVel) {
+std::vector<double> sim_utils::accelerationCalc(double curVel[3], double oldVel[3]) {
 	// Do not currently have the time step val, so I'm substituting 1
-	double acc[3];
+	std::vector<double> acc(3);
 
 	for (int i = 0; i < 3; i++) {
 		acc[i] = (curVel - oldVel) / 1;
@@ -68,8 +65,8 @@ public double[] accelerationCalc(double[3] curVel, double[3] oldVel) {
 }
 
 // Calculates force
-public double[] forceCalc(double mass, double[3] acc) {
-	double force[3];
+std::vector<double> sim_utils::forceCalc(double mass, double acc[3]) {
+	std::vector<double> force(3);
 
 	for (int i = 0; i < 3; i++) {
 		force[i] = mass * acc[i];
@@ -77,6 +74,6 @@ public double[] forceCalc(double mass, double[3] acc) {
 }
 
 // Calculates
-public double realToDouble(PxReal real) {
+double sim_utils::realToDouble(PxReal real) {
 	return static_cast<double>(real);
 }
