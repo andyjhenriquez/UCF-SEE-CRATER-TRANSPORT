@@ -3,13 +3,14 @@
 #include <iostream>
 
 namespace Physics {
-    PxDefaultAllocator CraterTransport_Physics::gAllocator;
-    PxDefaultErrorCallback CraterTransport_Physics::gErrorCallback;
-    PxFoundation* CraterTransport_Physics::gFoundation = nullptr;
-    PxPhysics* CraterTransport_Physics::gPhysics = nullptr;
-    PxDefaultCpuDispatcher* CraterTransport_Physics::gDispatcher = nullptr;
-    PxScene* CraterTransport_Physics::gScene = nullptr;
-    PxMaterial* CraterTransport_Physics::gMaterial = nullptr;
+    PxDefaultAllocator       CraterTransport_Physics::gAllocator;
+    PxDefaultErrorCallback   CraterTransport_Physics::gErrorCallback;
+    PxFoundation*            CraterTransport_Physics::gFoundation = nullptr;
+    PxPhysics*               CraterTransport_Physics::gPhysics = nullptr;
+    PxDefaultCpuDispatcher*  CraterTransport_Physics::gDispatcher = nullptr;
+    PxScene*                 CraterTransport_Physics::gScene = nullptr;
+    PxMaterial*              CraterTransport_Physics::gMaterial = nullptr;
+    PxOmniPvd*               CraterTransport_Physics::gOmniPvd = nullptr;
 
     CraterTransport_Physics::CraterTransport_Physics() {
 
@@ -37,6 +38,25 @@ namespace Physics {
         gScene->addActor(*groundPlane);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
+    }
+
+    void CraterTransport_Physics::initOmniPvd() {
+        gOmniPvd = PxCreateOmniPvd(*gFoundation);
+        if (!gOmniPvd) {
+            printf("Error: could not create PxOmniPvd!");
+            return;
+        }
+
+        OmniPvdWriter* omniWriter = gOmniPvd->getWriter();
+        if (!omniWriter) {
+            printf("Error: could not get an instance of PxOmniPvdWriter!");
+            return;
+        }
+
+        OmniPvdFileWriteStream* fStream = gOmniPvd->getFileWriteStream();
+        if (!fStream) {
+            printf("Error: could not get an instance of PxOmniPvdFileWriteStream!");
+        }
     }
 
     void CraterTransport_Physics::simulateStep() {

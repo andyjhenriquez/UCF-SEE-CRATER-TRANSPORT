@@ -3,6 +3,7 @@
 
 #include <PhysX/PxConfig.h>
 #include <PhysX/PxPhysicsAPI.h>
+#include <PhysX/omnipvd/PxOmniPvd.h>
 
 using namespace physx;
 
@@ -12,6 +13,7 @@ namespace Physics {
         CraterTransport_Physics();
         ~CraterTransport_Physics();
         void initPhysics();
+        void initOmniPvd();
         void simulateStep();
         void cleanupPhysics();
 
@@ -25,6 +27,8 @@ namespace Physics {
         static PxDefaultCpuDispatcher*  gDispatcher;
         static PxScene*                 gScene;
         static PxMaterial*              gMaterial;
+        static PxOmniPvd*               gOmniPvd;
+        const char*                     gOmniPvdPath = NULL;
     };
 }
 #endif
