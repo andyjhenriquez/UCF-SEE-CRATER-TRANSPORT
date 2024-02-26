@@ -39,5 +39,4 @@ target_link_libraries(${TARGET_NAME}
 	optimized "${CMAKE_SOURCE_DIR}/build/Release/SEE_Crater_Transport.lib"
 	debug     "${PHYSX_LIBS_DEBUG}"
 	optimized "${PHYSX_LIBS_RELEASE}"
-	          "${DEVSTUDIO_LIBDIR}"
 )
