@@ -1,17 +1,18 @@
-set(TARGET_NAME CraterTransport)
+set(TARGET_NAME Tests)
 
 add_executable(${TARGET_NAME}
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport_Physics.h"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport_Physics.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/sim_utils.cpp" 
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/sim_utils.h" 
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/unittests.cpp"
+	"${CMAKE_SOURCE_DIR}/Federates/CraterTransport/src/sim_utils.cpp" 
+	"${CMAKE_SOURCE_DIR}/Federates/CraterTransport/src/sim_utils.h" 
 )
 
 target_include_directories(${TARGET_NAME}
 	PUBLIC
+	"${CMAKE_SOURCE_DIR}/Federates/CraterTransport/src"
+	"${CMAKE_SOURCE_DIR}/Federates/CraterEnvironment/src"
 	"${CMAKE_SOURCE_DIR}/include"
 	"${CMAKE_SOURCE_DIR}/include/PhysX"
+
 )
 
 set(PHYSX_LIBS_DEBUG
