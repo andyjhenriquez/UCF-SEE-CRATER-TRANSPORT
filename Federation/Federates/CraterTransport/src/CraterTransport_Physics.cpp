@@ -37,7 +37,7 @@ namespace Physics {
 
         OmniPvdWriter* omniWriter = gOmniPvd->getWriter();
         OmniPvdFileWriteStream* fStream = gOmniPvd->getFileWriteStream();
-        fStream->setFileName("OmniPvd/visual_debugging.ovd");
+        fStream->setFileName("OmniPvd_Output/visual_debugging.ovd");
         omniWriter->setWriteStream(static_cast<OmniPvdWriteStream&>(*fStream));
 
         gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, 0, gOmniPvd);
