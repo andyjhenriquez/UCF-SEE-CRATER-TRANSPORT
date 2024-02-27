@@ -3,9 +3,8 @@
 
 #include <PhysX/PxConfig.h>
 #include <PhysX/PxPhysicsAPI.h>
-#include <PhysX/omnipvd/PxOmniPvd.h>
-#include <PhysX/pvdruntime/OmniPvdWriter.h>
-#include <PhysX/pvdruntime/OmniPvdFileWriteStream.h>
+
+#include "OmniPvd.h"
 
 using namespace physx;
 

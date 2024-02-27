@@ -6,6 +6,7 @@ add_executable(${TARGET_NAME}
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport_Physics.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/sim_utils.cpp" 
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/sim_utils.h" 
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/OmniPvd.h"
 )
 
 target_include_directories(${TARGET_NAME}

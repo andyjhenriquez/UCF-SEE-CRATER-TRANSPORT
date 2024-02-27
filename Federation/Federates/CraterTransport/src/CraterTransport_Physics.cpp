@@ -28,20 +28,13 @@ namespace Physics {
             return false;
         }
 
-        gOmniPvd = PxCreateOmniPvd(*gFoundation);
-
-        if (!gOmniPvd) {
-            printf("Error: could not create PxOmniPvd!\n");
-            return false;
-        }
-
-        OmniPvdWriter* omniWriter = gOmniPvd->getWriter();
-        OmniPvdFileWriteStream* fStream = gOmniPvd->getFileWriteStream();
-        fStream->setFileName("OmniPvd_Output/visual_debugging.ovd");
-        omniWriter->setWriteStream(static_cast<OmniPvdWriteStream&>(*fStream));
+        #if _DEBUG
+        gOmniPvd = OmniPvd::initOmniPvd(*gFoundation);
+        #endif
 
         gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, 0, gOmniPvd);
 
+        #if _DEBUG
         if (gPhysics->getOmniPvd()) {
             gPhysics->getOmniPvd()->startSampling();
         }
@@ -49,6 +42,7 @@ namespace Physics {
             printf("Error: could not start OmniPvd sampling!\n");
             return false;
         }
+        #endif
 
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
