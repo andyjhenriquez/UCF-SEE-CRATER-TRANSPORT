@@ -37,7 +37,7 @@ set(PHYSX_LIBS_DEBUG
 set(PHYSX_LIBS_RELEASE
 	"${CMAKE_SOURCE_DIR}/build/Debug/SceneQuery_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/LowLevel_static_64.lib"
-	"${CMAKE_SOURCE_DIR}/build/ReleaseRelease/LowLevelAABB_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/LowLevelAABB_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXPvdSDK_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXTask_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXVehicle2_static_64.lib"
