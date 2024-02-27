@@ -20,10 +20,35 @@ namespace Physics {
 
     }
 
-    void CraterTransport_Physics::initPhysics() {
+    bool CraterTransport_Physics::initPhysics() {
         gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
 
-        gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true);
+        if (!gFoundation) {
+            printf("Error: could not create PxFoundation!\n");
+            return false;
+        }
+
+        gOmniPvd = PxCreateOmniPvd(*gFoundation);
+
+        if (!gOmniPvd) {
+            printf("Error: could not create PxOmniPvd!\n");
+            return false;
+        }
+
+        OmniPvdWriter* omniWriter = gOmniPvd->getWriter();
+        OmniPvdFileWriteStream* fStream = gOmniPvd->getFileWriteStream();
+        fStream->setFileName("OmniPvd/visual_debugging.ovd");
+        omniWriter->setWriteStream(static_cast<OmniPvdWriteStream&>(*fStream));
+
+        gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, 0, gOmniPvd);
+
+        if (gPhysics->getOmniPvd()) {
+            gPhysics->getOmniPvd()->startSampling();
+        }
+        else {
+            printf("Error: could not start OmniPvd sampling!\n");
+            return false;
+        }
 
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
@@ -38,25 +63,8 @@ namespace Physics {
         gScene->addActor(*groundPlane);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
-    }
 
-    void CraterTransport_Physics::initOmniPvd() {
-        gOmniPvd = PxCreateOmniPvd(*gFoundation);
-        if (!gOmniPvd) {
-            printf("Error: could not create PxOmniPvd!");
-            return;
-        }
-
-        OmniPvdWriter* omniWriter = gOmniPvd->getWriter();
-        if (!omniWriter) {
-            printf("Error: could not get an instance of PxOmniPvdWriter!");
-            return;
-        }
-
-        OmniPvdFileWriteStream* fStream = gOmniPvd->getFileWriteStream();
-        if (!fStream) {
-            printf("Error: could not get an instance of PxOmniPvdFileWriteStream!");
-        }
+        return true;
     }
 
     void CraterTransport_Physics::simulateStep() {

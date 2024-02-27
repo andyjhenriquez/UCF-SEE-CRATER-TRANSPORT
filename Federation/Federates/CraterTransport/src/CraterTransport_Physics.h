@@ -4,6 +4,8 @@
 #include <PhysX/PxConfig.h>
 #include <PhysX/PxPhysicsAPI.h>
 #include <PhysX/omnipvd/PxOmniPvd.h>
+#include <PhysX/pvdruntime/OmniPvdWriter.h>
+#include <PhysX/pvdruntime/OmniPvdFileWriteStream.h>
 
 using namespace physx;
 
@@ -12,8 +14,7 @@ namespace Physics {
     public:
         CraterTransport_Physics();
         ~CraterTransport_Physics();
-        void initPhysics();
-        void initOmniPvd();
+        bool initPhysics();
         void simulateStep();
         void cleanupPhysics();
 
