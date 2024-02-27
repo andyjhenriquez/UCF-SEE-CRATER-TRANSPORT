@@ -35,8 +35,11 @@ bool testMat33ToDouble9() {
 }
 
 bool run_tests() {
-    cout << testVec3ToDouble3() << endl;
-    cout << testMat33ToDouble9() << endl;
+    cout << "Testing Vec3ToDouble3()..." << endl;
+    cout << "Result:" << testVec3ToDouble3() << endl;
+
+    cout << "Testing Mat33ToDouble9()..." << endl;
+    cout << "Result" << testMat33ToDouble9() << endl;
 
     return 0;
 }
