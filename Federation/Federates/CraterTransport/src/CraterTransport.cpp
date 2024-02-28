@@ -12,11 +12,13 @@ int main(void) {
     // Creates federation if this is the first federate connected,
     // connects to existing federation otherwise
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
-    Physics::CraterTransport_Physics* physicsManager = new Physics::CraterTransport_Physics();
+    Physics::PhysicsManager* physicsManager = new Physics::PhysicsManager();
 
     if (!physicsManager->initPhysics()) {
         return -1;
     }
+
+    physicsManager->loadSampleScene();
 
     try {
         hlaWorld->connect();

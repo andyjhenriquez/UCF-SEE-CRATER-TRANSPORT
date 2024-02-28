@@ -3,24 +3,15 @@
 #include <iostream>
 
 namespace Physics {
-    PxDefaultAllocator       CraterTransport_Physics::gAllocator;
-    PxDefaultErrorCallback   CraterTransport_Physics::gErrorCallback;
-    PxFoundation*            CraterTransport_Physics::gFoundation = nullptr;
-    PxPhysics*               CraterTransport_Physics::gPhysics = nullptr;
-    PxDefaultCpuDispatcher*  CraterTransport_Physics::gDispatcher = nullptr;
-    PxScene*                 CraterTransport_Physics::gScene = nullptr;
-    PxMaterial*              CraterTransport_Physics::gMaterial = nullptr;
-    PxOmniPvd*               CraterTransport_Physics::gOmniPvd = nullptr;
-
-    CraterTransport_Physics::CraterTransport_Physics() {
+    PhysicsManager::PhysicsManager() {
 
     }
 
-    CraterTransport_Physics::~CraterTransport_Physics() {
+    PhysicsManager::~PhysicsManager() {
 
     }
 
-    bool CraterTransport_Physics::initPhysics() {
+    bool PhysicsManager::initPhysics() {
         gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
 
         if (!gFoundation) {
@@ -43,7 +34,11 @@ namespace Physics {
             return false;
         }
         #endif
+        
+        return true;
+    }
 
+    void PhysicsManager::loadSampleScene() {
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
         gDispatcher = PxDefaultCpuDispatcherCreate(2);
@@ -57,18 +52,14 @@ namespace Physics {
         gScene->addActor(*groundPlane);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
-
-        return true;
     }
 
-    void CraterTransport_Physics::simulateStep() {
+    void PhysicsManager::simulateStep() {
         gScene->simulate(1.0f / 60.0f);
         gScene->fetchResults(true);
-        PxVec3 velocity = defaultActor->getLinearVelocity();
-        std::cout << velocity.y << std::endl;
     }
 
-    void CraterTransport_Physics::cleanupPhysics() {
+    void PhysicsManager::cleanupPhysics() {
         PX_RELEASE(gScene);
         PX_RELEASE(gDispatcher);
         PX_RELEASE(gPhysics);
@@ -77,11 +68,47 @@ namespace Physics {
         printf("Simulation Complete\n");
     }
 
-    PxRigidDynamic* CraterTransport_Physics::createDynamic(const PxTransform& t, const PxGeometry& geometry, const PxVec3& velocity) {
+    PxRigidDynamic* PhysicsManager::createDynamic(const PxTransform& t, const PxGeometry& geometry, const PxVec3& velocity) {
         PxRigidDynamic* dynamic = PxCreateDynamic(*gPhysics, t, geometry, *gMaterial, 10.0f);
         dynamic->setAngularDamping(0.5f);
         dynamic->setLinearVelocity(velocity);
         gScene->addActor(*dynamic);
         return dynamic;
+    }
+
+    const PxDefaultAllocator PhysicsManager::getAllocator() {
+        return gAllocator;
+    }
+
+    const PxDefaultErrorCallback PhysicsManager::getErrorCallback() {
+        return gErrorCallback;
+    }
+
+    const PxFoundation* PhysicsManager::getFoundation() {
+        return gFoundation;
+    }
+
+    const PxPhysics* PhysicsManager::getPhysics() {
+        return gPhysics;
+    }
+
+    const PxDefaultCpuDispatcher* PhysicsManager::getCpuDispatcher() {
+        return gDispatcher;
+    }
+
+    const PxScene* PhysicsManager::getScene() {
+        return gScene;
+    }
+
+    const PxMaterial* PhysicsManager::getMaterial() {
+        return gMaterial;
+    }
+
+    const PxOmniPvd* PhysicsManager::getOmniPvd() {
+        return gOmniPvd;
+    }
+
+    const char* PhysicsManager::getOmniPvdPath() {
+        return gOmniPvdPath;
     }
 }
