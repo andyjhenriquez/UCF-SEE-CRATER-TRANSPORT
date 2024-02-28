@@ -8,17 +8,29 @@
 
 using namespace physx;
 
+// Holds most of the PhysX simulation information
 namespace Physics {
     class PhysicsManager {
     public:
+        // Default constructor
         PhysicsManager();
+
+        // Default destructor
         ~PhysicsManager();
+
+        // Initlializes physics variables
         bool initPhysics();
-        void simulateStep();
+
+        // Moves simulation forward a specified time-step default 60fps
+        void simulateStep(double timeStep = 1.0f / 60.0f);
+
+        // Cleans up physics variables
         void cleanupPhysics();
+
+        // Loads a sample scene for debugging
         void loadSampleScene();
 
-        // getters
+        // Getters
         const PxDefaultAllocator getAllocator();
         const PxDefaultErrorCallback getErrorCallback();
         const PxFoundation* getFoundation();

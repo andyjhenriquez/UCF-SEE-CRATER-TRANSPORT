@@ -19,12 +19,14 @@ namespace Physics {
             return false;
         }
 
+        // OmniPvd only works in debug mode
         #if _DEBUG
         gOmniPvd = OmniPvd::initOmniPvd(*gFoundation);
         #endif
 
         gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, 0, gOmniPvd);
 
+        // OmniPvd only works in debug mode
         #if _DEBUG
         if (gPhysics->getOmniPvd()) {
             gPhysics->getOmniPvd()->startSampling();
@@ -54,8 +56,8 @@ namespace Physics {
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
     }
 
-    void PhysicsManager::simulateStep() {
-        gScene->simulate(1.0f / 60.0f);
+    void PhysicsManager::simulateStep(double timeStep) {
+        gScene->simulate(timeStep);
         gScene->fetchResults(true);
     }
 
@@ -64,6 +66,7 @@ namespace Physics {
         PX_RELEASE(gDispatcher);
         PX_RELEASE(gPhysics);
         PX_RELEASE(gFoundation);
+        PX_RELEASE(gOmniPvd);
 
         printf("Simulation Complete\n");
     }
@@ -76,6 +79,8 @@ namespace Physics {
         return dynamic;
     }
 
+
+    // Getters
     const PxDefaultAllocator PhysicsManager::getAllocator() {
         return gAllocator;
     }
