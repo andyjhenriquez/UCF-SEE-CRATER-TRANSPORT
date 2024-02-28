@@ -1,0 +1,5 @@
+# Ignore everything in this folder other than the .gitignore
+
+# Want the empty folder in the repo so that there's no errors in where the
+# output file goes
+!.gitignore

@@ -3,13 +3,14 @@
 #include <iostream>
 
 namespace Physics {
-    PxDefaultAllocator CraterTransport_Physics::gAllocator;
-    PxDefaultErrorCallback CraterTransport_Physics::gErrorCallback;
-    PxFoundation* CraterTransport_Physics::gFoundation = nullptr;
-    PxPhysics* CraterTransport_Physics::gPhysics = nullptr;
-    PxDefaultCpuDispatcher* CraterTransport_Physics::gDispatcher = nullptr;
-    PxScene* CraterTransport_Physics::gScene = nullptr;
-    PxMaterial* CraterTransport_Physics::gMaterial = nullptr;
+    PxDefaultAllocator       CraterTransport_Physics::gAllocator;
+    PxDefaultErrorCallback   CraterTransport_Physics::gErrorCallback;
+    PxFoundation*            CraterTransport_Physics::gFoundation = nullptr;
+    PxPhysics*               CraterTransport_Physics::gPhysics = nullptr;
+    PxDefaultCpuDispatcher*  CraterTransport_Physics::gDispatcher = nullptr;
+    PxScene*                 CraterTransport_Physics::gScene = nullptr;
+    PxMaterial*              CraterTransport_Physics::gMaterial = nullptr;
+    PxOmniPvd*               CraterTransport_Physics::gOmniPvd = nullptr;
 
     CraterTransport_Physics::CraterTransport_Physics() {
 
@@ -19,10 +20,29 @@ namespace Physics {
 
     }
 
-    void CraterTransport_Physics::initPhysics() {
+    bool CraterTransport_Physics::initPhysics() {
         gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
 
-        gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true);
+        if (!gFoundation) {
+            printf("Error: could not create PxFoundation!\n");
+            return false;
+        }
+
+        #if _DEBUG
+        gOmniPvd = OmniPvd::initOmniPvd(*gFoundation);
+        #endif
+
+        gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, 0, gOmniPvd);
+
+        #if _DEBUG
+        if (gPhysics->getOmniPvd()) {
+            gPhysics->getOmniPvd()->startSampling();
+        }
+        else {
+            printf("Error: could not start OmniPvd sampling!\n");
+            return false;
+        }
+        #endif
 
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
@@ -37,6 +57,8 @@ namespace Physics {
         gScene->addActor(*groundPlane);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
+
+        return true;
     }
 
     void CraterTransport_Physics::simulateStep() {

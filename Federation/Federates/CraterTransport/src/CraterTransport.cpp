@@ -13,7 +13,11 @@ int main(void) {
     // connects to existing federation otherwise
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
     Physics::CraterTransport_Physics* physicsManager = new Physics::CraterTransport_Physics();
-    physicsManager->initPhysics();
+
+    if (!physicsManager->initPhysics()) {
+        return -1;
+    }
+
     try {
         hlaWorld->connect();
     }

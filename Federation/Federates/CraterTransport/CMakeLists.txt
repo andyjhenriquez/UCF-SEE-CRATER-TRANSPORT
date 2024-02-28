@@ -6,6 +6,7 @@ add_executable(${TARGET_NAME}
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport_Physics.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/sim_utils.cpp" 
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/sim_utils.h" 
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/OmniPvd.h"
 )
 
 target_include_directories(${TARGET_NAME}
@@ -15,6 +16,14 @@ target_include_directories(${TARGET_NAME}
 )
 
 set(PHYSX_LIBS_DEBUG
+	"${CMAKE_SOURCE_DIR}/build/Debug/SceneQuery_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/LowLevel_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/LowLevelAABB_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXPvdSDK_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXTask_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXVehicle2_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/PVDRuntime_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Debug/SimulationController_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXExtensions_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXVehicle_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXCharacterKinematic_static_64.lib"
@@ -23,9 +32,18 @@ set(PHYSX_LIBS_DEBUG
 	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXCommon_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXCooking_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Debug/PhysXFoundation_64.lib"
+	CACHE INTERNAL ""
 )
 
 set(PHYSX_LIBS_RELEASE
+	"${CMAKE_SOURCE_DIR}/build/Debug/SceneQuery_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/LowLevel_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/LowLevelAABB_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/PhysXPvdSDK_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/PhysXTask_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/PhysXVehicle2_static_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/PVDRuntime_64.lib"
+	"${CMAKE_SOURCE_DIR}/build/Release/SimulationController_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXExtensions_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXVehicle_static_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXCharacterKinematic_static_64.lib"
@@ -34,6 +52,7 @@ set(PHYSX_LIBS_RELEASE
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXCommon_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXCooking_64.lib"
 	"${CMAKE_SOURCE_DIR}/build/Release/PhysXFoundation_64.lib"
+	CACHE INTERNAL ""
 )
 
 target_link_libraries(${TARGET_NAME}

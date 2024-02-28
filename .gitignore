@@ -38,4 +38,6 @@
 CMakeFiles/
 CMakeCache.txt
 
+# PhysX
+*.ovd
 
