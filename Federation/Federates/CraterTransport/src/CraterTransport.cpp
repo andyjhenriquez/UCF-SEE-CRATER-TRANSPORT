@@ -18,7 +18,7 @@ int main(void) {
         return -1;
     }
 
-    physicsManager->loadSampleEntryScene();
+    physicsManager->loadSampleExitScene();
 
     try {
         hlaWorld->connect();

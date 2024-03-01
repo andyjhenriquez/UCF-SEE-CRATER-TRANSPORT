@@ -33,6 +33,9 @@ namespace Physics {
         // Sample entry scene using basic shapes
         void loadSampleEntryScene();
 
+        // Sample exit scene using basic shapes
+        void loadSampleExitScene();
+
         // Getters
         const PxDefaultAllocator getAllocator();
         const PxDefaultErrorCallback getErrorCallback();

@@ -73,6 +73,25 @@ namespace Physics {
         defaultActor = createDynamic(PxTransform(PxVec3(0, 2, 2)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
+    void PhysicsManager::loadSampleExitScene() {
+        PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+        sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
+        gDispatcher = PxDefaultCpuDispatcherCreate(2);
+        sceneDesc.cpuDispatcher = gDispatcher;
+        sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+        gScene = gPhysics->createScene(sceneDesc);
+
+        gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
+
+        PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
+        gScene->addActor(*groundPlane);
+
+        PxRigidStatic* landingZone = PxCreateStatic(*gPhysics, PxTransform(10000, 0, 0), PxBoxGeometry(1000, 10, 1000), *gMaterial);
+        gScene->addActor(*landingZone);
+
+        defaultActor = createDynamic(PxTransform(PxVec3(0, 20, 0)), PxSphereGeometry(10), PxVec3(100, 50, 0));
+    }
+
     void PhysicsManager::simulateStep(double timeStep) {
         gScene->simulate(timeStep);
         gScene->fetchResults(true);
