@@ -2,7 +2,7 @@
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
 
-#include "CraterTransport_Physics.h"
+#include "PhysicsManager.h"
 
 #include <iostream>
 
@@ -18,7 +18,7 @@ int main(void) {
         return -1;
     }
 
-    physicsManager->loadSampleScene();
+    physicsManager->loadSampleEntryScene();
 
     try {
         hlaWorld->connect();

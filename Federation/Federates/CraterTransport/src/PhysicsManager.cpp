@@ -1,4 +1,4 @@
-#include "CraterTransport_Physics.h"
+#include "PhysicsManager.h"
 
 #include <iostream>
 
@@ -54,6 +54,23 @@ namespace Physics {
         gScene->addActor(*groundPlane);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
+    }
+
+    void PhysicsManager::loadSampleEntryScene() {
+        PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+        sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
+        gDispatcher = PxDefaultCpuDispatcherCreate(2);
+        sceneDesc.cpuDispatcher = gDispatcher;
+        sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+        gScene = gPhysics->createScene(sceneDesc);
+
+        gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
+
+        PxVec3 planeNormal = PxVec3(1.0f, 1.0f, 0.0f).getNormalized();
+        PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(planeNormal, 0), *gMaterial);
+        gScene->addActor(*groundPlane);
+
+        defaultActor = createDynamic(PxTransform(PxVec3(0, 2, 2)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
     void PhysicsManager::simulateStep(double timeStep) {
