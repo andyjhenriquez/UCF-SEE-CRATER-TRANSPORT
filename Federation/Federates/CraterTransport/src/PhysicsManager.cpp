@@ -66,7 +66,7 @@ namespace Physics {
 
         gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
 
-        PxVec3 planeNormal = PxVec3(1.0f, 1.0f, 0.0f).getNormalized();
+        PxVec3 planeNormal = PxVec3(1.0f, 1.0f, 0.0f).getNormalized(); // PxPlane requires normalized vector
         PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(planeNormal, 0), *gMaterial);
         gScene->addActor(*groundPlane);
 
