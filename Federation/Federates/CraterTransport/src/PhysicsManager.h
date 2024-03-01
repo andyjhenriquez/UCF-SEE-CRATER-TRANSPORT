@@ -30,6 +30,9 @@ namespace Physics {
         // Loads a sample scene for debugging
         void loadSampleScene();
 
+        // Sample entry scene using basic shapes
+        void loadSampleEntryScene();
+
         // Getters
         const PxDefaultAllocator getAllocator();
         const PxDefaultErrorCallback getErrorCallback();
