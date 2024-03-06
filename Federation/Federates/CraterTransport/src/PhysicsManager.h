@@ -5,6 +5,7 @@
 #include <PhysX/PxPhysicsAPI.h>
 
 #include "OmniPvd.h"
+#include "ModelLoader.h"
 
 using namespace physx;
 

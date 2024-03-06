@@ -8,7 +8,7 @@ namespace Physics {
     }
 
     PhysicsManager::~PhysicsManager() {
-
+        delete this;
     }
 
     bool PhysicsManager::initPhysics() {
@@ -54,6 +54,7 @@ namespace Physics {
         gScene->addActor(*groundPlane);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
+
     }
 
     void PhysicsManager::loadSampleEntryScene() {
@@ -66,9 +67,14 @@ namespace Physics {
 
         gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
 
-        PxVec3 planeNormal = PxVec3(1.0f, 1.0f, 0.0f).getNormalized(); // PxPlane requires normalized vector
-        PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(planeNormal, 0), *gMaterial);
-        gScene->addActor(*groundPlane);
+        ModelLoader* obj = new ModelLoader();
+        PxTriangleMesh* moonMesh = obj->loadCraterMesh(gPhysics);
+        PxTriangleMeshGeometry moonMeshHandler(moonMesh);
+
+        PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxIdentity));
+        PxShape* moonShape = PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
+        groundActor->attachShape(*moonShape);
+        gScene->addActor(*groundActor);
 
         defaultActor = createDynamic(PxTransform(PxVec3(0, 2, 2)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
