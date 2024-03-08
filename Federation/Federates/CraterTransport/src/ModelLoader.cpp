@@ -51,7 +51,7 @@ bool ModelLoader::loadOBJ() {
     while (!inFile.eof()) {
         getline(inFile, line);
         stringstream ss(line);
-        PxVec3 v;
+        PxVec3d v;
         string s;
         vector<unsigned> f;
         ss >> s;
@@ -70,6 +70,7 @@ bool ModelLoader::loadOBJ() {
 
             for (int i = 0; i < 3; ++i) {
                 ss >> s;
+                // cout << s << endl;
                 stemp = (char*)s.c_str();
                 stemp = strtok(stemp, "/");
 
@@ -77,7 +78,7 @@ bool ModelLoader::loadOBJ() {
                 while (stemp != NULL) {
                     temp[i * 3 + ctr] = atoi(stemp);
                     stemp = strtok(NULL, "/");
-                    ++ctr;
+                    ctr += 2;
                 }
             }
 
@@ -89,6 +90,7 @@ bool ModelLoader::loadOBJ() {
     cout << "final vertex count: " << vecv.size() << endl;
     cout << "final normal count: " << vecn.size() << endl;
     cout << "final face count: "   << vecf.size() << endl;
+
     cout << "Finished reading .obj\n";
     return true;
 }

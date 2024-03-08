@@ -23,10 +23,10 @@ private:
     PxTriangleMeshDesc meshDesc;
 
     // List of points (3D vectors)
-    vector<PxVec3> vecv;
+    vector<PxVec3d> vecv;
 
     // List of normals (also 3D vectors)
-    vector<PxVec3> vecn;
+    vector<PxVec3d> vecn;
 
     // list of faces (indices for vecv and vecn)
     vector<vector<unsigned>> vecf;
