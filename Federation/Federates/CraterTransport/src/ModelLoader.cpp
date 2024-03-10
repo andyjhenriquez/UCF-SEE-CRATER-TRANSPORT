@@ -1,7 +1,18 @@
 #include "ModelLoader.h"
 
 PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
-    if (!loadOBJ()) {
+    bool status;
+
+    // Attempt to open the specified crater mesh file
+    if (fileExists("../../../Models/AmundsenRim_100mpp.obj")) {
+        status = loadOBJ();
+    }
+    else {
+        cout << "Couldn't open crater model, loading sample cube mesh instead.\n\n";
+        return loadSampleCubeMesh(gPhysics);
+    }
+
+    if (!status) {
         return NULL;
     }
 
@@ -36,20 +47,20 @@ PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
 
     PxDefaultMemoryOutputStream writeBuffer;
     PxTriangleMeshCookingResult::Enum result;
-    bool status = PxCookTriangleMesh(params, meshDesc, writeBuffer, &result);
+    status = PxCookTriangleMesh(params, meshDesc, writeBuffer, &result);
     if (!status) {
         cout << "Failed to create triangle mesh.\n";
         return nullptr;
     }
 
     PxDefaultMemoryInputData readBuffer(writeBuffer.getData(), writeBuffer.getSize());
-    cout << "Finished loading .obj into PhysX.\n";
+    cout << "Finished loading .obj into PhysX.\n\n";
     return gPhysics->createTriangleMesh(readBuffer);
 }
 
 // Loading a sample cube I used to understand how PxMesh creation works
 PxTriangleMesh* ModelLoader::loadSampleCubeMesh(PxPhysics* gPhysics) {
-    cout << "Loading .obj into PhysX...\n";
+    cout << "Loading .obj into PhysX...\n\n";
 
     unsigned int indices[12][3] = {
         //Top
@@ -128,12 +139,12 @@ PxTriangleMesh* ModelLoader::loadSampleCubeMesh(PxPhysics* gPhysics) {
     PxTriangleMeshCookingResult::Enum result;
     bool status = PxCookTriangleMesh(params, meshDesc, writeBuffer, &result);
     if (!status) {
-        cout << "Failed to create triangle mesh.\n";
+        cout << "Failed to create triangle mesh.\n\n";
         return nullptr;
     }
 
     PxDefaultMemoryInputData readBuffer(writeBuffer.getData(), writeBuffer.getSize());
-    cout << "Finished loading .obj into PhysX.\n";
+    cout << "Finished loading .obj into PhysX.\n\n";
     return gPhysics->createTriangleMesh(readBuffer);
 }
 
@@ -148,14 +159,14 @@ bool ModelLoader::loadOBJ() {
 
     string line;
     if (getline(inFile, line)) {
-        cout << "successfully opened .obj file" << endl;
+        cout << "successfully opened .obj file\n\n";
     }
     else {
-        cout << "failed to read file" << endl;
+        cout << "failed to read file\n\n";
         return false;
     }
 
-    cout << "Reading .obj file...\n";
+    cout << "Reading .obj file...\n\n";
     while (!inFile.eof()) {
         getline(inFile, line);
         stringstream ss(line);
@@ -183,6 +194,11 @@ bool ModelLoader::loadOBJ() {
     }
     inFile.close();
 
-    cout << "Finished reading .obj\n";
+    cout << "Finished reading .obj\n\n";
     return true;
+}
+
+// Returns true if file exists using the specified filepath
+bool ModelLoader::fileExists(const std::string& name) {
+    return ifstream(name).good();
 }

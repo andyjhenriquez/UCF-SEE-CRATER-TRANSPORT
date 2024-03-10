@@ -20,6 +20,7 @@ public:
 
 private:
     bool loadOBJ();
+    inline bool fileExists(const std::string& name);
 
     PxTriangleMeshDesc meshDesc;
 
