@@ -16,6 +16,7 @@ using namespace std;
 class ModelLoader {
 public:
     PxTriangleMesh* loadCraterMesh(PxPhysics *gPhysics);
+    PxTriangleMesh* loadSampleCubeMesh(PxPhysics* gPhysics);
 
 private:
     bool loadOBJ();
@@ -23,12 +24,9 @@ private:
     PxTriangleMeshDesc meshDesc;
 
     // List of points (3D vectors)
-    vector<PxVec3d> vecv;
+    PxArray<PxVec3> vecv;
 
-    // List of normals (also 3D vectors)
-    vector<PxVec3d> vecn;
-
-    // list of faces (indices for vecv and vecn)
-    vector<vector<unsigned>> vecf;
+    // list of faces (indices for vecv)
+    PxArray<PxU32> vecf;
 };
 #endif

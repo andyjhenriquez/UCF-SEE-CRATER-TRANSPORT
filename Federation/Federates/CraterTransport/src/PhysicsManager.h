@@ -49,7 +49,6 @@ namespace Physics {
     private:
         PxDefaultAllocator       gAllocator;
         PxDefaultErrorCallback   gErrorCallback;
-        PxRigidDynamic*          defaultActor = nullptr;
         PxFoundation*            gFoundation = nullptr;
         PxPhysics*               gPhysics = nullptr;
         PxDefaultCpuDispatcher*  gDispatcher = nullptr;

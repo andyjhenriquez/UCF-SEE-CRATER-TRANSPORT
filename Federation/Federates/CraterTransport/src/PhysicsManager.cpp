@@ -53,8 +53,8 @@ namespace Physics {
         PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
         gScene->addActor(*groundPlane);
 
-        defaultActor = createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
-
+        // Create the dynamic cube used in our samples
+        createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
     }
 
     void PhysicsManager::loadSampleEntryScene() {
@@ -63,20 +63,25 @@ namespace Physics {
         gDispatcher = PxDefaultCpuDispatcherCreate(2);
         sceneDesc.cpuDispatcher = gDispatcher;
         sceneDesc.filterShader = PxDefaultSimulationFilterShader;
-        gScene = gPhysics->createScene(sceneDesc);
 
+        gScene = gPhysics->createScene(sceneDesc);
         gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
 
+        // Loads triangle mesh
         ModelLoader* obj = new ModelLoader();
         PxTriangleMesh* moonMesh = obj->loadCraterMesh(gPhysics);
-        PxTriangleMeshGeometry moonMeshHandler(moonMesh);
 
-        PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxIdentity));
-        PxShape* moonShape = PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
-        groundActor->attachShape(*moonShape);
+        if (moonMesh == NULL) {
+            return;
+        }
+
+        PxTriangleMeshGeometry moonMeshHandler(moonMesh);
+        PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
+        PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
         gScene->addActor(*groundActor);
 
-        defaultActor = createDynamic(PxTransform(PxVec3(0, 2, 2)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
+        // Create the dynamic cube used in our samples
+        createDynamic(PxTransform(PxVec3(0, 5, 2)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
     void PhysicsManager::simulateStep(double timeStep) {
