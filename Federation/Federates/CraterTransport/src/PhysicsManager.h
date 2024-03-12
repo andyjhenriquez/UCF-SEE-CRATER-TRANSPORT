@@ -5,6 +5,7 @@
 #include <PhysX/PxPhysicsAPI.h>
 
 #include "OmniPvd.h"
+#include "ModelLoader.h"
 
 using namespace physx;
 
@@ -48,7 +49,6 @@ namespace Physics {
     private:
         PxDefaultAllocator       gAllocator;
         PxDefaultErrorCallback   gErrorCallback;
-        PxRigidDynamic*          defaultActor = nullptr;
         PxFoundation*            gFoundation = nullptr;
         PxPhysics*               gPhysics = nullptr;
         PxDefaultCpuDispatcher*  gDispatcher = nullptr;

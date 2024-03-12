@@ -41,3 +41,6 @@ CMakeCache.txt
 # PhysX
 *.ovd
 
+# Models
+*.obj
+*.mtl
