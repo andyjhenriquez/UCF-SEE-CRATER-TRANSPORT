@@ -43,4 +43,4 @@ CMakeCache.txt
 
 # Models
 *.obj
-
+*.mtl
