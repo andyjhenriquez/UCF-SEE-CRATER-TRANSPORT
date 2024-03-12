@@ -26,7 +26,7 @@ PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
     // but it runs into an index out of bounds error that I can't locate
     // the source of. vecv.size() works but with errors in the final look
     // of the mesh.
-    meshDesc.triangles.count = vecv.size();
+    meshDesc.triangles.count = vecf.size() / 3;
     meshDesc.triangles.data = vecf.begin();
     meshDesc.triangles.stride = 3 * sizeof(PxU32);
     
@@ -148,14 +148,13 @@ PxTriangleMesh* ModelLoader::loadSampleCubeMesh(PxPhysics* gPhysics) {
     return gPhysics->createTriangleMesh(readBuffer);
 }
 
-
 // Parses .obj and loads it into two arrays
 bool ModelLoader::loadOBJ() {
     ifstream inFile;
 
     // Put this model in a folder titled "Models" in the base
     // of the repository.
-    inFile.open("../../../Models/AmundsenRim_100mpp.obj");
+    inFile.open("../../../Models/AmundsenRim_100mpp_triangulated.obj");
 
     string line;
     if (getline(inFile, line)) {
@@ -188,11 +187,14 @@ bool ModelLoader::loadOBJ() {
                 ss >> s;
                 stemp = (char*)s.c_str();
                 stemp = strtok(stemp, "/");
-                vecf.pushBack(atoi(stemp));
+                vecf.pushBack(atoi(stemp) - 1);
             }
         }
     }
     inFile.close();
+
+    cout << "Final vecv size: " << vecv.size() << endl;
+    cout << "Final vecf size: " << vecf.size() << endl;
 
     cout << "Finished reading .obj\n\n";
     return true;
