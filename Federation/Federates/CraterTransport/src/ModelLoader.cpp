@@ -4,7 +4,7 @@ PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
     bool status;
 
     // Attempt to open the specified crater mesh file
-    if (fileExists("../../../Models/AmundsenRim_100mpp.obj")) {
+    if (fileExists("../../../Models/AmundsenRim_100mpp_triangulated.obj")) {
         status = loadOBJ();
     }
     else {

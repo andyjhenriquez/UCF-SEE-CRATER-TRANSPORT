@@ -78,10 +78,11 @@ namespace Physics {
         PxTriangleMeshGeometry moonMeshHandler(moonMesh);
         PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
         PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
+        groundActor->setGlobalPose(PxTransform(PxVec3(-1285.0f, 185.0f, -3576.0f), PxQuat(-PxHalfPi, PxVec3(1.0f, 0.0f, 0.0f))));
         gScene->addActor(*groundActor);
 
         // Create the dynamic cube used in our samples
-        createDynamic(PxTransform(PxVec3(0, 5, 0)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
+        createDynamic(PxTransform(PxVec3(0, 0, 0)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
     void PhysicsManager::simulateStep(double timeStep) {
