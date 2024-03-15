@@ -82,7 +82,7 @@ namespace Physics {
         gScene->addActor(*groundActor);
 
         // Create the dynamic cube used in our samples
-        createDynamic(PxTransform(PxVec3(0, 0, 0)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
+        createDynamic(PxTransform(PxVec3(-85, -47, 207)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
     void PhysicsManager::simulateStep(double timeStep) {
