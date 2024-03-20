@@ -154,7 +154,7 @@ bool ModelLoader::loadOBJ() {
 
     // Put this model in a folder titled "Models" in the base
     // of the repository.
-    inFile.open("../../../Models/AmundsenRim_100mpp_triangulated.obj");
+    inFile.open("../../../Models/shackleton_highres_triangulated_scaled.obj");
 
     string line;
     if (getline(inFile, line)) {
