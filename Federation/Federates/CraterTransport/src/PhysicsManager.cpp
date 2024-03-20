@@ -65,7 +65,7 @@ namespace Physics {
         sceneDesc.filterShader = PxDefaultSimulationFilterShader;
 
         gScene = gPhysics->createScene(sceneDesc);
-        gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
+        gMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
 
         // Loads triangle mesh
         ModelLoader* obj = new ModelLoader();
@@ -74,15 +74,15 @@ namespace Physics {
         if (moonMesh == NULL) {
             return;
         }
-
+        
         PxTriangleMeshGeometry moonMeshHandler(moonMesh);
         PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
         PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
-        groundActor->setGlobalPose(PxTransform(PxVec3(-1285.0f, 185.0f, -3576.0f), PxQuat(-PxHalfPi, PxVec3(1.0f, 0.0f, 0.0f))));
         gScene->addActor(*groundActor);
+        groundActor->setGlobalPose(PxTransform(PxVec3(0.0f, 0.0f, 0.0f), PxQuat(PxDegToRad(-0.0f), PxVec3(0.0f, 0.0f, 1.0f))));
 
         // Create the dynamic cube used in our samples
-        createDynamic(PxTransform(PxVec3(-85, -47, 207)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
+        createDynamic(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
     void PhysicsManager::simulateStep(double timeStep) {
@@ -99,6 +99,7 @@ namespace Physics {
 
         printf("Simulation Complete\n");
     }
+    
 
     PxRigidDynamic* PhysicsManager::createDynamic(const PxTransform& t, const PxGeometry& geometry, const PxVec3& velocity) {
         PxRigidDynamic* dynamic = PxCreateDynamic(*gPhysics, t, geometry, *gMaterial, 10.0f);
