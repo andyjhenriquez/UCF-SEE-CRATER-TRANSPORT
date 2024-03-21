@@ -18,33 +18,37 @@ PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
 
     cout << "Loading .obj into PhysX...\n";
 
+    // Vertices
     meshDesc.points.count = vecv.size();
     meshDesc.points.data = reinterpret_cast<const PxVec3*>(&vecv[0][0]);
     meshDesc.points.stride = sizeof(PxVec3);
 
-    // Error here: Seems to me that the count should be vecf.size()
-    // but it runs into an index out of bounds error that I can't locate
-    // the source of. vecv.size() works but with errors in the final look
-    // of the mesh.
+    // Faces
+    // Note: Mesh being loaded needs to be triangulated due to the inflexible stride
+    // value used in PhysX
     meshDesc.triangles.count = vecf.size() / 3;
     meshDesc.triangles.data = vecf.begin();
     meshDesc.triangles.stride = 3 * sizeof(PxU32);
     
-    
     PxTolerancesScale scale;
     PxCookingParams params(scale);
 
+    // Structure used for fast collision calculations
     params.midphaseDesc = PxMeshMidPhase::eBVH33;
     params.suppressTriangleMeshRemapTable = true;
 
     params.meshPreprocessParams &= PxMeshPreprocessingFlag::eDISABLE_CLEAN_MESH;
     params.meshPreprocessParams &= PxMeshPreprocessingFlag::eDISABLE_ACTIVE_EDGES_PRECOMPUTE;
+
+    // Value between 0 and 1 used to determine how much of the mesh is cooked before
+    // simulation start
     params.midphaseDesc.mBVH33Desc.meshSizePerformanceTradeOff = 0.55f;
 
     #if defined(PX_CHECKED) || defined(PX_DEBUG)
     PX_ASSERT(PxValidateTriangleMesh(params, meshDesc));
     #endif
 
+    // Creating output stream to write the cooked triangle mesh into PhysX
     PxDefaultMemoryOutputStream writeBuffer;
     PxTriangleMeshCookingResult::Enum result;
     status = PxCookTriangleMesh(params, meshDesc, writeBuffer, &result);
@@ -58,7 +62,7 @@ PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
     return gPhysics->createTriangleMesh(readBuffer);
 }
 
-// Loading a sample cube I used to understand how PxMesh creation works
+// Simple scene used as a backup if the crater mesh file isn't found
 PxTriangleMesh* ModelLoader::loadSampleCubeMesh(PxPhysics* gPhysics) {
     cout << "Loading .obj into PhysX...\n\n";
 
@@ -154,9 +158,10 @@ bool ModelLoader::loadOBJ() {
 
     // Put this model in a folder titled "Models" in the base
     // of the repository.
-    inFile.open("../../../Models/AmundsenRim_100mpp_triangulated.obj");
+    inFile.open("../../../Models/shackleton_highres_triangulated_scaled.obj");
 
     string line;
+
     if (getline(inFile, line)) {
         cout << "successfully opened .obj file\n\n";
     }
@@ -166,6 +171,9 @@ bool ModelLoader::loadOBJ() {
     }
 
     cout << "Reading .obj file...\n\n";
+
+    // Reading through the obj file, storing lines that
+    // start with "v" into vecv and "f" into vecf
     while (!inFile.eof()) {
         getline(inFile, line);
         stringstream ss(line);
@@ -187,7 +195,7 @@ bool ModelLoader::loadOBJ() {
                 ss >> s;
                 stemp = (char*)s.c_str();
                 stemp = strtok(stemp, "/");
-                vecf.pushBack(atoi(stemp) - 1);
+                vecf.pushBack(atoi(stemp) - 1); // Obj is 1-indexed so we need to subtract
             }
         }
     }
