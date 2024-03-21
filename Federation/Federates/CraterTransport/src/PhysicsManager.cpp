@@ -58,6 +58,7 @@ namespace Physics {
     }
 
     void PhysicsManager::loadSampleEntryScene() {
+        // Base parameters for the PhysX scene
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
         gDispatcher = PxDefaultCpuDispatcherCreate(2);
@@ -75,16 +76,22 @@ namespace Physics {
             return;
         }
         
+        // Cooked triangle mesh neds to be stored in a separate handler
+        // that has more robust functionality
         PxTriangleMeshGeometry moonMeshHandler(moonMesh);
+
+        // Creating the rigid actor which will hold the moon crater mesh
         PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
         PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
+
         gScene->addActor(*groundActor);
         groundActor->setGlobalPose(PxTransform(PxVec3(0.0f, 0.0f, 0.0f), PxQuat(PxDegToRad(-0.0f), PxVec3(0.0f, 0.0f, 1.0f))));
 
-        // Create the dynamic cube used in our samples
+        // Create the dynamic cube used in our samples using a hard-coded starting position to ensure deterministic outcome
         createDynamic(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
     }
 
+    // Moves the simulation by the specified time-step
     void PhysicsManager::simulateStep(double timeStep) {
         gScene->simulate(timeStep);
         gScene->fetchResults(true);
@@ -99,8 +106,8 @@ namespace Physics {
 
         printf("Simulation Complete\n");
     }
-    
 
+    // Creates a PhysX dynamic actor (can move within the scene and responds accordingly to forces)
     PxRigidDynamic* PhysicsManager::createDynamic(const PxTransform& t, const PxGeometry& geometry, const PxVec3& velocity) {
         PxRigidDynamic* dynamic = PxCreateDynamic(*gPhysics, t, geometry, *gMaterial, 10.0f);
         dynamic->setAngularDamping(0.5f);
