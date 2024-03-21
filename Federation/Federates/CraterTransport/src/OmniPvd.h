@@ -9,6 +9,9 @@
 
 using namespace physx;
 
+// Used for debug visualization in NVIDIA Omniverse
+// using the PVD runtime extension
+// Writes to a .ovd file which can be loaded in Omniverse
 class OmniPvd {
 public:
     static PxOmniPvd* initOmniPvd(PxFoundation& foundation) {
