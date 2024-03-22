@@ -3,6 +3,7 @@
 #include <LunarSimulation\HlaPayloadManager.h>
 
 #include "PhysicsManager.h"
+#include "sim_utils.h"
 
 #include <iostream>
 
@@ -36,14 +37,29 @@ int main(void) {
     // of functions to retrive its values such as acceleration and position
     HlaPayloadPtr payload = payloadManager->createLocalHlaPayload(L"Payload");
 
+    // PhysX physics instantce
+    const PxScene* gScene = physicsManager->getScene();
+
     // TODO: Find a stopping point for our federate
     while (true) {
         try {
-            physicsManager->simulateStep();
-
             // Manages variable/state changes and communicates them to the federation.
             // New instance must be created on every loop.
             HlaPayloadUpdaterPtr updater = payload->getHlaPayloadUpdater();
+
+            PxU32 numActors = gScene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);
+            PxActor* gActors[10];
+
+            gScene->getActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC, gActors, PxU32(10));
+
+            // Iterating through the actors in the scene and moving the information to the updater
+            // TODO: Use a fetchResults() check to make sure that you can safely extract information.
+            for (int i = 0; i < numActors; ++i) {
+                PxActor* actor = gActors[i];
+                if (actor->is<PxRigidDynamic>() != NULL)
+                    updater->setPosition(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getGlobalPose().p));
+                // actor->is<PxRigidDynamic>() ? updateDynamic() : updateStatic();
+            }
 
             // Example of how to update a variable (in this case of a Payload instance)
             // Ideally we'll call something like Physics.calculateAcceleration() or an
@@ -53,6 +69,8 @@ int main(void) {
             // Packages all state/variable changes and sends them out to the federation
             // where other federates can pull the new values in and use them as needed.
             updater->sendUpdate();
+
+            physicsManager->simulateStep();
         }
         catch (std::exception& e) {
             // TODO Auto-generated catch block
