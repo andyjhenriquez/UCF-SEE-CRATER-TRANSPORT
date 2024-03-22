@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -75,10 +75,10 @@ void HlaPayloadUpdaterImpl::setInertiaRate(const std::vector</* 9 */ double >& v
    _inertiaRate.setValue(std::shared_ptr<std::vector</* 9 */ double > >(new std::vector</* 9 */ double >(value)));
 }
 
-void HlaPayloadUpdaterImpl::setName(const std::wstring& value)
+void HlaPayloadUpdaterImpl::sendName()
 {
    std::lock_guard<std::mutex> lock(_attributesLock);
-   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(value)));
+   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(_instance->getName())));
 }
 
 void HlaPayloadUpdaterImpl::setType(const std::wstring& value)

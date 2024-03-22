@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -16,6 +16,7 @@
 
 #include <RtiDriver/ObjectClassHandle.h>
 #include <RtiDriver/Encoding/BasicDataElements.h>
+#include <string>
 #include "datatypes/AccelerationVectorEncoder.h"
 #include "datatypes/AngularAccelerationVectorEncoder.h"
 #include "datatypes/AttitudeQuaternionEncoder.h"
@@ -59,6 +60,7 @@ namespace LunarSimulation {
         HlaInstanceNameMap _hlaInstanceNameMap; // guarded by _instancesLock
         EncodedHlaInstanceHandleMap _encodedHlaInstanceHandleMap; // guarded by _instancesLock
 
+        Cache<std::wstring, HlaPayloadImplPtr> _getByNameCache; // guarded by _instancesLock
         ListenerSet<HlaPayloadManagerListenerPtr> _payloadManagerListeners;
         ListenerSet<HlaPayloadValueListenerPtr> _defaultInstanceValueListeners;
         ListenerSet<HlaPayloadListenerPtr> _defaultInstanceListeners;
@@ -78,13 +80,16 @@ namespace LunarSimulation {
         std::vector<HlaPayloadPtr> getHlaPayloads();
         std::vector<HlaPayloadPtr> getLocalHlaPayloads();
         std::vector<HlaPayloadPtr> getRemoteHlaPayloads();
+        HlaPayloadPtr getPayloadByName(std::wstring name);
         HlaPayloadPtr getPayloadByHlaInstanceName(const std::wstring& hlaInstanceName);
         HlaPayloadPtr getPayloadByHlaInstanceHandle(const std::vector<char>& encodedHlaInstanceHandle);
 
         HlaPayloadPtr createLocalHlaPayload(
+            std::wstring name
         ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
 
-        HlaPayloadPtr createLocalHlaPayload(const std::wstring& hlaInstanceName
+        HlaPayloadPtr createLocalHlaPayload(const std::wstring& hlaInstanceName,
+            std::wstring name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -158,7 +163,8 @@ namespace LunarSimulation {
         LunarSimulation::AttitudeQuaternionEncoder _attitudeQuaternionEncoderEncoder;
 
     private:
-        HlaPayloadPtr createLocalInstance(const std::wstring& hlaInstanceName
+        HlaPayloadPtr createLocalInstance(const std::wstring& hlaInstanceName,
+             const std::wstring& name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -169,6 +175,7 @@ namespace LunarSimulation {
         void fireDeleted(HlaPayloadImplPtr instance, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime);
         void clearAllInstances(bool doFireDeleted);
 
+        HlaPayloadImplPtr findByName(std::wstring name); // guarded by _instancesLock
     };
 }
 #endif

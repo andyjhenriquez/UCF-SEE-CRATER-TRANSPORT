@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -16,6 +16,7 @@
 
 #include <RtiDriver/ObjectClassHandle.h>
 #include <RtiDriver/Encoding/BasicDataElements.h>
+#include <string>
 #include "datatypes/AccelerationVectorEncoder.h"
 #include "datatypes/AngularAccelerationVectorEncoder.h"
 #include "datatypes/AttitudeQuaternionEncoder.h"
@@ -54,6 +55,7 @@ namespace LunarSimulation {
         HlaInstanceNameMap _hlaInstanceNameMap; // guarded by _instancesLock
         EncodedHlaInstanceHandleMap _encodedHlaInstanceHandleMap; // guarded by _instancesLock
 
+        Cache<std::wstring, HlaLauncherImplPtr> _getByNameCache; // guarded by _instancesLock
         ListenerSet<HlaLauncherManagerListenerPtr> _launcherManagerListeners;
         ListenerSet<HlaLauncherValueListenerPtr> _defaultInstanceValueListeners;
         ListenerSet<HlaLauncherListenerPtr> _defaultInstanceListeners;
@@ -73,13 +75,16 @@ namespace LunarSimulation {
         std::vector<HlaLauncherPtr> getHlaLaunchers();
         std::vector<HlaLauncherPtr> getLocalHlaLaunchers();
         std::vector<HlaLauncherPtr> getRemoteHlaLaunchers();
+        HlaLauncherPtr getLauncherByName(std::wstring name);
         HlaLauncherPtr getLauncherByHlaInstanceName(const std::wstring& hlaInstanceName);
         HlaLauncherPtr getLauncherByHlaInstanceHandle(const std::vector<char>& encodedHlaInstanceHandle);
 
         HlaLauncherPtr createLocalHlaLauncher(
+            std::wstring name
         ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
 
-        HlaLauncherPtr createLocalHlaLauncher(const std::wstring& hlaInstanceName
+        HlaLauncherPtr createLocalHlaLauncher(const std::wstring& hlaInstanceName,
+            std::wstring name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -143,7 +148,8 @@ namespace LunarSimulation {
         LunarSimulation::AttitudeQuaternionEncoder _attitudeQuaternionEncoderEncoder;
 
     private:
-        HlaLauncherPtr createLocalInstance(const std::wstring& hlaInstanceName
+        HlaLauncherPtr createLocalInstance(const std::wstring& hlaInstanceName,
+             const std::wstring& name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -154,6 +160,7 @@ namespace LunarSimulation {
         void fireDeleted(HlaLauncherImplPtr instance, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime);
         void clearAllInstances(bool doFireDeleted);
 
+        HlaLauncherImplPtr findByName(std::wstring name); // guarded by _instancesLock
     };
 }
 #endif

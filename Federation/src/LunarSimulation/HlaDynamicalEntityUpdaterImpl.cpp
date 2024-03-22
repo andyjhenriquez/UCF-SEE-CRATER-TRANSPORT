@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -57,10 +57,10 @@ void HlaDynamicalEntityUpdaterImpl::setInertiaRate(const std::vector</* 9 */ dou
    _inertiaRate.setValue(std::shared_ptr<std::vector</* 9 */ double > >(new std::vector</* 9 */ double >(value)));
 }
 
-void HlaDynamicalEntityUpdaterImpl::setName(const std::wstring& value)
+void HlaDynamicalEntityUpdaterImpl::sendName()
 {
    std::lock_guard<std::mutex> lock(_attributesLock);
-   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(value)));
+   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(_instance->getName())));
 }
 
 void HlaDynamicalEntityUpdaterImpl::setType(const std::wstring& value)

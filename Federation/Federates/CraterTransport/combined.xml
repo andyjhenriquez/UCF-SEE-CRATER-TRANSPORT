@@ -15,10 +15,6 @@
         </reference>
         <reference>
             <type>Composed from</type>
-            <identification>New Module</identification>
-        </reference>
-        <reference>
-            <type>Composed from</type>
             <identification>SISO-STD-018-2020 - SISO Space Reference FOM Entity</identification>
         </reference>
         <reference>
@@ -221,7 +217,7 @@ The position and attitude of an entity is therefore defined by the position and 
                     </attribute>
                     <objectClass>
                         <name>Payload</name>
-                        <sharing>Neither</sharing>
+                        <sharing>PublishSubscribe</sharing>
                         <semantics></semantics>
                         <attribute>
                             <name>position</name>
@@ -257,10 +253,48 @@ The position and attitude of an entity is therefore defined by the position and 
                             <semantics>Scalar representing health</semantics>
                         </attribute>
                     </objectClass>
+                    <objectClass>
+                        <name>Rover</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics></semantics>
+                        <attribute>
+                            <name>Position</name>
+                            <dataType>PositionVector</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>Neither</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Velocity</name>
+                            <dataType>VelocityVector</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>Neither</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Health</name>
+                            <dataType>Health</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>Neither</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </attribute>
+                    </objectClass>
                 </objectClass>
                 <objectClass>
                     <name>Launcher</name>
-                    <sharing>Publish</sharing>
+                    <sharing>PublishSubscribe</sharing>
                     <semantics>Launcher that will lauch payload out of crater</semantics>
                     <attribute>
                         <name>position</name>
@@ -385,7 +419,7 @@ The position and attitude of an entity is therefore defined by the position and 
                 </attribute>
                 <objectClass>
                     <name>Moon</name>
-                    <sharing>Neither</sharing>
+                    <sharing>PublishSubscribe</sharing>
                     <semantics>Moon parent reference frame</semantics>
                 </objectClass>
             </objectClass>
@@ -476,12 +510,83 @@ The position and attitude of an entity is therefore defined by the position and 
     <interactions>
         <interactionClass>
             <name>HLAinteractionRoot</name>
+            <sharing>Neither</sharing>
+            <transportation>HLAreliable</transportation>
+            <order>TimeStamp</order>
+            <semantics></semantics>
             <interactionClass>
                 <name>Start_Stop</name>
-                <sharing>Neither</sharing>
+                <sharing>PublishSubscribe</sharing>
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
                 <semantics></semantics>
+                <parameter>
+                    <name>HaltSimulation</name>
+                    <dataType>HLAboolean</dataType>
+                    <semantics>Stop simulation if true</semantics>
+                </parameter>
+                <parameter>
+                    <name>Exit_Simulation</name>
+                    <dataType>HLAboolean</dataType>
+                    <semantics>Exit simulation if true</semantics>
+                </parameter>
+            </interactionClass>
+            <interactionClass>
+                <name>LoadScenario</name>
+                <sharing>PublishSubscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Scenario data used to configure simulation</semantics>
+                <parameter>
+                    <name>MoonFriction</name>
+                    <dataType>HLAfloat64LE</dataType>
+                    <semantics>Friction coefficient for surface of the moon</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverInitialPosition</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Start postion for rover</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverHealth</name>
+                    <dataType>Health</dataType>
+                    <semantics>Health of rover</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverMass</name>
+                    <dataType>Mass</dataType>
+                    <semantics>Mass of rover</semantics>
+                </parameter>
+                <parameter>
+                    <name>PayloadMass</name>
+                    <dataType>Mass</dataType>
+                    <semantics>Mass of payload</semantics>
+                </parameter>
+                <parameter>
+                    <name>LaunchSpeedVector</name>
+                    <dataType>VelocityVector</dataType>
+                    <semantics>Initial speed of payload</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverStartPosition</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Rover Start Position</semantics>
+                </parameter>
+                <parameter>
+                    <name>SimulationScenario</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Which scenario to load in</semantics>
+                </parameter>
+                <parameter>
+                    <name>LauncherPosition</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Position of Launcher</semantics>
+                </parameter>
+                <parameter>
+                    <name>LaunchForce</name>
+                    <dataType>ForceVector</dataType>
+                    <semantics>Launch force for payload exit</semantics>
+                </parameter>
             </interactionClass>
             <interactionClass>
                 <name>ModeTransitionRequest</name>

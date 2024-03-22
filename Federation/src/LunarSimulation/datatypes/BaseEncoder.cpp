@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -111,6 +111,14 @@ namespace LunarSimulation {
 
     LunarSimulation::ExecutionModeEncoder BaseEncoder::createExecutionMode() {
        return LunarSimulation::ExecutionModeEncoder();
+    }
+
+    EncodingHelpers::HLAboolean BaseEncoder::createHLAboolean(const bool& dt) {
+       return EncodingHelpers::HLAboolean(dt);
+    }
+
+    EncodingHelpers::HLAboolean BaseEncoder::createHLAboolean() {
+       return EncodingHelpers::HLAboolean();
     }
 
     LunarSimulation::MTRModeEncoder BaseEncoder::createMTRMode(const LunarSimulation::MTRMode::MTRMode& dt) {

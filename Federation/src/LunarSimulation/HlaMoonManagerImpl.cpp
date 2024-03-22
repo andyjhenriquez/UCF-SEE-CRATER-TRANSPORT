@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -20,6 +20,8 @@
 #include "ObjectManager.h"
 #include "HlaLogicalTimeImpl.h"
 
+#include <LunarSimulation/datatypes/SpaceTimeCoordinateState.h>
+#include <string>
 
 using namespace LunarSimulation;
 using namespace std;
@@ -34,6 +36,9 @@ _enabled(true),
 _optional(false)
 {
     _objectManager->addManager(this, wstring(HLA_OBJECT_CLASS_NAME));
+    _getByNameCache.set_function(std::bind(&HlaMoonManagerImpl::findByName, this, std::placeholders::_1));
+    _getByParentNameCache.set_function(std::bind(&HlaMoonManagerImpl::findByParentName, this, std::placeholders::_1));
+    _getByStateCache.set_function(std::bind(&HlaMoonManagerImpl::findByState, this, std::placeholders::_1));
 }
 
 
@@ -78,6 +83,9 @@ void HlaMoonManagerImpl::clearAllInstances(bool doFireDeleted) {
         }
         _remoteInstances.clear();
 
+        _getByNameCache.clear();
+        _getByParentNameCache.clear();
+        _getByStateCache.clear();
     }
 }
 
@@ -176,6 +184,15 @@ void HlaMoonManagerImpl::removeObjectInstance(const RtiDriver::ObjectInstanceHan
             _remoteInstances.erase(it);
         }
 
+        if (instance->hasName()) {
+            _getByNameCache.remove(instance->getName());
+        }
+        if (instance->hasParentName()) {
+            _getByParentNameCache.remove(instance->getParentName());
+        }
+        if (instance->hasState()) {
+            _getByStateCache.remove(instance->getState());
+        }
     }
 
     instance->setRemoved();
@@ -235,6 +252,99 @@ std::vector<HlaMoonPtr> HlaMoonManagerImpl::getRemoteHlaMoons() {
     return res;
 }
 
+HlaMoonImplPtr HlaMoonManagerImpl::findByName(std::wstring name) {
+    for (InstanceMap::iterator i = _localInstances.begin(); i != _localInstances.end(); ++i) {
+        if (i->second->hasName() && name == i->second->getName()) {
+            return i->second;
+        }
+    }
+    for (InstanceMap::iterator i = _remoteInstances.begin(); i != _remoteInstances.end(); ++i) {
+        if (i->second->hasName() && name == i->second->getName()) {
+            return i->second;
+        }
+    }
+    return HlaMoonImplPtr();
+}
+
+HlaMoonPtr HlaMoonManagerImpl::getMoonByName(std::wstring name) {
+    {
+        std::lock_guard<std::mutex> lock(_instancesLock);
+        // implicit call to findByName if not found in cache
+        HlaMoonImplPtr cachedInstance = _getByNameCache(name, _localInstances.size() + _remoteInstances.size());
+
+        if (cachedInstance && (cachedInstance->isRemoved() || cachedInstance->getName() != name)) {
+            _getByNameCache.remove(name);
+            // retry after releasing lock
+        } else {
+            return cachedInstance;
+        }
+    }
+
+    return getMoonByName(name);
+}
+
+HlaMoonImplPtr HlaMoonManagerImpl::findByParentName(std::wstring parentName) {
+    for (InstanceMap::iterator i = _localInstances.begin(); i != _localInstances.end(); ++i) {
+        if (i->second->hasParentName() && parentName == i->second->getParentName()) {
+            return i->second;
+        }
+    }
+    for (InstanceMap::iterator i = _remoteInstances.begin(); i != _remoteInstances.end(); ++i) {
+        if (i->second->hasParentName() && parentName == i->second->getParentName()) {
+            return i->second;
+        }
+    }
+    return HlaMoonImplPtr();
+}
+
+HlaMoonPtr HlaMoonManagerImpl::getMoonByParent_name(std::wstring parentName) {
+    {
+        std::lock_guard<std::mutex> lock(_instancesLock);
+        // implicit call to findByParentName if not found in cache
+        HlaMoonImplPtr cachedInstance = _getByParentNameCache(parentName, _localInstances.size() + _remoteInstances.size());
+
+        if (cachedInstance && (cachedInstance->isRemoved() || cachedInstance->getParentName() != parentName)) {
+            _getByParentNameCache.remove(parentName);
+            // retry after releasing lock
+        } else {
+            return cachedInstance;
+        }
+    }
+
+    return getMoonByParent_name(parentName);
+}
+
+HlaMoonImplPtr HlaMoonManagerImpl::findByState(SpaceTimeCoordinateState state) {
+    for (InstanceMap::iterator i = _localInstances.begin(); i != _localInstances.end(); ++i) {
+        if (i->second->hasState() && state == i->second->getState()) {
+            return i->second;
+        }
+    }
+    for (InstanceMap::iterator i = _remoteInstances.begin(); i != _remoteInstances.end(); ++i) {
+        if (i->second->hasState() && state == i->second->getState()) {
+            return i->second;
+        }
+    }
+    return HlaMoonImplPtr();
+}
+
+HlaMoonPtr HlaMoonManagerImpl::getMoonByState(SpaceTimeCoordinateState state) {
+    {
+        std::lock_guard<std::mutex> lock(_instancesLock);
+        // implicit call to findByState if not found in cache
+        HlaMoonImplPtr cachedInstance = _getByStateCache(state, _localInstances.size() + _remoteInstances.size());
+
+        if (cachedInstance && (cachedInstance->isRemoved() || cachedInstance->getState() != state)) {
+            _getByStateCache.remove(state);
+            // retry after releasing lock
+        } else {
+            return cachedInstance;
+        }
+    }
+
+    return getMoonByState(state);
+}
+
 HlaMoonPtr HlaMoonManagerImpl::getMoonByHlaInstanceName(const std::wstring& hlaInstanceName) {
     std::unique_lock<std::mutex> lock(_instancesLock);
 
@@ -258,9 +368,11 @@ HlaMoonPtr HlaMoonManagerImpl::getMoonByHlaInstanceHandle(const std::vector<char
 }
 
 HlaMoonPtr HlaMoonManagerImpl::createLocalHlaMoon(
+      std::wstring name
       ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException) {
     try {
-        return createLocalInstance(L""
+        return createLocalInstance(L"",
+                                   name
         );
     } catch (HlaInstanceNameInUseException) {
         //can not happen with empty hlaInstanceName
@@ -268,7 +380,8 @@ HlaMoonPtr HlaMoonManagerImpl::createLocalHlaMoon(
     }
 }
 
-HlaMoonPtr HlaMoonManagerImpl::createLocalHlaMoon(const std::wstring& hlaInstanceName
+HlaMoonPtr HlaMoonManagerImpl::createLocalHlaMoon(const std::wstring& hlaInstanceName,
+      std::wstring name
    ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                  HlaNotConnectedException, HlaInternalException, HlaRtiException,
                  HlaSaveInProgressException, HlaRestoreInProgressException)
@@ -280,13 +393,15 @@ HlaMoonPtr HlaMoonManagerImpl::createLocalHlaMoon(const std::wstring& hlaInstanc
     //Silently ignore if we could not register object instance name, we might have registered it before
     _objectManager->registerObjectInstanceName(hlaInstanceName);
 
-    return createLocalInstance(hlaInstanceName
+    return createLocalInstance(hlaInstanceName,
+         name
     );
 }
 
 
 HlaMoonPtr HlaMoonManagerImpl::createLocalInstance(
-      const std::wstring& hlaInstanceName
+      const std::wstring& hlaInstanceName,
+      const std::wstring& name
    ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                  HlaNotConnectedException, HlaInternalException, HlaRtiException,
                  HlaSaveInProgressException, HlaRestoreInProgressException)
@@ -320,6 +435,10 @@ HlaMoonPtr HlaMoonManagerImpl::createLocalInstance(
        instance->addHlaMoonValueListener(*it);
     }
 
+    instance->setCreateAttributes(
+        std::shared_ptr<std::wstring >(new std::wstring(name)),
+        timeStamp
+    );
     checkInitializedFired(instance, timeStamp, HlaLogicalTimeImpl::getInvalid());
 
     return instance;
@@ -382,6 +501,15 @@ THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, Hla
             _remoteInstances.erase(instanceHandle);
         }
 
+        if (moonImpl->hasName()) {
+            _getByNameCache.remove(moonImpl->getName());
+        }
+        if (moonImpl->hasParentName()) {
+            _getByParentNameCache.remove(moonImpl->getParentName());
+        }
+        if (moonImpl->hasState()) {
+            _getByStateCache.remove(moonImpl->getState());
+        }
     }
 
     moonImpl->setRemoved();

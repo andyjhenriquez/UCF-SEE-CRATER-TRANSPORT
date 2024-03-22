@@ -69,9 +69,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adad69aa5f86a793ae7fc40a0d6d30fca" id="r_adad69aa5f86a793ae7fc40a0d6d30fca"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener_1_1_adapter.html#adad69aa5f86a793ae7fc40a0d6d30fca">hLAinteractionRoot</a> (bool local, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)</td></tr>
 <tr class="memdesc:adad69aa5f86a793ae7fc40a0d6d30fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is invoked when an HLA <code>HLAinteractionRoot</code> interaction is received, (or is sent locally).  <br /></td></tr>
 <tr class="separator:adad69aa5f86a793ae7fc40a0d6d30fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0fc49f8030a2bc7dacf239540fbca4f" id="r_ab0fc49f8030a2bc7dacf239540fbca4f"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener_1_1_adapter.html#ab0fc49f8030a2bc7dacf239540fbca4f">startStop</a> (bool local, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)</td></tr>
-<tr class="memdesc:ab0fc49f8030a2bc7dacf239540fbca4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is invoked when an HLA <code>HLAinteractionRoot.Start_Stop</code> interaction is received, (or is sent locally).  <br /></td></tr>
-<tr class="separator:ab0fc49f8030a2bc7dacf239540fbca4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a377cb4b9d958baf4ef2262bfb6491d98" id="r_a377cb4b9d958baf4ef2262bfb6491d98"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener_1_1_adapter.html#a377cb4b9d958baf4ef2262bfb6491d98">startStop</a> (bool local, HlaStartStopParametersPtr parameters, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)</td></tr>
+<tr class="memdesc:a377cb4b9d958baf4ef2262bfb6491d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is invoked when an HLA <code>HLAinteractionRoot.Start_Stop</code> interaction is received, (or is sent locally).  <br /></td></tr>
+<tr class="separator:a377cb4b9d958baf4ef2262bfb6491d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8834ba2db54c4bde578061e4ca21dc66" id="r_a8834ba2db54c4bde578061e4ca21dc66"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener_1_1_adapter.html#a8834ba2db54c4bde578061e4ca21dc66">loadScenario</a> (bool local, HlaLoadScenarioParametersPtr parameters, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)</td></tr>
+<tr class="memdesc:a8834ba2db54c4bde578061e4ca21dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is invoked when an HLA <code>HLAinteractionRoot.LoadScenario</code> interaction is received, (or is sent locally).  <br /></td></tr>
+<tr class="separator:a8834ba2db54c4bde578061e4ca21dc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e72df96c8602ec528b77e2fd565eabd" id="r_a7e72df96c8602ec528b77e2fd565eabd"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener_1_1_adapter.html#a7e72df96c8602ec528b77e2fd565eabd">modeTransitionRequest</a> (bool local, HlaModeTransitionRequestParametersPtr parameters, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)</td></tr>
 <tr class="memdesc:a7e72df96c8602ec528b77e2fd565eabd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is invoked when an HLA <code>HLAinteractionRoot.ModeTransitionRequest</code> interaction is received, (or is sent locally).  <br /></td></tr>
 <tr class="separator:a7e72df96c8602ec528b77e2fd565eabd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +134,67 @@ Public Member Functions</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener.html#ae77a8b479f8b503a2906de7ea6118c27">LunarSimulation::HlaInteractionListener</a>.</p>
+
+</div>
+</div>
+<a id="a8834ba2db54c4bde578061e4ca21dc66" name="a8834ba2db54c4bde578061e4ca21dc66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8834ba2db54c4bde578061e4ca21dc66">&#9670;&#160;</a></span>loadScenario()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionListener::Adapter::loadScenario </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>local</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaLoadScenarioParametersPtr&#160;</td>
+          <td class="paramname"><em>parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaTimeStampPtr&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaLogicalTimePtr&#160;</td>
+          <td class="paramname"><em>logicalTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method is invoked when an HLA <code>HLAinteractionRoot.LoadScenario</code> interaction is received, (or is sent locally). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">local</td><td><code>true</code> if the interaction was sent locally <code>false</code> otherwise </td></tr>
+    <tr><td class="paramname">parameters</td><td>contains value for the parameters </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>the time when the interaction was sent </td></tr>
+    <tr><td class="paramname">logicalTime</td><td>the logical time when the interaction was sent </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener.html#ae594d91faecd74a6ac0872eebca00872">LunarSimulation::HlaInteractionListener</a>.</p>
 
 </div>
 </div>
@@ -195,8 +259,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab0fc49f8030a2bc7dacf239540fbca4f" name="ab0fc49f8030a2bc7dacf239540fbca4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0fc49f8030a2bc7dacf239540fbca4f">&#9670;&#160;</a></span>startStop()</h2>
+<a id="a377cb4b9d958baf4ef2262bfb6491d98" name="a377cb4b9d958baf4ef2262bfb6491d98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a377cb4b9d958baf4ef2262bfb6491d98">&#9670;&#160;</a></span>startStop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,6 +273,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaStartStopParametersPtr&#160;</td>
+          <td class="paramname"><em>parameters</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -239,13 +309,14 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">local</td><td><code>true</code> if the interaction was sent locally <code>false</code> otherwise </td></tr>
+    <tr><td class="paramname">parameters</td><td>contains value for the parameters </td></tr>
     <tr><td class="paramname">timeStamp</td><td>the time when the interaction was sent </td></tr>
     <tr><td class="paramname">logicalTime</td><td>the logical time when the interaction was sent </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener.html#a6af6677f7d4bfd551f7a2c5dcf421f8e">LunarSimulation::HlaInteractionListener</a>.</p>
+<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_interaction_listener.html#aa09b685cd3d6a99da368ed3e60d7242a">LunarSimulation::HlaInteractionListener</a>.</p>
 
 </div>
 </div>
@@ -255,7 +326,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:21 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:48 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

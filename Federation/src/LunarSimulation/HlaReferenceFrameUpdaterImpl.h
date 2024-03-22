@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -37,7 +37,7 @@ namespace LunarSimulation {
             _updateSent(false)
         {}
 
-        void setName(const std::wstring& name);
+        void sendName();
         void setParentName(const std::wstring& parentName);
         void setState(const LunarSimulation::SpaceTimeCoordinateState& state);
 

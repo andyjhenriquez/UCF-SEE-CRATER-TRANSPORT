@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -16,6 +16,7 @@
 
 #include <RtiDriver/ObjectClassHandle.h>
 #include <RtiDriver/Encoding/BasicDataElements.h>
+#include <string>
 #include "datatypes/AttitudeQuaternionEncoder.h"
 #include "datatypes/PositionVectorEncoder.h"
 
@@ -51,6 +52,7 @@ namespace LunarSimulation {
         HlaInstanceNameMap _hlaInstanceNameMap; // guarded by _instancesLock
         EncodedHlaInstanceHandleMap _encodedHlaInstanceHandleMap; // guarded by _instancesLock
 
+        Cache<std::wstring, HlaPhysicalInterfaceImplPtr> _getByNameCache; // guarded by _instancesLock
         ListenerSet<HlaPhysicalInterfaceManagerListenerPtr> _physicalInterfaceManagerListeners;
         ListenerSet<HlaPhysicalInterfaceValueListenerPtr> _defaultInstanceValueListeners;
         ListenerSet<HlaPhysicalInterfaceListenerPtr> _defaultInstanceListeners;
@@ -70,13 +72,16 @@ namespace LunarSimulation {
         std::vector<HlaPhysicalInterfacePtr> getHlaPhysicalInterfaces();
         std::vector<HlaPhysicalInterfacePtr> getLocalHlaPhysicalInterfaces();
         std::vector<HlaPhysicalInterfacePtr> getRemoteHlaPhysicalInterfaces();
+        HlaPhysicalInterfacePtr getPhysicalInterfaceByName(std::wstring name);
         HlaPhysicalInterfacePtr getPhysicalInterfaceByHlaInstanceName(const std::wstring& hlaInstanceName);
         HlaPhysicalInterfacePtr getPhysicalInterfaceByHlaInstanceHandle(const std::vector<char>& encodedHlaInstanceHandle);
 
         HlaPhysicalInterfacePtr createLocalHlaPhysicalInterface(
+            std::wstring name
         ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
 
-        HlaPhysicalInterfacePtr createLocalHlaPhysicalInterface(const std::wstring& hlaInstanceName
+        HlaPhysicalInterfacePtr createLocalHlaPhysicalInterface(const std::wstring& hlaInstanceName,
+            std::wstring name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -132,7 +137,8 @@ namespace LunarSimulation {
         LunarSimulation::AttitudeQuaternionEncoder _attitudeQuaternionEncoderEncoder;
 
     private:
-        HlaPhysicalInterfacePtr createLocalInstance(const std::wstring& hlaInstanceName
+        HlaPhysicalInterfacePtr createLocalInstance(const std::wstring& hlaInstanceName,
+             const std::wstring& name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -143,6 +149,7 @@ namespace LunarSimulation {
         void fireDeleted(HlaPhysicalInterfaceImplPtr instance, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime);
         void clearAllInstances(bool doFireDeleted);
 
+        HlaPhysicalInterfaceImplPtr findByName(std::wstring name); // guarded by _instancesLock
     };
 }
 #endif

@@ -34,7 +34,7 @@ int main(void) {
 
     // Single Payload instance, extends Dynamical Entity and has a number
     // of functions to retrive its values such as acceleration and position
-    HlaPayloadPtr payload = payloadManager->createLocalHlaPayload();
+    HlaPayloadPtr payload = payloadManager->createLocalHlaPayload(L"Payload");
 
     // TODO: Find a stopping point for our federate
     while (true) {

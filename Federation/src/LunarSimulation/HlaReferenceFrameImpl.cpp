@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -74,6 +74,20 @@ std::wstring HlaReferenceFrameImpl::getHlaInstanceName() const {
 
 std::vector<char> HlaReferenceFrameImpl::getEncodedHlaObjectInstanceHandle() const {
     return _objectInstanceHandle->getEncodedHandle();
+}
+
+void HlaReferenceFrameImpl::setCreateAttributes(
+        std::shared_ptr<std::wstring > name,
+        HlaTimeStampPtr timeStamp) {
+    HlaReferenceFrameImpl::AttributeMap attributeUpdates;
+    attributeUpdates[HlaReferenceFrameAttributes::NAME] = name;
+    try {
+        HlaLogicalTimeImplPtr logicalTime = HlaLogicalTimeImpl::getInvalid();
+        applyUpdate(attributeUpdates, timeStamp, logicalTime);
+    } catch (HlaException &e) {
+        HlaExceptionPtr ex(new HlaInternalException(L"Failed to set create attributes in HlaReferenceFrameImpl" + e.what_w()));
+        _hlaWorld->postException(ex);
+    }
 }
 
 HlaFederateIdImplPtr HlaReferenceFrameImpl::getFederateIdImpl() {

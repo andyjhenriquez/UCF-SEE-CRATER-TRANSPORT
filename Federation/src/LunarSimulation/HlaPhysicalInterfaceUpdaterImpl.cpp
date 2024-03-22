@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -21,10 +21,10 @@
 using namespace std;
 using namespace LunarSimulation;
 
-void HlaPhysicalInterfaceUpdaterImpl::setName(const std::wstring& value)
+void HlaPhysicalInterfaceUpdaterImpl::sendName()
 {
    std::lock_guard<std::mutex> lock(_attributesLock);
-   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(value)));
+   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(_instance->getName())));
 }
 
 void HlaPhysicalInterfaceUpdaterImpl::setParentName(const std::wstring& value)

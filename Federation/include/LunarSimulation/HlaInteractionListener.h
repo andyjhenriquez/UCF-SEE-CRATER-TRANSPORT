@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -10,7 +10,12 @@
 #ifndef DEVELOPER_STUDIO_HLAINTERACTIONLISTENER_H
 #define DEVELOPER_STUDIO_HLAINTERACTIONLISTENER_H
 
+#include <LunarSimulation/datatypes/ForceVector.h>
 #include <LunarSimulation/datatypes/MTRMode.h>
+#include <LunarSimulation/datatypes/PositionVector.h>
+#include <LunarSimulation/datatypes/VelocityVector.h>
+#include <string>
+#include <vector>
 
 #include <LunarSimulation/HlaTimeStamp.h>
 #include <LunarSimulation/HlaLogicalTime.h>
@@ -43,11 +48,27 @@ namespace LunarSimulation {
       * This method is invoked when an HLA <code>HLAinteractionRoot.Start_Stop</code> interaction is received,
       * (or is sent locally).
       * @param local <code>true</code> if the interaction was sent locally <code>false</code> otherwise
+      * @param parameters contains value for the parameters
       * @param timeStamp the time when the interaction was sent
       * @param logicalTime the logical time when the interaction was sent
       */
       LIBAPI virtual void startStop(
           bool local,
+          HlaStartStopParametersPtr parameters,
+          HlaTimeStampPtr timeStamp,
+          HlaLogicalTimePtr logicalTime
+      ) = 0;
+      /**
+      * This method is invoked when an HLA <code>HLAinteractionRoot.LoadScenario</code> interaction is received,
+      * (or is sent locally).
+      * @param local <code>true</code> if the interaction was sent locally <code>false</code> otherwise
+      * @param parameters contains value for the parameters
+      * @param timeStamp the time when the interaction was sent
+      * @param logicalTime the logical time when the interaction was sent
+      */
+      LIBAPI virtual void loadScenario(
+          bool local,
+          HlaLoadScenarioParametersPtr parameters,
           HlaTimeStampPtr timeStamp,
           HlaLogicalTimePtr logicalTime
       ) = 0;
@@ -83,6 +104,13 @@ namespace LunarSimulation {
       ) {}
       LIBAPI virtual void startStop(
           bool local,
+          HlaStartStopParametersPtr parameters,
+          HlaTimeStampPtr timeStamp,
+          HlaLogicalTimePtr logicalTime
+      ) {}
+      LIBAPI virtual void loadScenario(
+          bool local,
+          HlaLoadScenarioParametersPtr parameters,
           HlaTimeStampPtr timeStamp,
           HlaLogicalTimePtr logicalTime
       ) {}

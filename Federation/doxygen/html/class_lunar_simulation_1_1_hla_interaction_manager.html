@@ -69,6 +69,7 @@ Inheritance diagram for LunarSimulation::HlaInteractionManager:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:a156ac589a3a4147ad667bb5e05fd0716" id="r_a156ac589a3a4147ad667bb5e05fd0716"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a156ac589a3a4147ad667bb5e05fd0716">Interaction</a> { <a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a156ac589a3a4147ad667bb5e05fd0716a4e216da2732eafe18d304323c1a22ac4">HLAINTERACTION_ROOT</a>
 , <a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a156ac589a3a4147ad667bb5e05fd0716a624ad29f7857896280cccb845fa268ee">START_STOP</a>
+, <a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a156ac589a3a4147ad667bb5e05fd0716ae713429b28cdf7cde618f0b05c983acb">LOAD_SCENARIO</a>
 , <a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a156ac589a3a4147ad667bb5e05fd0716ad0452b935418cee0d1cb86462b1425aa">MODE_TRANSITION_REQUEST</a>
  }</td></tr>
 <tr class="memdesc:a156ac589a3a4147ad667bb5e05fd0716"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enumeration of all interactions.  <a href="class_lunar_simulation_1_1_hla_interaction_manager.html#a156ac589a3a4147ad667bb5e05fd0716">More...</a><br /></td></tr>
@@ -97,21 +98,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a000a047a13e8b9b7681887ad533a7d89" id="r_a000a047a13e8b9b7681887ad533a7d89"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaHLAinteractionRootInteractionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a000a047a13e8b9b7681887ad533a7d89">getHlaHLAinteractionRootInteraction</a> ()=0</td></tr>
 <tr class="memdesc:a000a047a13e8b9b7681887ad533a7d89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="class_lunar_simulation_1_1_hla_h_l_ainteraction_root_interaction.html" title="Interface for creating a HlaHLAinteractionRootInteraction.">HlaHLAinteractionRootInteraction</a>.  <br /></td></tr>
 <tr class="separator:a000a047a13e8b9b7681887ad533a7d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8369993228fe4ea4ead28d7ea0ed1d35" id="r_a8369993228fe4ea4ead28d7ea0ed1d35"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a8369993228fe4ea4ead28d7ea0ed1d35">sendStartStop</a> ()=0</td></tr>
-<tr class="memdesc:a8369993228fe4ea4ead28d7ea0ed1d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction.  <br /></td></tr>
-<tr class="separator:a8369993228fe4ea4ead28d7ea0ed1d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae97285acb2209b9251f360909a8dda97" id="r_ae97285acb2209b9251f360909a8dda97"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#ae97285acb2209b9251f360909a8dda97">sendStartStop</a> (HlaTimeStampPtr timeStamp)=0</td></tr>
-<tr class="memdesc:ae97285acb2209b9251f360909a8dda97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified timestamp.  <br /></td></tr>
-<tr class="separator:ae97285acb2209b9251f360909a8dda97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac4c216ec2bdb71150f179375f32b63b" id="r_aac4c216ec2bdb71150f179375f32b63b"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#aac4c216ec2bdb71150f179375f32b63b">sendStartStop</a> (HlaLogicalTimePtr logicalTime)=0</td></tr>
-<tr class="memdesc:aac4c216ec2bdb71150f179375f32b63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified logicaltime.  <br /></td></tr>
-<tr class="separator:aac4c216ec2bdb71150f179375f32b63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac196a032011041e8c5cd76b9fc0fc015" id="r_ac196a032011041e8c5cd76b9fc0fc015"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#ac196a032011041e8c5cd76b9fc0fc015">sendStartStop</a> (HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)=0</td></tr>
-<tr class="memdesc:ac196a032011041e8c5cd76b9fc0fc015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified timestamp and logicaltime.  <br /></td></tr>
-<tr class="separator:ac196a032011041e8c5cd76b9fc0fc015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85fe8800966c687f3b51048c6423d652" id="r_a85fe8800966c687f3b51048c6423d652"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a85fe8800966c687f3b51048c6423d652">sendStartStop</a> (bool haltSimulation, bool exitSimulation)=0</td></tr>
+<tr class="memdesc:a85fe8800966c687f3b51048c6423d652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction.  <br /></td></tr>
+<tr class="separator:a85fe8800966c687f3b51048c6423d652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaacb509006998549b7fa85f06d480db" id="r_aaaacb509006998549b7fa85f06d480db"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#aaaacb509006998549b7fa85f06d480db">sendStartStop</a> (bool haltSimulation, bool exitSimulation, HlaTimeStampPtr timeStamp)=0</td></tr>
+<tr class="memdesc:aaaacb509006998549b7fa85f06d480db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified timestamp.  <br /></td></tr>
+<tr class="separator:aaaacb509006998549b7fa85f06d480db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc39ed3163c59ea4948b2061f91b46e" id="r_a7fc39ed3163c59ea4948b2061f91b46e"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a7fc39ed3163c59ea4948b2061f91b46e">sendStartStop</a> (bool haltSimulation, bool exitSimulation, HlaLogicalTimePtr logicalTime)=0</td></tr>
+<tr class="memdesc:a7fc39ed3163c59ea4948b2061f91b46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified logicaltime.  <br /></td></tr>
+<tr class="separator:a7fc39ed3163c59ea4948b2061f91b46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97f4bc269e8b41ba3174b8a0a5683253" id="r_a97f4bc269e8b41ba3174b8a0a5683253"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a97f4bc269e8b41ba3174b8a0a5683253">sendStartStop</a> (bool haltSimulation, bool exitSimulation, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)=0</td></tr>
+<tr class="memdesc:a97f4bc269e8b41ba3174b8a0a5683253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified timestamp and logicaltime.  <br /></td></tr>
+<tr class="separator:a97f4bc269e8b41ba3174b8a0a5683253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9e8c0db60fc4afb85ceea03fa769703" id="r_ae9e8c0db60fc4afb85ceea03fa769703"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaStartStopInteractionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#ae9e8c0db60fc4afb85ceea03fa769703">getHlaStartStopInteraction</a> ()=0</td></tr>
 <tr class="memdesc:ae9e8c0db60fc4afb85ceea03fa769703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="class_lunar_simulation_1_1_hla_start_stop_interaction.html" title="Interface for creating a HlaStartStopInteraction.">HlaStartStopInteraction</a>.  <br /></td></tr>
 <tr class="separator:ae9e8c0db60fc4afb85ceea03fa769703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17fe73ef95925cc1bb5c31f2767a45ea" id="r_a17fe73ef95925cc1bb5c31f2767a45ea"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a17fe73ef95925cc1bb5c31f2767a45ea">sendLoadScenario</a> (double moonFriction, std::vector&lt; double &gt; roverInitialPosition, double roverHealth, double roverMass, double payloadMass, std::vector&lt; double &gt; launchSpeedVector, std::vector&lt; double &gt; roverStartPosition, std::wstring simulationScenario, std::vector&lt; double &gt; launcherPosition, std::vector&lt; double &gt; launchForce)=0</td></tr>
+<tr class="memdesc:a17fe73ef95925cc1bb5c31f2767a45ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction.  <br /></td></tr>
+<tr class="separator:a17fe73ef95925cc1bb5c31f2767a45ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add9bdf781ade4b26bb1750e4575cedda" id="r_add9bdf781ade4b26bb1750e4575cedda"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#add9bdf781ade4b26bb1750e4575cedda">sendLoadScenario</a> (double moonFriction, std::vector&lt; double &gt; roverInitialPosition, double roverHealth, double roverMass, double payloadMass, std::vector&lt; double &gt; launchSpeedVector, std::vector&lt; double &gt; roverStartPosition, std::wstring simulationScenario, std::vector&lt; double &gt; launcherPosition, std::vector&lt; double &gt; launchForce, HlaTimeStampPtr timeStamp)=0</td></tr>
+<tr class="memdesc:add9bdf781ade4b26bb1750e4575cedda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction with a specified timestamp.  <br /></td></tr>
+<tr class="separator:add9bdf781ade4b26bb1750e4575cedda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef8e18df16e15163db378060d720fc63" id="r_aef8e18df16e15163db378060d720fc63"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#aef8e18df16e15163db378060d720fc63">sendLoadScenario</a> (double moonFriction, std::vector&lt; double &gt; roverInitialPosition, double roverHealth, double roverMass, double payloadMass, std::vector&lt; double &gt; launchSpeedVector, std::vector&lt; double &gt; roverStartPosition, std::wstring simulationScenario, std::vector&lt; double &gt; launcherPosition, std::vector&lt; double &gt; launchForce, HlaLogicalTimePtr logicalTime)=0</td></tr>
+<tr class="memdesc:aef8e18df16e15163db378060d720fc63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction with a specified logicaltime.  <br /></td></tr>
+<tr class="separator:aef8e18df16e15163db378060d720fc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cab88ba78a03d0656789b66eeb5b58a" id="r_a9cab88ba78a03d0656789b66eeb5b58a"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a9cab88ba78a03d0656789b66eeb5b58a">sendLoadScenario</a> (double moonFriction, std::vector&lt; double &gt; roverInitialPosition, double roverHealth, double roverMass, double payloadMass, std::vector&lt; double &gt; launchSpeedVector, std::vector&lt; double &gt; roverStartPosition, std::wstring simulationScenario, std::vector&lt; double &gt; launcherPosition, std::vector&lt; double &gt; launchForce, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime)=0</td></tr>
+<tr class="memdesc:a9cab88ba78a03d0656789b66eeb5b58a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction with a specified timestamp and logicaltime.  <br /></td></tr>
+<tr class="separator:a9cab88ba78a03d0656789b66eeb5b58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0650e2af5814eb3be25bc20477595b3" id="r_ab0650e2af5814eb3be25bc20477595b3"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaLoadScenarioInteractionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#ab0650e2af5814eb3be25bc20477595b3">getHlaLoadScenarioInteraction</a> ()=0</td></tr>
+<tr class="memdesc:ab0650e2af5814eb3be25bc20477595b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="class_lunar_simulation_1_1_hla_load_scenario_interaction.html" title="Interface for creating a HlaLoadScenarioInteraction.">HlaLoadScenarioInteraction</a>.  <br /></td></tr>
+<tr class="separator:ab0650e2af5814eb3be25bc20477595b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9297c39f58bdaf52d641e6e88f156712" id="r_a9297c39f58bdaf52d641e6e88f156712"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#a9297c39f58bdaf52d641e6e88f156712">sendModeTransitionRequest</a> (MTRMode::MTRMode executionMode)=0</td></tr>
 <tr class="memdesc:a9297c39f58bdaf52d641e6e88f156712"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the <code>HLAinteractionRoot.ModeTransitionRequest</code> interaction.  <br /></td></tr>
 <tr class="separator:a9297c39f58bdaf52d641e6e88f156712"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,12 +187,16 @@ Public Member Functions</h2></td></tr>
 <tr>
 <td>START_STOP</td><td>StartStop</td><td><code>HLAinteractionRoot.Start_Stop</code> </td></tr>
 <tr>
+<td>LOAD_SCENARIO</td><td>LoadScenario</td><td><code>HLAinteractionRoot.LoadScenario</code> </td></tr>
+<tr>
 <td>MODE_TRANSITION_REQUEST</td><td>ModeTransitionRequest</td><td><code>HLAinteractionRoot.ModeTransitionRequest</code> </td></tr>
 </table>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a156ac589a3a4147ad667bb5e05fd0716a4e216da2732eafe18d304323c1a22ac4" name="a156ac589a3a4147ad667bb5e05fd0716a4e216da2732eafe18d304323c1a22ac4"></a>HLAINTERACTION_ROOT&#160;</td><td class="fielddoc"><p>HLAinteractionRoot (FOM name: <code>HLAinteractionRoot</code>) </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a156ac589a3a4147ad667bb5e05fd0716a624ad29f7857896280cccb845fa268ee" name="a156ac589a3a4147ad667bb5e05fd0716a624ad29f7857896280cccb845fa268ee"></a>START_STOP&#160;</td><td class="fielddoc"><p>StartStop (FOM name: <code>HLAinteractionRoot.Start_Stop</code>) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a156ac589a3a4147ad667bb5e05fd0716ae713429b28cdf7cde618f0b05c983acb" name="a156ac589a3a4147ad667bb5e05fd0716ae713429b28cdf7cde618f0b05c983acb"></a>LOAD_SCENARIO&#160;</td><td class="fielddoc"><p>LoadScenario (FOM name: <code>HLAinteractionRoot.LoadScenario</code>) </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a156ac589a3a4147ad667bb5e05fd0716ad0452b935418cee0d1cb86462b1425aa" name="a156ac589a3a4147ad667bb5e05fd0716ad0452b935418cee0d1cb86462b1425aa"></a>MODE_TRANSITION_REQUEST&#160;</td><td class="fielddoc"><p>ModeTransitionRequest (FOM name: <code>HLAinteractionRoot.ModeTransitionRequest</code>) </p>
 </td></tr>
@@ -290,6 +310,34 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get a <a class="el" href="class_lunar_simulation_1_1_hla_h_l_ainteraction_root_interaction.html" title="Interface for creating a HlaHLAinteractionRootInteraction.">HlaHLAinteractionRootInteraction</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>An interaction </dd></dl>
+
+</div>
+</div>
+<a id="ab0650e2af5814eb3be25bc20477595b3" name="ab0650e2af5814eb3be25bc20477595b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0650e2af5814eb3be25bc20477595b3">&#9670;&#160;</a></span>getHlaLoadScenarioInteraction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaLoadScenarioInteractionPtr LunarSimulation::HlaInteractionManager::getHlaLoadScenarioInteraction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a <a class="el" href="class_lunar_simulation_1_1_hla_load_scenario_interaction.html" title="Interface for creating a HlaLoadScenarioInteraction.">HlaLoadScenarioInteraction</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>An interaction </dd></dl>
 
 </div>
@@ -642,6 +690,564 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a17fe73ef95925cc1bb5c31f2767a45ea" name="a17fe73ef95925cc1bb5c31f2767a45ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17fe73ef95925cc1bb5c31f2767a45ea">&#9670;&#160;</a></span>sendLoadScenario() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendLoadScenario </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>moonFriction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverInitialPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverHealth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>payloadMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchSpeedVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverStartPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>simulationScenario</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launcherPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchForce</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moonFriction</td><td>represents the <code>MoonFriction</code> from the FOM. <br  />
+Description from the FOM: Friction coefficient for surface of the moon <br  />
+Description of the data type from the FOM: Double-precision floating point number </td></tr>
+    <tr><td class="paramname">roverInitialPosition</td><td>represents the <code>RoverInitialPosition</code> from the FOM. <br  />
+Description from the FOM: Start postion for rover <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverHealth</td><td>represents the <code>RoverHealth</code> from the FOM. <br  />
+Description from the FOM: Health of rover <br  />
+Description of the data type from the FOM: Scalar representing health [unit: NA] </td></tr>
+    <tr><td class="paramname">roverMass</td><td>represents the <code>RoverMass</code> from the FOM. <br  />
+Description from the FOM: Mass of rover <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">payloadMass</td><td>represents the <code>PayloadMass</code> from the FOM. <br  />
+Description from the FOM: Mass of payload <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">launchSpeedVector</td><td>represents the <code>LaunchSpeedVector</code> from the FOM. <br  />
+Description from the FOM: Initial speed of payload <br  />
+Description of the data type from the FOM: A 3-vector that specifies the time derivative of the vector position of some point with respect to another as seen by an observer fixed in some reference frame. This data type does not specify which points are involved, nor does it specify the observer frame of reference, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverStartPosition</td><td>represents the <code>RoverStartPosition</code> from the FOM. <br  />
+Description from the FOM: Rover Start Position <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">simulationScenario</td><td>represents the <code>SimulationScenario</code> from the FOM. <br  />
+Description from the FOM: Which scenario to load in <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">launcherPosition</td><td>represents the <code>LauncherPosition</code> from the FOM. <br  />
+Description from the FOM: Position of Launcher <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">launchForce</td><td>represents the <code>LaunchForce</code> from the FOM. <br  />
+Description from the FOM: Launch force for payload exit <br  />
+Description of the data type from the FOM: A 3-vector that specifies the vector force. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_fom_exception.html" title="* HlaFomException">HlaFomException</a></td><td>if the FOM is invalid </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aef8e18df16e15163db378060d720fc63" name="aef8e18df16e15163db378060d720fc63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef8e18df16e15163db378060d720fc63">&#9670;&#160;</a></span>sendLoadScenario() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendLoadScenario </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>moonFriction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverInitialPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverHealth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>payloadMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchSpeedVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverStartPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>simulationScenario</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launcherPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchForce</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaLogicalTimePtr&#160;</td>
+          <td class="paramname"><em>logicalTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction with a specified logicaltime. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moonFriction</td><td>represents the <code>MoonFriction</code> from the FOM. <br  />
+Description from the FOM: Friction coefficient for surface of the moon <br  />
+Description of the data type from the FOM: Double-precision floating point number </td></tr>
+    <tr><td class="paramname">roverInitialPosition</td><td>represents the <code>RoverInitialPosition</code> from the FOM. <br  />
+Description from the FOM: Start postion for rover <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverHealth</td><td>represents the <code>RoverHealth</code> from the FOM. <br  />
+Description from the FOM: Health of rover <br  />
+Description of the data type from the FOM: Scalar representing health [unit: NA] </td></tr>
+    <tr><td class="paramname">roverMass</td><td>represents the <code>RoverMass</code> from the FOM. <br  />
+Description from the FOM: Mass of rover <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">payloadMass</td><td>represents the <code>PayloadMass</code> from the FOM. <br  />
+Description from the FOM: Mass of payload <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">launchSpeedVector</td><td>represents the <code>LaunchSpeedVector</code> from the FOM. <br  />
+Description from the FOM: Initial speed of payload <br  />
+Description of the data type from the FOM: A 3-vector that specifies the time derivative of the vector position of some point with respect to another as seen by an observer fixed in some reference frame. This data type does not specify which points are involved, nor does it specify the observer frame of reference, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverStartPosition</td><td>represents the <code>RoverStartPosition</code> from the FOM. <br  />
+Description from the FOM: Rover Start Position <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">simulationScenario</td><td>represents the <code>SimulationScenario</code> from the FOM. <br  />
+Description from the FOM: Which scenario to load in <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">launcherPosition</td><td>represents the <code>LauncherPosition</code> from the FOM. <br  />
+Description from the FOM: Position of Launcher <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">launchForce</td><td>represents the <code>LaunchForce</code> from the FOM. <br  />
+Description from the FOM: Launch force for payload exit <br  />
+Description of the data type from the FOM: A 3-vector that specifies the vector force. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">logicalTime</td><td>logical time to send with the interaction</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_fom_exception.html" title="* HlaFomException">HlaFomException</a></td><td>if the FOM is invalid </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_invalid_logical_time_exception.html" title="* HlaInvalidLogicalTimeException">HlaInvalidLogicalTimeException</a></td><td>if the logical time is not valid. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="add9bdf781ade4b26bb1750e4575cedda" name="add9bdf781ade4b26bb1750e4575cedda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add9bdf781ade4b26bb1750e4575cedda">&#9670;&#160;</a></span>sendLoadScenario() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendLoadScenario </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>moonFriction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverInitialPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverHealth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>payloadMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchSpeedVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverStartPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>simulationScenario</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launcherPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchForce</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaTimeStampPtr&#160;</td>
+          <td class="paramname"><em>timeStamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction with a specified timestamp. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moonFriction</td><td>represents the <code>MoonFriction</code> from the FOM. <br  />
+Description from the FOM: Friction coefficient for surface of the moon <br  />
+Description of the data type from the FOM: Double-precision floating point number </td></tr>
+    <tr><td class="paramname">roverInitialPosition</td><td>represents the <code>RoverInitialPosition</code> from the FOM. <br  />
+Description from the FOM: Start postion for rover <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverHealth</td><td>represents the <code>RoverHealth</code> from the FOM. <br  />
+Description from the FOM: Health of rover <br  />
+Description of the data type from the FOM: Scalar representing health [unit: NA] </td></tr>
+    <tr><td class="paramname">roverMass</td><td>represents the <code>RoverMass</code> from the FOM. <br  />
+Description from the FOM: Mass of rover <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">payloadMass</td><td>represents the <code>PayloadMass</code> from the FOM. <br  />
+Description from the FOM: Mass of payload <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">launchSpeedVector</td><td>represents the <code>LaunchSpeedVector</code> from the FOM. <br  />
+Description from the FOM: Initial speed of payload <br  />
+Description of the data type from the FOM: A 3-vector that specifies the time derivative of the vector position of some point with respect to another as seen by an observer fixed in some reference frame. This data type does not specify which points are involved, nor does it specify the observer frame of reference, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverStartPosition</td><td>represents the <code>RoverStartPosition</code> from the FOM. <br  />
+Description from the FOM: Rover Start Position <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">simulationScenario</td><td>represents the <code>SimulationScenario</code> from the FOM. <br  />
+Description from the FOM: Which scenario to load in <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">launcherPosition</td><td>represents the <code>LauncherPosition</code> from the FOM. <br  />
+Description from the FOM: Position of Launcher <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">launchForce</td><td>represents the <code>LaunchForce</code> from the FOM. <br  />
+Description from the FOM: Launch force for payload exit <br  />
+Description of the data type from the FOM: A 3-vector that specifies the vector force. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>timestamp to send with the interaction</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_fom_exception.html" title="* HlaFomException">HlaFomException</a></td><td>if the FOM is invalid </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9cab88ba78a03d0656789b66eeb5b58a" name="a9cab88ba78a03d0656789b66eeb5b58a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cab88ba78a03d0656789b66eeb5b58a">&#9670;&#160;</a></span>sendLoadScenario() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendLoadScenario </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>moonFriction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverInitialPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverHealth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roverMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>payloadMass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchSpeedVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>roverStartPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>simulationScenario</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launcherPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>launchForce</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaTimeStampPtr&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaLogicalTimePtr&#160;</td>
+          <td class="paramname"><em>logicalTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends the <code>HLAinteractionRoot.LoadScenario</code> interaction with a specified timestamp and logicaltime. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moonFriction</td><td>represents the <code>MoonFriction</code> from the FOM. <br  />
+Description from the FOM: Friction coefficient for surface of the moon <br  />
+Description of the data type from the FOM: Double-precision floating point number </td></tr>
+    <tr><td class="paramname">roverInitialPosition</td><td>represents the <code>RoverInitialPosition</code> from the FOM. <br  />
+Description from the FOM: Start postion for rover <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverHealth</td><td>represents the <code>RoverHealth</code> from the FOM. <br  />
+Description from the FOM: Health of rover <br  />
+Description of the data type from the FOM: Scalar representing health [unit: NA] </td></tr>
+    <tr><td class="paramname">roverMass</td><td>represents the <code>RoverMass</code> from the FOM. <br  />
+Description from the FOM: Mass of rover <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">payloadMass</td><td>represents the <code>PayloadMass</code> from the FOM. <br  />
+Description from the FOM: Mass of payload <br  />
+Description of the data type from the FOM: A measurement of mass. [unit: kilogram (kg), resolution: NA, accuracy: NA] </td></tr>
+    <tr><td class="paramname">launchSpeedVector</td><td>represents the <code>LaunchSpeedVector</code> from the FOM. <br  />
+Description from the FOM: Initial speed of payload <br  />
+Description of the data type from the FOM: A 3-vector that specifies the time derivative of the vector position of some point with respect to another as seen by an observer fixed in some reference frame. This data type does not specify which points are involved, nor does it specify the observer frame of reference, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">roverStartPosition</td><td>represents the <code>RoverStartPosition</code> from the FOM. <br  />
+Description from the FOM: Rover Start Position <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">simulationScenario</td><td>represents the <code>SimulationScenario</code> from the FOM. <br  />
+Description from the FOM: Which scenario to load in <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">launcherPosition</td><td>represents the <code>LauncherPosition</code> from the FOM. <br  />
+Description from the FOM: Position of Launcher <br  />
+Description of the data type from the FOM: A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">launchForce</td><td>represents the <code>LaunchForce</code> from the FOM. <br  />
+Description from the FOM: Launch force for payload exit <br  />
+Description of the data type from the FOM: A 3-vector that specifies the vector force. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected. </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>timestamp to send with the interaction </td></tr>
+    <tr><td class="paramname">logicalTime</td><td>logical time to send with the interaction</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_fom_exception.html" title="* HlaFomException">HlaFomException</a></td><td>if the FOM is invalid </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_invalid_logical_time_exception.html" title="* HlaInvalidLogicalTimeException">HlaInvalidLogicalTimeException</a></td><td>if the logical time is not valid. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a9297c39f58bdaf52d641e6e88f156712" name="a9297c39f58bdaf52d641e6e88f156712"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9297c39f58bdaf52d641e6e88f156712">&#9670;&#160;</a></span>sendModeTransitionRequest() <span class="overload">[1/4]</span></h2>
 
@@ -872,8 +1478,8 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 
 </div>
 </div>
-<a id="a8369993228fe4ea4ead28d7ea0ed1d35" name="a8369993228fe4ea4ead28d7ea0ed1d35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8369993228fe4ea4ead28d7ea0ed1d35">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[1/4]</span></h2>
+<a id="a85fe8800966c687f3b51048c6423d652" name="a85fe8800966c687f3b51048c6423d652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85fe8800966c687f3b51048c6423d652">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -884,8 +1490,19 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
         <tr>
           <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendStartStop </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exitSimulation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -896,6 +1513,17 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 </div><div class="memdoc">
 
 <p>Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">haltSimulation</td><td>represents the <code>HaltSimulation</code> from the FOM. <br  />
+Description from the FOM: Stop simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">exitSimulation</td><td>represents the <code>Exit_Simulation</code> from the FOM. <br  />
+Description from the FOM: Exit simulation if true <br  />
+Description of the data type from the FOM:</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
@@ -910,8 +1538,8 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 
 </div>
 </div>
-<a id="aac4c216ec2bdb71150f179375f32b63b" name="aac4c216ec2bdb71150f179375f32b63b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac4c216ec2bdb71150f179375f32b63b">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[2/4]</span></h2>
+<a id="a7fc39ed3163c59ea4948b2061f91b46e" name="a7fc39ed3163c59ea4948b2061f91b46e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fc39ed3163c59ea4948b2061f91b46e">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -922,9 +1550,25 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
         <tr>
           <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendStartStop </td>
           <td>(</td>
-          <td class="paramtype">HlaLogicalTimePtr&#160;</td>
-          <td class="paramname"><em>logicalTime</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exitSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaLogicalTimePtr&#160;</td>
+          <td class="paramname"><em>logicalTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -937,6 +1581,12 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 <p>Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified logicaltime. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">haltSimulation</td><td>represents the <code>HaltSimulation</code> from the FOM. <br  />
+Description from the FOM: Stop simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">exitSimulation</td><td>represents the <code>Exit_Simulation</code> from the FOM. <br  />
+Description from the FOM: Exit simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
     <tr><td class="paramname">logicalTime</td><td>logical time to send with the interaction</td></tr>
   </table>
   </dd>
@@ -956,8 +1606,8 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 
 </div>
 </div>
-<a id="ae97285acb2209b9251f360909a8dda97" name="ae97285acb2209b9251f360909a8dda97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae97285acb2209b9251f360909a8dda97">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[3/4]</span></h2>
+<a id="aaaacb509006998549b7fa85f06d480db" name="aaaacb509006998549b7fa85f06d480db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaacb509006998549b7fa85f06d480db">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -968,9 +1618,25 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
         <tr>
           <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendStartStop </td>
           <td>(</td>
-          <td class="paramtype">HlaTimeStampPtr&#160;</td>
-          <td class="paramname"><em>timeStamp</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exitSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HlaTimeStampPtr&#160;</td>
+          <td class="paramname"><em>timeStamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -983,6 +1649,12 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 <p>Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified timestamp. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">haltSimulation</td><td>represents the <code>HaltSimulation</code> from the FOM. <br  />
+Description from the FOM: Stop simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">exitSimulation</td><td>represents the <code>Exit_Simulation</code> from the FOM. <br  />
+Description from the FOM: Exit simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
     <tr><td class="paramname">timeStamp</td><td>timestamp to send with the interaction</td></tr>
   </table>
   </dd>
@@ -1001,8 +1673,8 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 
 </div>
 </div>
-<a id="ac196a032011041e8c5cd76b9fc0fc015" name="ac196a032011041e8c5cd76b9fc0fc015"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac196a032011041e8c5cd76b9fc0fc015">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[4/4]</span></h2>
+<a id="a97f4bc269e8b41ba3174b8a0a5683253" name="a97f4bc269e8b41ba3174b8a0a5683253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97f4bc269e8b41ba3174b8a0a5683253">&#9670;&#160;</a></span>sendStartStop() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1013,6 +1685,18 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
         <tr>
           <td class="memname">virtual LIBAPI void LunarSimulation::HlaInteractionManager::sendStartStop </td>
           <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exitSimulation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">HlaTimeStampPtr&#160;</td>
           <td class="paramname"><em>timeStamp</em>, </td>
         </tr>
@@ -1038,6 +1722,12 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 <p>Sends the <code>HLAinteractionRoot.Start_Stop</code> interaction with a specified timestamp and logicaltime. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">haltSimulation</td><td>represents the <code>HaltSimulation</code> from the FOM. <br  />
+Description from the FOM: Stop simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
+    <tr><td class="paramname">exitSimulation</td><td>represents the <code>Exit_Simulation</code> from the FOM. <br  />
+Description from the FOM: Exit simulation if true <br  />
+Description of the data type from the FOM: </td></tr>
     <tr><td class="paramname">timeStamp</td><td>timestamp to send with the interaction </td></tr>
     <tr><td class="paramname">logicalTime</td><td>logical time to send with the interaction</td></tr>
   </table>
@@ -1191,7 +1881,7 @@ Description of the data type from the FOM: Mode Transition Request (MTR) transit
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:21 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:48 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
