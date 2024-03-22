@@ -56,8 +56,10 @@ int main(void) {
             // TODO: Use a fetchResults() check to make sure that you can safely extract information.
             for (int i = 0; i < numActors; ++i) {
                 PxActor* actor = gActors[i];
-                if (actor->is<PxRigidDynamic>() != NULL)
+                if (actor->is<PxRigidDynamic>() != NULL) {
                     updater->setPosition(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getGlobalPose().p));
+                    updater->setVelocity(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getLinearVelocity()));
+                }
                 // actor->is<PxRigidDynamic>() ? updateDynamic() : updateStatic();
             }
 
