@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name></name>
+        <type>FOM</type>
+        <version></version>
+        <securityClassification></securityClassification>
+        <purpose/>
+        <applicationDomain/>
+        <description></description>
+        <useLimitation/>
+        <reference>
+            <type>Composed from</type>
+            <identification>New Module</identification>
+        </reference>
+        <reference>
+            <type>Composed from</type>
+            <identification>SISO-STD-018-2020 - SISO Space Reference FOM Entity</identification>
+        </reference>
+        <reference>
+            <type>Composed from</type>
+            <identification>SISO-STD-018-2020 - SISO Space Reference FOM Datatypes</identification>
+        </reference>
+        <reference>
+            <type>Composed from</type>
+            <identification>SISO-STD-018-2020 - SISO Space Reference FOM Environment</identification>
+        </reference>
+        <reference>
+            <type>Composed from</type>
+            <identification>SISO-STD-018-2020 - SISO Space Reference FOM Management</identification>
+        </reference>
+        <reference>
+            <type>Composed from</type>
+            <identification>SISO-STD-018-2020 - SISO Space Reference FOM Switches</identification>
+        </reference>
+        <other/>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>PhysicalEntity</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>A PhysicalEntity is the highest-level object class in the Space FOM entity hierarchy. This object class provides attributes to describe an entity’s location in time and space. It also contains attributes to uniquely identify it individually from all other physical entities in the federation execution. 
+ 
+Physical entities have two intrinsically associated reference frames: a 'structural frame' and a ‘body frame'. These are not registered in the Federation Execution’s Reference Frame tree (see 6.2.2) but are used to place and orient the entity in space with respect to a reference frame in that tree. The origin of the structural frame is located at some arbitrary but known point on the entity. The body frame origin is at the entity’s center of mass. The body frame is located with respect to the entity’s structural reference frame by a vector from the origin of the structural reference frame to the center of mass of the entity. This vector is expressed in the entity’s structural reference frame. The orientation of the entity’s body frame with respect to the entity’s structural reference frame is defined by an attitude quaternion. 
+ 
+The position and attitude of an entity is therefore defined by the position and attitude of the entity’s body frame with respect to the entity's parent_reference_frame, which must be a reference frame instance in the Federation Execution’s Reference Frame Tree. This, along with time, the center_of_mass vector and body_wrt_structural attitude quaternion, can be used to unambiguously locate the entity in time and space</semantics>
+                <attribute>
+                    <name>name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>during initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name.</semantics>
+                </attribute>
+                <attribute>
+                    <name>type</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>during initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A non-empty string that identifies the entity type. It is not a mandatory field but it can be used to differentiate from a fuel tank and a space vehicle for example.</semantics>
+                </attribute>
+                <attribute>
+                    <name>status</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>An informative string that documents the current status of the entity (whatever that might be).</semantics>
+                </attribute>
+                <attribute>
+                    <name>parent_reference_frame</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>The non-empty string that identifies the reference frame with respect to which the kinematic state attributes of this entity are calculated. This string must exactly match the name of some ReferenceFrame instance in the federation.</semantics>
+                </attribute>
+                <attribute>
+                    <name>state</name>
+                    <dataType>SpaceTimeCoordinateState</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A four dimensional representation of the entity's translational and rotational state with respect to its parent reference frame.</semantics>
+                </attribute>
+                <attribute>
+                    <name>acceleration</name>
+                    <dataType>AccelerationVector</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A 3-vector that specifies the acceleration of the entity body frame origin (i.e., the entity's center of mass) with respect to the parent reference frame. This is the time derivative of the velocity vector as seen by an observer fixed in the parent frame. The components of this vector are resolved onto the coordinate axes of the parent frame.</semantics>
+                </attribute>
+                <attribute>
+                    <name>rotational_acceleration</name>
+                    <dataType>AngularAccelerationVector</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A 3-vector that specifies the angular acceleration of the entity body frame with respect to the parent reference frame. This is the time derivative of the angular velocity vector as seen by an observer fixed in the parent frame. The components of this vector are resolved onto the coordinate axes of the entity body frame.</semantics>
+                </attribute>
+                <attribute>
+                    <name>center_of_mass</name>
+                    <dataType>PositionVector</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A 3-vector that specifies the position of the entity center of mass (the body frame origin) with respect to the origin of the entity's structural frame. The components of this vector are resolved onto the coordinate axes of the structural frame.</semantics>
+                </attribute>
+                <attribute>
+                    <name>body_wrt_structural</name>
+                    <dataType>AttitudeQuaternion</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>Not updated</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>An attitude quaternion that specifies the orientation of an entity's body frame with respect to the entity's structural frame.  This attitude quaternion should never change.  If not specified, an identity quaternion is assumed.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>DynamicalEntity</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>The DynamicalEntity object class extends the PhysicalEntity object class to provide additional attributes associated with an object subject to non-conservative dynamic forces and/or torques. Specifically, the DynamicalEntity provides additional force, torque and mass property related parameters. These are usually associated with environmental effects and vehicle effector systems. These can be used for both visualization and to improve state propagation between updates.</semantics>
+                    <attribute>
+                        <name>force</name>
+                        <dataType>ForceVector</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>TimeStamp</order>
+                        <semantics>A 3-vector that specifies the total external force on the entity. Force is expressed and applied in the entity’s structural reference frame.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>torque</name>
+                        <dataType>TorqueVector</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>TimeStamp</order>
+                        <semantics>A 3-vector that specifies the total external torque on the entity. It is expressed in the entity’s structural reference frame.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>mass</name>
+                        <dataType>Mass</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>TimeStamp</order>
+                        <semantics>The mass of the DynamicalEntity.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>mass_rate</name>
+                        <dataType>MassRate</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>TimeStamp</order>
+                        <semantics>The time rate of change of the DynamicalEntity's mass.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>inertia</name>
+                        <dataType>InertiaMatrix</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>TimeStamp</order>
+                        <semantics>A 3x3 matrix that specifies the centroid moments and coefficients of inertia with respect to the coordinate axes of the DynamicalEntity's body frame</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>inertia_rate</name>
+                        <dataType>InertiaRateMatrix</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>TimeStamp</order>
+                        <semantics>A 3x3 matrix that specifies the time rate of change of the parameters in the InertiaMatrix.  The elements in this matrix correspond directly to the elements in the InteriaMatrix.</semantics>
+                    </attribute>
+                    <objectClass>
+                        <name>Payload</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics></semantics>
+                        <attribute>
+                            <name>position</name>
+                            <dataType>PositionVector</dataType>
+                            <updateType>Periodic</updateType>
+                            <updateCondition>when changes</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>3-Vector that specifies the position of the launcher</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>velocity</name>
+                            <dataType>VelocityVector</dataType>
+                            <updateType>Periodic</updateType>
+                            <updateCondition>when changes</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>payload velocity</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>health</name>
+                            <dataType>Health</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>when changes</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Scalar representing health</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>Rover</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics></semantics>
+                        <attribute>
+                            <name>Position</name>
+                            <dataType>PositionVector</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>Neither</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Velocity</name>
+                            <dataType>VelocityVector</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>Neither</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Health</name>
+                            <dataType>Health</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>Neither</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+                <objectClass>
+                    <name>Launcher</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Launcher that will lauch payload out of crater</semantics>
+                    <attribute>
+                        <name>position</name>
+                        <dataType>PositionVector</dataType>
+                        <updateType>Periodic</updateType>
+                        <updateCondition>when changes</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>3-Vector that represents the position of the launcher</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>mass</name>
+                        <dataType>Mass</dataType>
+                        <updateType>Static</updateType>
+                        <updateCondition>NA</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Mass of launcher</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>energy</name>
+                        <dataType>Energy</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When item is launched</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Amount of energy left in launcher. Launching a payload would cost some amount of energy</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>PhysicalInterface</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>Represents a location and orientation with respect to another frame.  It is intended to act as a base representation for the position and orientation of an interface associated with either another PhysicalInterface instance or a PhysicalEntity instance.  In either case, the position and orientation of the interface are specified with respect to the structural reference frame of the entity to which it is attached.  This Object Class can be used as a common base for derived interfaces like grapple fixtures, docking ports, berthing interfaces, etc.</semantics>
+                <attribute>
+                    <name>name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>during initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A non-empty string that identifies the interface. Each PhysicalInterface instance in the federation must have a unique name.</semantics>
+                </attribute>
+                <attribute>
+                    <name>parent_name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>during initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>The HLA Object Instance Name of the PhysicalEntity or PhysicalInterface to which this interface is attached.</semantics>
+                </attribute>
+                <attribute>
+                    <name>position</name>
+                    <dataType>PositionVector</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A 3-vector that specifies the position of the interface reference frame origin with respect to the parent structural reference frame. The components of this vector are resolved onto the coordinate axes of the parent frame.</semantics>
+                </attribute>
+                <attribute>
+                    <name>attitude</name>
+                    <dataType>AttitudeQuaternion</dataType>
+                    <updateType>Periodic</updateType>
+                    <updateCondition>when changes</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>An attitude quaternion of the interfaces reference frame ('subject frame') with respect to its parent structural reference frame ('referent frame').</semantics>
+                </attribute>
+            </objectClass>
+            <objectClass>
+                <name>ReferenceFrame</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>This is an observational reference frame along with a companion right-handed orthogonal set of coordinate axes that are fixed in the frame.</semantics>
+                <attribute>
+                    <name>name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>At initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames.</semantics>
+                </attribute>
+                <attribute>
+                    <name>parent_name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>At initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>The name of this frame's parent reference frame. If this frame has no parent (i.e., is a 'root' reference frame), then this string must be empty, otherwise the non-empty string must correspond to the name attribute of some other ReferenceFrame object instance in the simulation.</semantics>
+                </attribute>
+                <attribute>
+                    <name>state</name>
+                    <dataType>SpaceTimeCoordinateState</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A four dimensional representation of the reference frame with respect to its parent reference frame.  If the parent fame is an empty string, then only the time dimension has meaning.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>Moon</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Moon parent reference frame</semantics>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>ExecutionConfiguration</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>This is the federation Execution Configuration Object (ExCO).  This object defines the base set of parameters necessary to coordinate federation and federate execution time lines and execution mode transitions in a SISO Space Reference FOM compliant federation execution.</semantics>
+                <attribute>
+                    <name>root_frame_name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>At initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>Specifies the name of the root coordinate frame in the federation execution's reference frame tree.  This frame shall remain fixed throughout the federation execution.</semantics>
+                </attribute>
+                <attribute>
+                    <name>scenario_time_epoch</name>
+                    <dataType>Time</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>At initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>Federation execution scenario time epoch.  This is the beginning epoch expressed in Terrestrial Time (TT), using as starting epoch that of the Truncated Julian Date (TJD)- 1968-05-24 00:00:00 UTC, that corresponds to HLA logical time 0.  All joining federates shall use this time to coordinate the offset between their local simulation scenario times, their local simulation execution times and the HLA logical time.</semantics>
+                </attribute>
+                <attribute>
+                    <name>current_execution_mode</name>
+                    <dataType>ExecutionMode</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Defines the current running state of the federation execution in terms of a finite set of states expressed in the ExecutionMode enumeration.</semantics>
+                </attribute>
+                <attribute>
+                    <name>next_execution_mode</name>
+                    <dataType>ExecutionMode</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Defines the next running state of the federation execution in terms of a finite set of states expressed in the ExecutionMode enumeration.  This is used in conjunction with the cte_mode_time, sim_mode_time and associated sync point mechanisms to coordinate federation execution mode transitions.</semantics>
+                </attribute>
+                <attribute>
+                    <name>next_mode_scenario_time</name>
+                    <dataType>Time</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The time for the next federation execution mode change expressed as a federation scenario time reference.  Note: this value is only meaningful for going into freeze; exiting freeze is coordinated through a sync point mechanism.</semantics>
+                </attribute>
+                <attribute>
+                    <name>next_mode_cte_time</name>
+                    <dataType>Time</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The time for the next federation execution mode change expressed as a Central Timing Equipment (CTE) time reference.  The standard for this reference shall be defined in the federation agreement when CTE is used.</semantics>
+                </attribute>
+                <attribute>
+                    <name>least_common_time_step</name>
+                    <dataType>HLAinteger64Time</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>At initialization</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>TimeStamp</order>
+                    <semantics>A 64 bit integer time that represents microseconds for the least common value of all the time step values in the federation execution (LCTS).  This value is set by the Master Federate and does not change during the federation execution. This is used in the computation to find the next HLA Logical Time Boundary (HLTB) available to all federates in the federation execution.  The basic equation is HLTB = ( floor(GALT/LCTS) + 1 ) * LCTS, where GALT is the greatest available logical time.  This is used to synchronize the federates in a federation execution to be on a common logical time boundary.</semantics>
+                </attribute>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <sharing>Neither</sharing>
+            <transportation>HLAreliable</transportation>
+            <order>TimeStamp</order>
+            <semantics></semantics>
+            <interactionClass>
+                <name>Start_Stop</name>
+                <sharing>PublishSubscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics></semantics>
+                <parameter>
+                    <name>HaltSimulation</name>
+                    <dataType>HLAboolean</dataType>
+                    <semantics>Stop simulation if true</semantics>
+                </parameter>
+                <parameter>
+                    <name>Exit_Simulation</name>
+                    <dataType>HLAboolean</dataType>
+                    <semantics>Exit simulation if true</semantics>
+                </parameter>
+            </interactionClass>
+            <interactionClass>
+                <name>LoadScenario</name>
+                <sharing>PublishSubscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Scenario data used to configure simulation</semantics>
+                <parameter>
+                    <name>MoonFriction</name>
+                    <dataType>HLAfloat64LE</dataType>
+                    <semantics>Friction coefficient for surface of the moon</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverInitialPosition</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Start postion for rover</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverHealth</name>
+                    <dataType>Health</dataType>
+                    <semantics>Health of rover</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverMass</name>
+                    <dataType>Mass</dataType>
+                    <semantics>Mass of rover</semantics>
+                </parameter>
+                <parameter>
+                    <name>PayloadMass</name>
+                    <dataType>Mass</dataType>
+                    <semantics>Mass of payload</semantics>
+                </parameter>
+                <parameter>
+                    <name>LaunchSpeedVector</name>
+                    <dataType>VelocityVector</dataType>
+                    <semantics>Initial speed of payload</semantics>
+                </parameter>
+                <parameter>
+                    <name>RoverStartPosition</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Rover Start Position</semantics>
+                </parameter>
+                <parameter>
+                    <name>SimulationScenario</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Which scenario to load in</semantics>
+                </parameter>
+                <parameter>
+                    <name>LauncherPosition</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Position of Launcher</semantics>
+                </parameter>
+                <parameter>
+                    <name>LaunchForce</name>
+                    <dataType>ForceVector</dataType>
+                    <semantics>Launch force for payload exit</semantics>
+                </parameter>
+            </interactionClass>
+            <interactionClass>
+                <name>ModeTransitionRequest</name>
+                <sharing>PublishSubscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>The ModeTransitionRequest (MTR) interaction is used by participating federates, that are not the Master Federate, to request a federation execution mode transition.  An MTR can be sent at anytime during initialization or execution but only certain MTR requests are valid at certain times.</semantics>
+                <parameter>
+                    <name>execution_mode</name>
+                    <dataType>MTRMode</dataType>
+                    <semantics>The run mode requested.  There are only 3 valid Mode Transition Request (MTR) mode values: MTR_GOTO_RUN, MTR_GOTO_FREEZE, MTR_GOTO_SHUTDOWN.  Of these three valid mode requests, only 7 combinations of current execution mode and requested mode are valid: 
+1. EXEC_MODE_UNINITIALIZED -&gt; EXEC_MODE_SHUTDOWN 
+2. EXEC_MODE_INITIALIZED -&gt; EXEC_MODE_FREEZE 
+3. EXEC_MODE_INITIALIZED -&gt; EXEC_MODE_SHUTDOWN 
+4. EXEC_MODE_RUNNING -&gt; EXEC_MODE_FREEZE 
+5. EXEC_MODE_RUNNING -&gt; EXEC_MODE_SHUTDOWN 
+6. EXEC_MODE_FREEZE -&gt; EXEC_MODE_RUNNING 
+7. EXEC_MODE_FREEZE -&gt; EXEC_MODE_SHUTDOWN</semantics>
+                </parameter>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dimensions/>
+    <time>
+        <timeStamp>
+            <dataType>HLAinteger64Time</dataType>
+            <semantics>Microseconds since the beginning of the federation execution.</semantics>
+        </timeStamp>
+        <lookahead>
+            <dataType>HLAinteger64Time</dataType>
+            <semantics>Microseconds</semantics>
+        </lookahead>
+    </time>
+    <synchronizations>
+        <synchronizationPoint>
+            <label>initialization_started</label>
+            <dataType>NA</dataType>
+            <capability>RegisterAchieve</capability>
+            <semantics>Used to indicate that the initialization phase of a Space FOM compliant federation execution has been started.  This synchronization point (sync-point) is not created until all federates required by the Master Federate have joined the federation execution.  Once this occurs, the Master Federate announces this sync-point along with the "startup" sync-point for any federates that have already joined the federation execution.  All federates in the sync-point group must achieve this sync-point prior to proceeding with federate and federation execution initialization.</semantics>
+        </synchronizationPoint>
+        <synchronizationPoint>
+            <label>initialization_completed</label>
+            <dataType>NA</dataType>
+            <capability>Register</capability>
+            <semantics>This synchronization point (sync-point) is registered by the federation execution Master Federate after all the early joining federates have achieved the "initialization_started" sync-point.  This signals to any late joining federates that they can now proceed to the current run mode of the federation execution.  This sync-point will never be achieved.</semantics>
+        </synchronizationPoint>
+        <synchronizationPoint>
+            <label>objects_discovered</label>
+            <dataType>NA</dataType>
+            <capability>RegisterAchieve</capability>
+            <semantics>This synchronization point (sync-point) is used to mark the point at which all required objects have been discovered by all the federates taking part in the initialization process. This sync-point is used to insure that all the necessary objects have been discovered prior to proceeding with the root reference frame discovery process and then multi-phase initialization.</semantics>
+        </synchronizationPoint>
+        <synchronizationPoint>
+            <label>mtr_run</label>
+            <dataType>NA</dataType>
+            <capability>RegisterAchieve</capability>
+            <semantics>This is used to synchronize the mode transition to EXEC_MODE_RUNNING. This synchronization point (sync-point) is registered by the federation execution Master Federate upon receipt of a valid MTR interaction after sending out the associated ExCO update.  Upon receiving the ExCO for the mode transition and at the associated transition time, all federates must achieve this sync-point prior to going into mode EXEC_MODE_RUNNING.</semantics>
+        </synchronizationPoint>
+        <synchronizationPoint>
+            <label>mtr_freeze</label>
+            <dataType>NA</dataType>
+            <capability>RegisterAchieve</capability>
+            <semantics>This is used to synchronize the mode transition to EXEC_MODE_FREEZE. This synchronization point (sync-point) is registered by the federation execution Master Federate upon receipt of a valid MTR interaction after sending out the associated ExCO update.  Upon receiving the ExCO for the mode transition and at the associated transition time, all federates must achieve this sync-point prior to going into mode EXEC_MODE_FREEZE.</semantics>
+        </synchronizationPoint>
+        <synchronizationPoint>
+            <label>mtr_shutdown</label>
+            <dataType>NA</dataType>
+            <capability>Register</capability>
+            <semantics>This synchronization point (sync-point) is used as a marker for the mode transition to EXEC_MODE_SHUTDOWN. This sync-point is registered by the federation execution’s Master Federate to “mark” the federation execution as shutting down. This marker sync-point is used in addition to the ExCO. This sync-point is never achieved and will remain for the life of the federation execution to inform any late joining federates of shutdown and that the federates should proceed directly to their shutdown processes.</semantics>
+        </synchronizationPoint>
+        <synchronizationPoint>
+            <label>root_frame_discovered</label>
+            <dataType>NA</dataType>
+            <capability>RegisterAchieve</capability>
+            <semantics>This synchronization point (sync-point) is used to mark the point at which the root reference frame for this federation execution has been discovered by the Master Federate and all other federates participating in the initialization process. This is necessary prior to moving into the multi-phase initialization process.</semantics>
+        </synchronizationPoint>
+    </synchronizations>
+    <transportations/>
+    <switches>
+        <autoProvide isEnabled="false"/>
+        <conveyRegionDesignatorSets isEnabled="false"/>
+        <conveyProducingFederate isEnabled="false"/>
+        <attributeScopeAdvisory isEnabled="false"/>
+        <attributeRelevanceAdvisory isEnabled="false"/>
+        <objectClassRelevanceAdvisory isEnabled="false"/>
+        <interactionRelevanceAdvisory isEnabled="false"/>
+        <serviceReporting isEnabled="false"/>
+        <exceptionReporting isEnabled="false"/>
+        <delaySubscriptionEvaluation isEnabled="false"/>
+        <automaticResignAction resignAction="CancelThenDeleteThenDivest"/>
+    </switches>
+    <updateRates/>
+    <dataTypes>
+        <basicDataRepresentations/>
+        <simpleDataTypes>
+            <simpleData>
+                <name>Health</name>
+                <representation>HLAfloat64LE</representation>
+                <units>NA</units>
+                <resolution></resolution>
+                <accuracy></accuracy>
+                <semantics>Scalar representing health</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Angle</name>
+                <representation>HLAfloat64LE</representation>
+                <units>radian (r)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar angular counterclockwise quantity.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Mass</name>
+                <representation>HLAfloat64LE</representation>
+                <units>kilogram (kg)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measurement of mass.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>MassRate</name>
+                <representation>HLAfloat64LE</representation>
+                <units>kilogram per second (kg/s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measurement of the rate of change of mass.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>MassMomentOfInertia</name>
+                <representation>HLAfloat64LE</representation>
+                <units>kilogram meter squared (kg*m^2)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar moment or coefficient of inertia. There are nine such scalars in a 
+moment of inertia matrix.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Length</name>
+                <representation>HLAfloat64LE</representation>
+                <units>meter (m)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar length.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Velocity</name>
+                <representation>HLAfloat64LE</representation>
+                <units>meter per second (m/s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar translational velocity.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Acceleration</name>
+                <representation>HLAfloat64LE</representation>
+                <units>meter per second squared (m/s^2)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar translational acceleration.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Scalar</name>
+                <representation>HLAfloat64LE</representation>
+                <units>NA</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A unitless scalar value.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>AngularRate</name>
+                <representation>HLAfloat64LE</representation>
+                <units>radian per second (r/s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar angular rate.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>AngularAcceleration</name>
+                <representation>HLAfloat64LE</representation>
+                <units>radian per second squared (r/s^2)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar angular acceleration.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Time</name>
+                <representation>HLAfloat64LE</representation>
+                <units>second (s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measurement of time.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Energy</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Joule (J)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of energy.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Power</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Watt (W)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of power.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>SignalStrength</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Decibel (dB)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of signal strength.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Temperature</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Kelvin (K)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of absolute temperature.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>TemperatureRate</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Kelvin per second (K/s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of the time rate of change of temperature.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Force</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Newton (N)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar measurement of force.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Torque</name>
+                <representation>HLAfloat64LE</representation>
+                <units>Newton meter (N*m)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A scalar measurement of torque.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>Density</name>
+                <representation>HLAfloat64LE</representation>
+                <units>kilograms per cubic meter (kg/m^3)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of mass density.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>MassMomentOfInertiaRate</name>
+                <representation>HLAfloat64LE</representation>
+                <units>kilogram meter squared per second (kg*m^2/s)</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>A measure of the time rate of change of a mass moment of inertia parameter.</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>ExecutionMode</name>
+                <representation>HLAinteger16LE</representation>
+                <semantics>Defines the mode for the running federation execution.  This enumeration type is used for coordinating transitions between federation execution run states.</semantics>
+                <enumerator>
+                    <name>EXEC_MODE_UNINITIALIZED</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>EXEC_MODE_INITIALIZING</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>EXEC_MODE_RUNNING</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>EXEC_MODE_FREEZE</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>EXEC_MODE_SHUTDOWN</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>MTRMode</name>
+                <representation>HLAinteger16LE</representation>
+                <semantics>Mode Transition Request (MTR) transition values.  This enumeration is used to request a specific mode transition.  However, not all mode transition requests are accepted for any given Run Mode.  See mode transition validation table in the Space Reference FOM documentation.</semantics>
+                <enumerator>
+                    <name>MTR_GOTO_RUN</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>MTR_GOTO_FREEZE</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>MTR_GOTO_SHUTDOWN</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>PositionVector</name>
+                <dataType>Length</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the translational position of one point with respect to another. This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>VelocityVector</name>
+                <dataType>Velocity</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the time derivative of the vector position of some point with respect to another as seen by an observer fixed in some reference frame. This data type does not specify which points are involved, nor does it specify the observer frame of reference, nor does it specify the coordinate axes onto which the three components of the vector are projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>AccelerationVector</name>
+                <dataType>Acceleration</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the time derivative of a vector velocity of some point with respect to another as seen by an observer fixed in some reference frame. This data type does not specify which points are involved, nor does it specify the observer frame of  reference, nor does it specify the coordinate axes onto which the three components of the vector are projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>AngularVelocityVector</name>
+                <dataType>AngularRate</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the time derivative of the orientation of one reference frame with respect to another. This data type does not specify the reference frames, nor does it specify the coordinate axes onto which the three components of the vector are projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>AngularAccelerationVector</name>
+                <dataType>AngularAcceleration</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the time derivative of an angular velocity vector as seen by an observer fixed in some reference frame. This data type does not specify which angular velocity, nor does it specify the observer frame of reference, nor does it specify the coordinate axes onto which the three components of the vector are 
+projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>InertiaMatrix</name>
+                <dataType>MassMomentOfInertia</dataType>
+                <cardinality>9</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3x3 matrix that specifies the mass inertia matrix of a body about some coordinate axes. The nine elements of the matrix are stored row-wise, namely: Ixx, Ixy, Ixz, Iyx, Iyy, Iyz, Izx, Izy, Izz. The off-diagonal components Iij (i!=j) are the so-called 'negative integrals'. This means that the elements in this inertia matrix satisfy the equation H=Iw. Where H is the angular momentum vector, I is the inertia matrix and w is the angular velocity vector. This data type does not specify the coordinate axes about which the moments are calculated.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>Vector</name>
+                <dataType>Scalar</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A unitless 3-vector.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>Matrix</name>
+                <dataType>Scalar</dataType>
+                <cardinality>9</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A unitless 3x3 matrix. The nine elements of the matrix are stored row-wise, namely: m11, m12, m13, m21, m22, m23, m31, m32, m33, where the first index is the row index.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ForceVector</name>
+                <dataType>Force</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the vector force.  This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>TorqueVector</name>
+                <dataType>Torque</dataType>
+                <cardinality>3</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3-vector that specifies the vector torque.  This data type does not specify which points are involved, nor does it specify the coordinate axes onto which the three components of the vector are projected.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>InertiaRateMatrix</name>
+                <dataType>MassMomentOfInertiaRate</dataType>
+                <cardinality>9</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A 3x3 matrix that specifies the time rate of change of the parameters in the InertiaMatrix.  The elements in this matrix correspond directly to the elements in the InteriaMatrix.</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>ReferenceFrameTranslation</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>This is the translational state of a subject reference frame with respect to a 'referent' frame. This data type does not specify the two reference frames.</semantics>
+                <field>
+                    <name>position</name>
+                    <dataType>PositionVector</dataType>
+                    <semantics>Position of the subject frame origin with respect to the referent origin with components expressed in the referent coordinate axes.</semantics>
+                </field>
+                <field>
+                    <name>velocity</name>
+                    <dataType>VelocityVector</dataType>
+                    <semantics>Velocity of the subject frame origin with respect to its referent origin with components expressed in the referent coordinate axes.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ReferenceFrameRotation</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>This is the rotational state of a reference frame with respect to a 'referent' frame.</semantics>
+                <field>
+                    <name>attitude_quaternion</name>
+                    <dataType>AttitudeQuaternion</dataType>
+                    <semantics>Attitude quaternion that specifies the orientation of the subject frame with respect to the referent.</semantics>
+                </field>
+                <field>
+                    <name>angular_velocity</name>
+                    <dataType>AngularVelocityVector</dataType>
+                    <semantics>Angular velocity of the subject frame with respect to the referent with components resolved onto the subject coordinate axes.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>AttitudeQuaternion</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>This is a quaternion quantifying the orientation of a 'subject' reference frame with respect to some other 'referent' frame. Quaternions consist of one scalar component and a 3-element vector component and can be denoted Q = (s, V), where s is a scalar and V is a vector (x, y, z). Confusion often arises regarding the meaning of the quaternion. (There are several similar but incompatible conventions.) This data type defines a so-called 'left unit transformation quaternion'. It may be used to transform the elements of a vector V_R = (xR, yR, zR) resolved in the referent frame's coordinate axes into the corresponding elements of a vector V_S = (xS, yS, zS) resolved in the subject frame's coordinate axes (i.e. determine the components of the same vector in another coordinate system). The quaternion transformation formula is (0, V_A) = Q . (0, V_B) . Q*, where '.' denotes quaternion multiplication and * denotes quaternion conjugation. The formula for multiplication of the quaternion Q1 = (s1, V1) where V1 is the vector (x1, y1, z1) by the quaternion Q2 = (s2, V2) where V2 is the vector (x2, y2, z2) is Q3 = Q1 . Q2 = (s3, V3) where s3 = s1 s2 - (x1 x2 + y1 y2 + z1 z2) and V3 = (x3, y3, z3) with x3 = s1 x2 + s2 x1 + (y1 z2 - z1 y2), y3 = s1 y2 + s2 y1 + (z1 x2 - x1 z2) and z3 = s1 z2 + s2 z1 + (x1 y2 - y1 x2). The formula for conjugation of the quaternion Q = (s, V), where V is the vector (x, y, z) is Q* = (s, -V) = (s, (-x, -y, -z)).</semantics>
+                <field>
+                    <name>scalar</name>
+                    <dataType>Scalar</dataType>
+                    <semantics>The scalar component of the quaternion.</semantics>
+                </field>
+                <field>
+                    <name>vector</name>
+                    <dataType>Vector</dataType>
+                    <semantics>The vector component of the quaternion.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SpaceTimeCoordinateState</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>A multi-dimensional representation of an observational coordinate frame and associated state.  There are three spatial dimensions, three attitude dimensions and one time dimension.  The spatial and attitude components define a right-handed orthogonal set of coordinate axes that constitute a reference frame.  The time dimension specifies the 'position' of the coordinate with respect to the physical time scale (TT).</semantics>
+                <field>
+                    <name>translational_state</name>
+                    <dataType>ReferenceFrameTranslation</dataType>
+                    <semantics>This is the reference frame's translational state with respect to its parent frame. If this frame has no parent, this attribute is meaningless.</semantics>
+                </field>
+                <field>
+                    <name>rotational_state</name>
+                    <dataType>ReferenceFrameRotation</dataType>
+                    <semantics>This is the reference frame's rotational state with respect to its parent frame. If this frame has no parent, this attribute is meaningless.</semantics>
+                </field>
+                <field>
+                    <name>time</name>
+                    <dataType>Time</dataType>
+                    <semantics>This specifies the simulated physical time (TT), which represents the time dimension associated with a reference frame state.  It is the fourth component along with the three spatial dimensions that define a reference frame coordinate state.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes/>
+    </dataTypes>
+</objectModel>

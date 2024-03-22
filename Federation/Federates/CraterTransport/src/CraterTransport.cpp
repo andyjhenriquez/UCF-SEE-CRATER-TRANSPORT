@@ -1,12 +1,28 @@
 #include <LunarSimulation\HlaAllHeaders.h>
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
+#include <LunarSimulation\HlaInteractionListener.h>
+#include <LunarSimulation\HlaInteractionManager.h>
 
 #include "PhysicsManager.h"
 
 #include <iostream>
 
 using namespace LunarSimulation;
+
+//implementation of the HlaInteractionListener interface
+class MyInteractionListener : public HlaInteractionListener::Adapter {
+public:
+    void loadScenario(bool local,
+        HlaLoadScenarioParametersPtr parameters,
+        HlaTimeStampPtr timeStamp,
+        HlaLogicalTimePtr logicalTime) {
+        // Add implementation to handle interaction
+        this->data = parameters;
+    }
+private: 
+    HlaLoadScenarioParametersPtr data;
+};
 
 int main(void) {
     // Creates federation if this is the first federate connected,
@@ -28,6 +44,10 @@ int main(void) {
         std::cout << e.what() << std::endl;
     }
     std::cout << "Connected\n";
+
+    //adding interaction listener to hla manager
+    HlaInteractionListenerPtr myInteractionListener(new MyInteractionListener());
+    hlaWorld->getHlaInteractionManager()->addHlaInteractionListener(myInteractionListener);
    
     // Manages Payload instances, allows you to handle and find different instances
     HlaPayloadManagerPtr payloadManager = hlaWorld->getHlaPayloadManager();
