@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -15,7 +15,9 @@
 #include <mutex>
 
 #include <RtiDriver/ObjectClassHandle.h>
+#include <LunarSimulation/datatypes/SpaceTimeCoordinateState.h>
 #include <RtiDriver/Encoding/BasicDataElements.h>
+#include <string>
 #include "datatypes/SpaceTimeCoordinateStateEncoder.h"
 
 #include <LunarSimulation/HlaReferenceFrameManager.h>
@@ -50,6 +52,9 @@ namespace LunarSimulation {
         HlaInstanceNameMap _hlaInstanceNameMap; // guarded by _instancesLock
         EncodedHlaInstanceHandleMap _encodedHlaInstanceHandleMap; // guarded by _instancesLock
 
+        Cache<std::wstring, HlaReferenceFrameImplPtr> _getByNameCache; // guarded by _instancesLock
+        Cache<std::wstring, HlaReferenceFrameImplPtr> _getByParentNameCache; // guarded by _instancesLock
+        Cache<LunarSimulation::SpaceTimeCoordinateState, HlaReferenceFrameImplPtr> _getByStateCache; // guarded by _instancesLock
         ListenerSet<HlaReferenceFrameManagerListenerPtr> _referenceFrameManagerListeners;
         ListenerSet<HlaReferenceFrameValueListenerPtr> _defaultInstanceValueListeners;
         ListenerSet<HlaReferenceFrameListenerPtr> _defaultInstanceListeners;
@@ -69,13 +74,18 @@ namespace LunarSimulation {
         std::vector<HlaReferenceFramePtr> getHlaReferenceFrames();
         std::vector<HlaReferenceFramePtr> getLocalHlaReferenceFrames();
         std::vector<HlaReferenceFramePtr> getRemoteHlaReferenceFrames();
+        HlaReferenceFramePtr getReferenceFrameByName(std::wstring name);
+        HlaReferenceFramePtr getReferenceFrameByParent_name(std::wstring parentName);
+        HlaReferenceFramePtr getReferenceFrameByState(SpaceTimeCoordinateState state);
         HlaReferenceFramePtr getReferenceFrameByHlaInstanceName(const std::wstring& hlaInstanceName);
         HlaReferenceFramePtr getReferenceFrameByHlaInstanceHandle(const std::vector<char>& encodedHlaInstanceHandle);
 
         HlaReferenceFramePtr createLocalHlaReferenceFrame(
+            std::wstring name
         ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
 
-        HlaReferenceFramePtr createLocalHlaReferenceFrame(const std::wstring& hlaInstanceName
+        HlaReferenceFramePtr createLocalHlaReferenceFrame(const std::wstring& hlaInstanceName,
+            std::wstring name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -129,7 +139,8 @@ namespace LunarSimulation {
         LunarSimulation::SpaceTimeCoordinateStateEncoder _spaceTimeCoordinateStateEncoderEncoder;
 
     private:
-        HlaReferenceFramePtr createLocalInstance(const std::wstring& hlaInstanceName
+        HlaReferenceFramePtr createLocalInstance(const std::wstring& hlaInstanceName,
+             const std::wstring& name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -140,6 +151,9 @@ namespace LunarSimulation {
         void fireDeleted(HlaReferenceFrameImplPtr instance, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime);
         void clearAllInstances(bool doFireDeleted);
 
+        HlaReferenceFrameImplPtr findByName(std::wstring name); // guarded by _instancesLock
+        HlaReferenceFrameImplPtr findByParentName(std::wstring parentName); // guarded by _instancesLock
+        HlaReferenceFrameImplPtr findByState(SpaceTimeCoordinateState state); // guarded by _instancesLock
     };
 }
 #endif

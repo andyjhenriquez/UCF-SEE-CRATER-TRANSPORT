@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -65,14 +65,14 @@ namespace LunarSimulation {
     */
     LIBAPI virtual void setEnergy(const double& energy) = 0;
 
-    /**
-    * Set the name for this update.
+   /**
+    * Send the name in this update.
     * <br>Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name.
     * <br>Description of the data type from the FOM: 
-    *
-    * @param name the new name
+    * <p>
+    * The value can not be changed since this attribute is defined as a <i>Create</i> attribute.
     */
-    LIBAPI virtual void setName(const std::wstring& name) = 0;
+   LIBAPI virtual void sendName() = 0;
 
     /**
     * Set the type for this update.

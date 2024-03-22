@@ -78,18 +78,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af787e1376b50b17e4343893d508e4371" id="r_af787e1376b50b17e4343893d508e4371"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI std::vector&lt; HlaPhysicalInterfacePtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#af787e1376b50b17e4343893d508e4371">getRemoteHlaPhysicalInterfaces</a> ()=0</td></tr>
 <tr class="memdesc:af787e1376b50b17e4343893d508e4371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of remote HlaPhysicalInterfaces within interest.  <br /></td></tr>
 <tr class="separator:af787e1376b50b17e4343893d508e4371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47efafba2542506465da496ca3404498" id="r_a47efafba2542506465da496ca3404498"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a47efafba2542506465da496ca3404498">getPhysicalInterfaceByName</a> (std::wstring name)=0</td></tr>
+<tr class="memdesc:a47efafba2542506465da496ca3404498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with the given <code>name</code>.  <br /></td></tr>
+<tr class="separator:a47efafba2542506465da496ca3404498"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a8df456b45230f5e609006887bea452" id="r_a8a8df456b45230f5e609006887bea452"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a8a8df456b45230f5e609006887bea452">getPhysicalInterfaceByHlaInstanceName</a> (const std::wstring &amp;hlaInstanceName)=0</td></tr>
 <tr class="memdesc:a8a8df456b45230f5e609006887bea452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with the given <code>HLA instance name</code>.  <br /></td></tr>
 <tr class="separator:a8a8df456b45230f5e609006887bea452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10b0bbb9a967b6b64562dbc03a4bf62d" id="r_a10b0bbb9a967b6b64562dbc03a4bf62d"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a10b0bbb9a967b6b64562dbc03a4bf62d">getPhysicalInterfaceByHlaInstanceHandle</a> (const std::vector&lt; char &gt; &amp;encodedHlaInstanceHandle)=0</td></tr>
 <tr class="memdesc:a10b0bbb9a967b6b64562dbc03a4bf62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with the given <code>HLA instance name</code>.  <br /></td></tr>
 <tr class="separator:a10b0bbb9a967b6b64562dbc03a4bf62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a986580a1a78fd66aef3ea2170e7f953c" id="r_a986580a1a78fd66aef3ea2170e7f953c"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a986580a1a78fd66aef3ea2170e7f953c">createLocalHlaPhysicalInterface</a> ()=0</td></tr>
-<tr class="memdesc:a986580a1a78fd66aef3ea2170e7f953c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>, and sets all <em>Create</em> attributes.  <br /></td></tr>
-<tr class="separator:a986580a1a78fd66aef3ea2170e7f953c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3046d9ae4a81a24b28e8e3670236ffb3" id="r_a3046d9ae4a81a24b28e8e3670236ffb3"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a3046d9ae4a81a24b28e8e3670236ffb3">createLocalHlaPhysicalInterface</a> (const std::wstring &amp;hlaInstanceName)=0</td></tr>
-<tr class="memdesc:a3046d9ae4a81a24b28e8e3670236ffb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes.  <br /></td></tr>
-<tr class="separator:a3046d9ae4a81a24b28e8e3670236ffb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78a73d36cfc8b8476c46a7b33dd2df1b" id="r_a78a73d36cfc8b8476c46a7b33dd2df1b"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a78a73d36cfc8b8476c46a7b33dd2df1b">createLocalHlaPhysicalInterface</a> (std::wstring name)=0</td></tr>
+<tr class="memdesc:a78a73d36cfc8b8476c46a7b33dd2df1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>, and sets all <em>Create</em> attributes.  <br /></td></tr>
+<tr class="separator:a78a73d36cfc8b8476c46a7b33dd2df1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0575533d8d31d52b10bc10fa1e8b1595" id="r_a0575533d8d31d52b10bc10fa1e8b1595"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#a0575533d8d31d52b10bc10fa1e8b1595">createLocalHlaPhysicalInterface</a> (const std::wstring &amp;hlaInstanceName, std::wstring name)=0</td></tr>
+<tr class="memdesc:a0575533d8d31d52b10bc10fa1e8b1595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes.  <br /></td></tr>
+<tr class="separator:a0575533d8d31d52b10bc10fa1e8b1595"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab47111bbbabd31e21f79fa0eade34406" id="r_ab47111bbbabd31e21f79fa0eade34406"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPhysicalInterfacePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_manager.html#ab47111bbbabd31e21f79fa0eade34406">deleteLocalHlaPhysicalInterface</a> (HlaPhysicalInterfacePtr physicalInterface)=0</td></tr>
 <tr class="memdesc:ab47111bbbabd31e21f79fa0eade34406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a local <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> and removes it from the federation.  <br /></td></tr>
 <tr class="separator:ab47111bbbabd31e21f79fa0eade34406"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,46 +240,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a986580a1a78fd66aef3ea2170e7f953c" name="a986580a1a78fd66aef3ea2170e7f953c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a986580a1a78fd66aef3ea2170e7f953c">&#9670;&#160;</a></span>createLocalHlaPhysicalInterface() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual LIBAPI HlaPhysicalInterfacePtr LunarSimulation::HlaPhysicalInterfaceManager::createLocalHlaPhysicalInterface </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>, and sets all <em>Create</em> attributes. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new local <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a3046d9ae4a81a24b28e8e3670236ffb3" name="a3046d9ae4a81a24b28e8e3670236ffb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3046d9ae4a81a24b28e8e3670236ffb3">&#9670;&#160;</a></span>createLocalHlaPhysicalInterface() <span class="overload">[2/2]</span></h2>
+<a id="a0575533d8d31d52b10bc10fa1e8b1595" name="a0575533d8d31d52b10bc10fa1e8b1595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0575533d8d31d52b10bc10fa1e8b1595">&#9670;&#160;</a></span>createLocalHlaPhysicalInterface() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,8 +253,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">virtual LIBAPI HlaPhysicalInterfacePtr LunarSimulation::HlaPhysicalInterfaceManager::createLocalHlaPhysicalInterface </td>
           <td>(</td>
           <td class="paramtype">const std::wstring &amp;&#160;</td>
-          <td class="paramname"><em>hlaInstanceName</em></td><td>)</td>
+          <td class="paramname"><em>hlaInstanceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -302,7 +277,10 @@ Public Member Functions</h2></td></tr>
 <p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hlaInstanceName</td><td>the <code>HLA instance name</code> to register for this instance</td></tr>
+    <tr><td class="paramname">hlaInstanceName</td><td>the <code>HLA instance name</code> to register for this instance </td></tr>
+    <tr><td class="paramname">name</td><td>represents the <code>name</code> from the FOM. <br  />
+Description from the FOM: A non-empty string that identifies the interface. Each PhysicalInterface instance in the federation must have a unique name. <br  />
+Description of the data type from the FOM:</td></tr>
   </table>
   </dd>
 </dl>
@@ -311,6 +289,53 @@ Public Member Functions</h2></td></tr>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_illegal_instance_name_exception.html" title="* HlaIllegalInstanceNameException">HlaIllegalInstanceNameException</a></td><td>if the name is illegal </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_instance_name_in_use_exception.html" title="* HlaInstanceNameInUseException">HlaInstanceNameInUseException</a></td><td>if the name is already in use </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a78a73d36cfc8b8476c46a7b33dd2df1b" name="a78a73d36cfc8b8476c46a7b33dd2df1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78a73d36cfc8b8476c46a7b33dd2df1b">&#9670;&#160;</a></span>createLocalHlaPhysicalInterface() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaPhysicalInterfacePtr LunarSimulation::HlaPhysicalInterfaceManager::createLocalHlaPhysicalInterface </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>, and sets all <em>Create</em> attributes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>represents the <code>name</code> from the FOM. <br  />
+Description from the FOM: A non-empty string that identifies the interface. Each PhysicalInterface instance in the federation must have a unique name. <br  />
+Description of the data type from the FOM:</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new local <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
@@ -703,6 +728,43 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a47efafba2542506465da496ca3404498" name="a47efafba2542506465da496ca3404498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47efafba2542506465da496ca3404498">&#9670;&#160;</a></span>getPhysicalInterfaceByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaPhysicalInterfacePtr LunarSimulation::HlaPhysicalInterfaceManager::getPhysicalInterfaceByName </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with the given <code>name</code>. </p>
+<p>If more than one <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> with the given <code>name</code> is present, one of them is returned, it is undefined which. If none is found, <code>null</code> is returned. </p>
+<p>name was selected as a <em>Lookup</em> attribute.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name that looks up which <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a> to return.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an <a class="el" href="class_lunar_simulation_1_1_hla_physical_interface.html" title="Interface used to represent an object instance.">HlaPhysicalInterface</a>, or <code>null</code> if not found. </dd></dl>
+
+</div>
+</div>
 <a id="af787e1376b50b17e4343893d508e4371" name="af787e1376b50b17e4343893d508e4371"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af787e1376b50b17e4343893d508e4371">&#9670;&#160;</a></span>getRemoteHlaPhysicalInterfaces()</h2>
 
@@ -935,7 +997,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:22 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:49 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

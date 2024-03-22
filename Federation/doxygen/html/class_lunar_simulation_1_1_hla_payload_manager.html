@@ -78,18 +78,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5df96489f6484ce9fced55479ce3e06c" id="r_a5df96489f6484ce9fced55479ce3e06c"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI std::vector&lt; HlaPayloadPtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#a5df96489f6484ce9fced55479ce3e06c">getRemoteHlaPayloads</a> ()=0</td></tr>
 <tr class="memdesc:a5df96489f6484ce9fced55479ce3e06c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of remote HlaPayloads within interest.  <br /></td></tr>
 <tr class="separator:a5df96489f6484ce9fced55479ce3e06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6adb95b1206a440cb3fb7148ebcc05b" id="r_af6adb95b1206a440cb3fb7148ebcc05b"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#af6adb95b1206a440cb3fb7148ebcc05b">getPayloadByName</a> (std::wstring name)=0</td></tr>
+<tr class="memdesc:af6adb95b1206a440cb3fb7148ebcc05b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with the given <code>name</code>.  <br /></td></tr>
+<tr class="separator:af6adb95b1206a440cb3fb7148ebcc05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92017c5368c8757599eb3662dd016e41" id="r_a92017c5368c8757599eb3662dd016e41"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#a92017c5368c8757599eb3662dd016e41">getPayloadByHlaInstanceName</a> (const std::wstring &amp;hlaInstanceName)=0</td></tr>
 <tr class="memdesc:a92017c5368c8757599eb3662dd016e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with the given <code>HLA instance name</code>.  <br /></td></tr>
 <tr class="separator:a92017c5368c8757599eb3662dd016e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5163a2393f3c685ba6cb1896e804ae16" id="r_a5163a2393f3c685ba6cb1896e804ae16"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#a5163a2393f3c685ba6cb1896e804ae16">getPayloadByHlaInstanceHandle</a> (const std::vector&lt; char &gt; &amp;encodedHlaInstanceHandle)=0</td></tr>
 <tr class="memdesc:a5163a2393f3c685ba6cb1896e804ae16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with the given <code>HLA instance name</code>.  <br /></td></tr>
 <tr class="separator:a5163a2393f3c685ba6cb1896e804ae16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfad130123caf506ebd04903d67df2f0" id="r_abfad130123caf506ebd04903d67df2f0"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#abfad130123caf506ebd04903d67df2f0">createLocalHlaPayload</a> ()=0</td></tr>
-<tr class="memdesc:abfad130123caf506ebd04903d67df2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>, and sets all <em>Create</em> attributes.  <br /></td></tr>
-<tr class="separator:abfad130123caf506ebd04903d67df2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae542eb3c2c35fe52a32cccdcaa46bf4a" id="r_ae542eb3c2c35fe52a32cccdcaa46bf4a"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#ae542eb3c2c35fe52a32cccdcaa46bf4a">createLocalHlaPayload</a> (const std::wstring &amp;hlaInstanceName)=0</td></tr>
-<tr class="memdesc:ae542eb3c2c35fe52a32cccdcaa46bf4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes.  <br /></td></tr>
-<tr class="separator:ae542eb3c2c35fe52a32cccdcaa46bf4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8bbd6dd01ee3a1cde203527ac4c7103" id="r_af8bbd6dd01ee3a1cde203527ac4c7103"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#af8bbd6dd01ee3a1cde203527ac4c7103">createLocalHlaPayload</a> (std::wstring name)=0</td></tr>
+<tr class="memdesc:af8bbd6dd01ee3a1cde203527ac4c7103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>, and sets all <em>Create</em> attributes.  <br /></td></tr>
+<tr class="separator:af8bbd6dd01ee3a1cde203527ac4c7103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15da21c294fbc345baa39d2c1c5d5ff9" id="r_a15da21c294fbc345baa39d2c1c5d5ff9"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#a15da21c294fbc345baa39d2c1c5d5ff9">createLocalHlaPayload</a> (const std::wstring &amp;hlaInstanceName, std::wstring name)=0</td></tr>
+<tr class="memdesc:a15da21c294fbc345baa39d2c1c5d5ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes.  <br /></td></tr>
+<tr class="separator:a15da21c294fbc345baa39d2c1c5d5ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af461871afdf0a576e96926e8fee2dd38" id="r_af461871afdf0a576e96926e8fee2dd38"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaPayloadPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#af461871afdf0a576e96926e8fee2dd38">deleteLocalHlaPayload</a> (HlaPayloadPtr payload)=0</td></tr>
 <tr class="memdesc:af461871afdf0a576e96926e8fee2dd38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a local <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> and removes it from the federation.  <br /></td></tr>
 <tr class="separator:af461871afdf0a576e96926e8fee2dd38"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,46 +240,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abfad130123caf506ebd04903d67df2f0" name="abfad130123caf506ebd04903d67df2f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfad130123caf506ebd04903d67df2f0">&#9670;&#160;</a></span>createLocalHlaPayload() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual LIBAPI HlaPayloadPtr LunarSimulation::HlaPayloadManager::createLocalHlaPayload </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>, and sets all <em>Create</em> attributes. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new local <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ae542eb3c2c35fe52a32cccdcaa46bf4a" name="ae542eb3c2c35fe52a32cccdcaa46bf4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae542eb3c2c35fe52a32cccdcaa46bf4a">&#9670;&#160;</a></span>createLocalHlaPayload() <span class="overload">[2/2]</span></h2>
+<a id="a15da21c294fbc345baa39d2c1c5d5ff9" name="a15da21c294fbc345baa39d2c1c5d5ff9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15da21c294fbc345baa39d2c1c5d5ff9">&#9670;&#160;</a></span>createLocalHlaPayload() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,8 +253,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">virtual LIBAPI HlaPayloadPtr LunarSimulation::HlaPayloadManager::createLocalHlaPayload </td>
           <td>(</td>
           <td class="paramtype">const std::wstring &amp;&#160;</td>
-          <td class="paramname"><em>hlaInstanceName</em></td><td>)</td>
+          <td class="paramname"><em>hlaInstanceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -302,7 +277,10 @@ Public Member Functions</h2></td></tr>
 <p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hlaInstanceName</td><td>the <code>HLA instance name</code> to register for this instance</td></tr>
+    <tr><td class="paramname">hlaInstanceName</td><td>the <code>HLA instance name</code> to register for this instance </td></tr>
+    <tr><td class="paramname">name</td><td>represents the <code>name</code> from the FOM. <br  />
+Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name. <br  />
+Description of the data type from the FOM:</td></tr>
   </table>
   </dd>
 </dl>
@@ -311,6 +289,53 @@ Public Member Functions</h2></td></tr>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_illegal_instance_name_exception.html" title="* HlaIllegalInstanceNameException">HlaIllegalInstanceNameException</a></td><td>if the name is illegal </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_instance_name_in_use_exception.html" title="* HlaInstanceNameInUseException">HlaInstanceNameInUseException</a></td><td>if the name is already in use </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af8bbd6dd01ee3a1cde203527ac4c7103" name="af8bbd6dd01ee3a1cde203527ac4c7103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8bbd6dd01ee3a1cde203527ac4c7103">&#9670;&#160;</a></span>createLocalHlaPayload() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaPayloadPtr LunarSimulation::HlaPayloadManager::createLocalHlaPayload </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>, and sets all <em>Create</em> attributes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>represents the <code>name</code> from the FOM. <br  />
+Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name. <br  />
+Description of the data type from the FOM:</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new local <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
@@ -703,6 +728,43 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af6adb95b1206a440cb3fb7148ebcc05b" name="af6adb95b1206a440cb3fb7148ebcc05b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6adb95b1206a440cb3fb7148ebcc05b">&#9670;&#160;</a></span>getPayloadByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaPayloadPtr LunarSimulation::HlaPayloadManager::getPayloadByName </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with the given <code>name</code>. </p>
+<p>If more than one <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> with the given <code>name</code> is present, one of them is returned, it is undefined which. If none is found, <code>null</code> is returned. </p>
+<p>name was selected as a <em>Lookup</em> attribute.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name that looks up which <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a> to return.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an <a class="el" href="class_lunar_simulation_1_1_hla_payload.html" title="Interface used to represent an object instance.">HlaPayload</a>, or <code>null</code> if not found. </dd></dl>
+
+</div>
+</div>
 <a id="a5df96489f6484ce9fced55479ce3e06c" name="a5df96489f6484ce9fced55479ce3e06c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5df96489f6484ce9fced55479ce3e06c">&#9670;&#160;</a></span>getRemoteHlaPayloads()</h2>
 
@@ -935,7 +997,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:21 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:48 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

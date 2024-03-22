@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -50,7 +50,7 @@ _federateName(L"DevStudio"),
 _federateType(L"DevStudio"),
 _federationName(L"Federation"),
 _classicFomUrl(L""),
-_evolvedFomUrl(L"combined.xml"),
+_evolvedFomUrl(L"Combined.xml"),
 _additionalFomUrls(std::vector<std::wstring>()),
 _fedUrl(L""),
 _createFederation(true),
@@ -74,7 +74,7 @@ _federateName(L"DevStudio"),
 _federateType(L"DevStudio"),
 _federationName(L"Federation"),
 _classicFomUrl(L""),
-_evolvedFomUrl(L"combined.xml"),
+_evolvedFomUrl(L"Combined.xml"),
 _additionalFomUrls(std::vector<std::wstring>()),
 _fedUrl(L""),
 _createFederation(true),
@@ -98,7 +98,7 @@ _federateName(L"DevStudio"),
 _federateType(L"DevStudio"),
 _federationName(L"Federation"),
 _classicFomUrl(L""),
-_evolvedFomUrl(L"combined.xml"),
+_evolvedFomUrl(L"Combined.xml"),
 _additionalFomUrls(std::vector<std::wstring>()),
 _fedUrl(L""),
 _createFederation(true),

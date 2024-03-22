@@ -67,9 +67,9 @@ Inheritance diagram for LunarSimulation::HlaPhysicalInterfaceUpdater:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a625d86e7d04918a56649f3ae8674afde" id="r_a625d86e7d04918a56649f3ae8674afde"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_updater.html#a625d86e7d04918a56649f3ae8674afde">setName</a> (const std::wstring &amp;name)=0</td></tr>
-<tr class="memdesc:a625d86e7d04918a56649f3ae8674afde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name for this update.  <br /></td></tr>
-<tr class="separator:a625d86e7d04918a56649f3ae8674afde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd550d4af5aecab8cf5fe99f7f4e0580" id="r_afd550d4af5aecab8cf5fe99f7f4e0580"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_updater.html#afd550d4af5aecab8cf5fe99f7f4e0580">sendName</a> ()=0</td></tr>
+<tr class="memdesc:afd550d4af5aecab8cf5fe99f7f4e0580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the name in this update.  <br /></td></tr>
+<tr class="separator:afd550d4af5aecab8cf5fe99f7f4e0580"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada69e34be1b9bb501a091d0a6553cd51" id="r_ada69e34be1b9bb501a091d0a6553cd51"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_physical_interface_updater.html#ada69e34be1b9bb501a091d0a6553cd51">setParentName</a> (const std::wstring &amp;parentName)=0</td></tr>
 <tr class="memdesc:ada69e34be1b9bb501a091d0a6553cd51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the parentName for this update.  <br /></td></tr>
 <tr class="separator:ada69e34be1b9bb501a091d0a6553cd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -95,6 +95,37 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Updater used to update attribute values. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="afd550d4af5aecab8cf5fe99f7f4e0580" name="afd550d4af5aecab8cf5fe99f7f4e0580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd550d4af5aecab8cf5fe99f7f4e0580">&#9670;&#160;</a></span>sendName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaPhysicalInterfaceUpdater::sendName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send the name in this update. </p>
+<p><br  />
+Description from the FOM: A non-empty string that identifies the interface. Each PhysicalInterface instance in the federation must have a unique name. <br  />
+Description of the data type from the FOM: </p>
+<p>The value can not be changed since this attribute is defined as a <em>Create</em> attribute. </p>
+
+</div>
+</div>
 <a id="aad502c5846de32b0f9722b22482662af" name="aad502c5846de32b0f9722b22482662af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad502c5846de32b0f9722b22482662af">&#9670;&#160;</a></span>sendUpdate() <span class="overload">[1/4]</span></h2>
 
@@ -338,43 +369,6 @@ Description of the data type from the FOM: This is a quaternion quantifying the 
 
 </div>
 </div>
-<a id="a625d86e7d04918a56649f3ae8674afde" name="a625d86e7d04918a56649f3ae8674afde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a625d86e7d04918a56649f3ae8674afde">&#9670;&#160;</a></span>setName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual LIBAPI void LunarSimulation::HlaPhysicalInterfaceUpdater::setName </td>
-          <td>(</td>
-          <td class="paramtype">const std::wstring &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the name for this update. </p>
-<p><br  />
-Description from the FOM: A non-empty string that identifies the interface. Each PhysicalInterface instance in the federation must have a unique name. <br  />
-Description of the data type from the FOM:</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>the new name </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ada69e34be1b9bb501a091d0a6553cd51" name="ada69e34be1b9bb501a091d0a6553cd51"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada69e34be1b9bb501a091d0a6553cd51">&#9670;&#160;</a></span>setParentName()</h2>
 
@@ -455,7 +449,7 @@ Description of the data type from the FOM: A 3-vector that specifies the transla
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:22 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:49 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

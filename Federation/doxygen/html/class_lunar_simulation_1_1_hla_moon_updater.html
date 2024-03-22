@@ -68,9 +68,9 @@ Inheritance diagram for LunarSimulation::HlaMoonUpdater:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ace9f3fd99dfc28a94df6ae6dc32cc45c" id="r_ace9f3fd99dfc28a94df6ae6dc32cc45c"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_updater.html#ace9f3fd99dfc28a94df6ae6dc32cc45c">setName</a> (const std::wstring &amp;name)=0</td></tr>
-<tr class="memdesc:ace9f3fd99dfc28a94df6ae6dc32cc45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name for this update.  <br /></td></tr>
-<tr class="separator:ace9f3fd99dfc28a94df6ae6dc32cc45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3191dbf79c85471e07ee4e649deee5c4" id="r_a3191dbf79c85471e07ee4e649deee5c4"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_updater.html#a3191dbf79c85471e07ee4e649deee5c4">sendName</a> ()=0</td></tr>
+<tr class="memdesc:a3191dbf79c85471e07ee4e649deee5c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the name in this update.  <br /></td></tr>
+<tr class="separator:a3191dbf79c85471e07ee4e649deee5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00dacfb86cd12dc45d929a101d1183af" id="r_a00dacfb86cd12dc45d929a101d1183af"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_updater.html#a00dacfb86cd12dc45d929a101d1183af">setParentName</a> (const std::wstring &amp;parentName)=0</td></tr>
 <tr class="memdesc:a00dacfb86cd12dc45d929a101d1183af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the parentName for this update.  <br /></td></tr>
 <tr class="separator:a00dacfb86cd12dc45d929a101d1183af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -93,6 +93,39 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Updater used to update attribute values. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3191dbf79c85471e07ee4e649deee5c4" name="a3191dbf79c85471e07ee4e649deee5c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3191dbf79c85471e07ee4e649deee5c4">&#9670;&#160;</a></span>sendName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaMoonUpdater::sendName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send the name in this update. </p>
+<p><br  />
+Description from the FOM: A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames. <br  />
+Description of the data type from the FOM: </p>
+<p>The value can not be changed since this attribute is defined as a <em>Create</em> attribute. </p>
+
+<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_reference_frame_updater.html#a9d9e5cb3c5c590775cd844f37011f7e2">LunarSimulation::HlaReferenceFrameUpdater</a>.</p>
+
+</div>
+</div>
 <a id="aa706e5f1ea3bc5c13acea26020c76c02" name="aa706e5f1ea3bc5c13acea26020c76c02"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa706e5f1ea3bc5c13acea26020c76c02">&#9670;&#160;</a></span>sendUpdate() <span class="overload">[1/4]</span></h2>
 
@@ -299,45 +332,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ace9f3fd99dfc28a94df6ae6dc32cc45c" name="ace9f3fd99dfc28a94df6ae6dc32cc45c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace9f3fd99dfc28a94df6ae6dc32cc45c">&#9670;&#160;</a></span>setName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual LIBAPI void LunarSimulation::HlaMoonUpdater::setName </td>
-          <td>(</td>
-          <td class="paramtype">const std::wstring &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the name for this update. </p>
-<p><br  />
-Description from the FOM: A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames. <br  />
-Description of the data type from the FOM:</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>the new name </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_reference_frame_updater.html#abaf78c844aba49e353fe94fc0647a5df">LunarSimulation::HlaReferenceFrameUpdater</a>.</p>
-
-</div>
-</div>
 <a id="a00dacfb86cd12dc45d929a101d1183af" name="a00dacfb86cd12dc45d929a101d1183af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a00dacfb86cd12dc45d929a101d1183af">&#9670;&#160;</a></span>setParentName()</h2>
 
@@ -422,7 +416,7 @@ Description of the data type from the FOM: A multi-dimensional representation of
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:21 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:48 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

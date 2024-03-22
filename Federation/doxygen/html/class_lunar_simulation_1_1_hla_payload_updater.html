@@ -96,9 +96,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a16dc3529cf2d0bb2224464d59da592a1" id="r_a16dc3529cf2d0bb2224464d59da592a1"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_updater.html#a16dc3529cf2d0bb2224464d59da592a1">setInertiaRate</a> (const std::vector&lt; double &gt; &amp;inertiaRate)=0</td></tr>
 <tr class="memdesc:a16dc3529cf2d0bb2224464d59da592a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the inertiaRate for this update.  <br /></td></tr>
 <tr class="separator:a16dc3529cf2d0bb2224464d59da592a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8baf8433de9be2fb46870e5fd35d5273" id="r_a8baf8433de9be2fb46870e5fd35d5273"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_updater.html#a8baf8433de9be2fb46870e5fd35d5273">setName</a> (const std::wstring &amp;name)=0</td></tr>
-<tr class="memdesc:a8baf8433de9be2fb46870e5fd35d5273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name for this update.  <br /></td></tr>
-<tr class="separator:a8baf8433de9be2fb46870e5fd35d5273"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f20ac60d5023a7cad09594ab99325fe" id="r_a2f20ac60d5023a7cad09594ab99325fe"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_updater.html#a2f20ac60d5023a7cad09594ab99325fe">sendName</a> ()=0</td></tr>
+<tr class="memdesc:a2f20ac60d5023a7cad09594ab99325fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the name in this update.  <br /></td></tr>
+<tr class="separator:a2f20ac60d5023a7cad09594ab99325fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa44dadd6f425ec91aef6d3726834a668" id="r_aa44dadd6f425ec91aef6d3726834a668"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_payload_updater.html#aa44dadd6f425ec91aef6d3726834a668">setType</a> (const std::wstring &amp;type)=0</td></tr>
 <tr class="memdesc:aa44dadd6f425ec91aef6d3726834a668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the type for this update.  <br /></td></tr>
 <tr class="separator:aa44dadd6f425ec91aef6d3726834a668"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,6 +139,39 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Updater used to update attribute values. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2f20ac60d5023a7cad09594ab99325fe" name="a2f20ac60d5023a7cad09594ab99325fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f20ac60d5023a7cad09594ab99325fe">&#9670;&#160;</a></span>sendName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaPayloadUpdater::sendName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send the name in this update. </p>
+<p><br  />
+Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name. <br  />
+Description of the data type from the FOM: </p>
+<p>The value can not be changed since this attribute is defined as a <em>Create</em> attribute. </p>
+
+<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_dynamical_entity_updater.html#a19631c572c69b218b5c68ced5f6f10a4">LunarSimulation::HlaDynamicalEntityUpdater</a>.</p>
+
+</div>
+</div>
 <a id="a05491f85655a5d26c03f39fde2da9058" name="a05491f85655a5d26c03f39fde2da9058"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a05491f85655a5d26c03f39fde2da9058">&#9670;&#160;</a></span>sendUpdate() <span class="overload">[1/4]</span></h2>
 
@@ -694,45 +727,6 @@ Description of the data type from the FOM: A measurement of the rate of change o
 
 </div>
 </div>
-<a id="a8baf8433de9be2fb46870e5fd35d5273" name="a8baf8433de9be2fb46870e5fd35d5273"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8baf8433de9be2fb46870e5fd35d5273">&#9670;&#160;</a></span>setName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual LIBAPI void LunarSimulation::HlaPayloadUpdater::setName </td>
-          <td>(</td>
-          <td class="paramtype">const std::wstring &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the name for this update. </p>
-<p><br  />
-Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name. <br  />
-Description of the data type from the FOM:</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>the new name </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="class_lunar_simulation_1_1_hla_dynamical_entity_updater.html#adc1e93062af89f9c1a0fcf626968b164">LunarSimulation::HlaDynamicalEntityUpdater</a>.</p>
-
-</div>
-</div>
 <a id="abe7e09bb15f0e51c6f732c38ba008bc4" name="abe7e09bb15f0e51c6f732c38ba008bc4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abe7e09bb15f0e51c6f732c38ba008bc4">&#9670;&#160;</a></span>setParentReferenceFrame()</h2>
 
@@ -1047,7 +1041,7 @@ Description of the data type from the FOM: A 3-vector that specifies the time de
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:21 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:48 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

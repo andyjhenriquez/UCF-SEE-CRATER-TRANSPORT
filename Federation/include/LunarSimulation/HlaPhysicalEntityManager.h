@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -74,6 +74,19 @@ namespace LunarSimulation {
       LIBAPI virtual std::vector<HlaPhysicalEntityPtr> getRemoteHlaPhysicalEntitys() = 0;
 
       /**
+      * Find a HlaPhysicalEntity with the given <code>name</code>.
+      * If more than one HlaPhysicalEntity with the given <code>name</code> is present, one of
+      * them is returned, it is undefined which. If none is found, <code>null</code> is returned.
+      * <p>
+      * name was selected as a <i>Lookup</i> attribute.
+      *
+      * @param name The name that looks up which HlaPhysicalEntity to return.
+      *
+      * @return an HlaPhysicalEntity, or <code>null</code> if not found.
+      */
+      LIBAPI virtual HlaPhysicalEntityPtr getPhysicalEntityByName(std::wstring name) = 0;
+
+      /**
       * Find a HlaPhysicalEntity with the given <code>HLA instance name</code>.
       * If none is found, <code>null</code> is returned.
       *
@@ -95,6 +108,9 @@ namespace LunarSimulation {
 
       /**
       * Creates a new HlaPhysicalEntity, and sets all <i>Create</i> attributes.
+      * @param name represents the <code>name</code> from the FOM.
+      *        <br>Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name.
+      *        <br>Description of the data type from the FOM: 
       *
       * @return Returns a new local HlaPhysicalEntity.
       *
@@ -105,6 +121,7 @@ namespace LunarSimulation {
       * @throws HlaRestoreInProgressException if a federation restore is in progress
       */
       LIBAPI virtual HlaPhysicalEntityPtr createLocalHlaPhysicalEntity(
+         std::wstring name
       ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException,
                     HlaSaveInProgressException, HlaRestoreInProgressException) = 0;
 
@@ -113,6 +130,9 @@ namespace LunarSimulation {
       * <i>Create</i> attributes.
       *
       * @param hlaInstanceName the <code>HLA instance name</code> to register for this instance
+      * @param name represents the <code>name</code> from the FOM.
+      *        <br>Description from the FOM: A non-empty string that identifies the entity. Each entity instance in the federation must have a unique name.
+      *        <br>Description of the data type from the FOM: 
       *
       * @return Returns a new local HlaPhysicalEntity.
       *
@@ -125,7 +145,8 @@ namespace LunarSimulation {
       * @throws HlaRestoreInProgressException if a federation restore is in progress
       */
       LIBAPI virtual HlaPhysicalEntityPtr createLocalHlaPhysicalEntity(
-         const std::wstring& hlaInstanceName
+         const std::wstring& hlaInstanceName,
+         std::wstring name
       ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                     HlaNotConnectedException, HlaInternalException, HlaRtiException,
                     HlaSaveInProgressException, HlaRestoreInProgressException) = 0;

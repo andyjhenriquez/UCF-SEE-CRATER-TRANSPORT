@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -39,10 +39,10 @@ void HlaLauncherUpdaterImpl::setEnergy(const double& value)
    _energy.setValue(std::shared_ptr<double >(new double(value)));
 }
 
-void HlaLauncherUpdaterImpl::setName(const std::wstring& value)
+void HlaLauncherUpdaterImpl::sendName()
 {
    std::lock_guard<std::mutex> lock(_attributesLock);
-   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(value)));
+   _name.setValue(std::shared_ptr<std::wstring >(new std::wstring(_instance->getName())));
 }
 
 void HlaLauncherUpdaterImpl::setType(const std::wstring& value)

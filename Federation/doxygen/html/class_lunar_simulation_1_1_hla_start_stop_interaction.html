@@ -66,6 +66,12 @@ Inheritance diagram for LunarSimulation::HlaStartStopInteraction:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a7c3b7aa16320473266d68503bbf5240f" id="r_a7c3b7aa16320473266d68503bbf5240f"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_start_stop_interaction.html#a7c3b7aa16320473266d68503bbf5240f">setHaltSimulation</a> (bool haltSimulation)=0</td></tr>
+<tr class="memdesc:a7c3b7aa16320473266d68503bbf5240f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value for haltSimulation.  <br /></td></tr>
+<tr class="separator:a7c3b7aa16320473266d68503bbf5240f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71fff46019912f89e975ef2eac377452" id="r_a71fff46019912f89e975ef2eac377452"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_start_stop_interaction.html#a71fff46019912f89e975ef2eac377452">setExitSimulation</a> (bool exitSimulation)=0</td></tr>
+<tr class="memdesc:a71fff46019912f89e975ef2eac377452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value for exitSimulation.  <br /></td></tr>
+<tr class="separator:a71fff46019912f89e975ef2eac377452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecdb0558b33f2b37fdfcfafba3fb9b74" id="r_aecdb0558b33f2b37fdfcfafba3fb9b74"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_start_stop_interaction.html#aecdb0558b33f2b37fdfcfafba3fb9b74">sendInteraction</a> ()=0</td></tr>
 <tr class="memdesc:aecdb0558b33f2b37fdfcfafba3fb9b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send the <a class="el" href="class_lunar_simulation_1_1_hla_start_stop_interaction.html" title="Interface for creating a HlaStartStopInteraction.">HlaStartStopInteraction</a>.  <br /></td></tr>
 <tr class="separator:aecdb0558b33f2b37fdfcfafba3fb9b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,13 +275,87 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a71fff46019912f89e975ef2eac377452" name="a71fff46019912f89e975ef2eac377452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71fff46019912f89e975ef2eac377452">&#9670;&#160;</a></span>setExitSimulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaStartStopInteraction::setExitSimulation </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exitSimulation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the value for exitSimulation. </p>
+<p><br  />
+Description from the FOM: Exit simulation if true <br  />
+Description of the data type from the FOM:</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">exitSimulation</td><td>value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7c3b7aa16320473266d68503bbf5240f" name="a7c3b7aa16320473266d68503bbf5240f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c3b7aa16320473266d68503bbf5240f">&#9670;&#160;</a></span>setHaltSimulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI void LunarSimulation::HlaStartStopInteraction::setHaltSimulation </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>haltSimulation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the value for haltSimulation. </p>
+<p><br  />
+Description from the FOM: Stop simulation if true <br  />
+Description of the data type from the FOM:</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">haltSimulation</td><td>value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/LunarSimulation/<a class="el" href="_hla_interaction_manager_8h_source.html">HlaInteractionManager.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:22 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:49 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

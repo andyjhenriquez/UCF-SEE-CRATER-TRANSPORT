@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -15,7 +15,9 @@
 #include <mutex>
 
 #include <RtiDriver/ObjectClassHandle.h>
+#include <LunarSimulation/datatypes/SpaceTimeCoordinateState.h>
 #include <RtiDriver/Encoding/BasicDataElements.h>
+#include <string>
 #include "datatypes/SpaceTimeCoordinateStateEncoder.h"
 
 #include <LunarSimulation/HlaMoonManager.h>
@@ -50,6 +52,9 @@ namespace LunarSimulation {
         HlaInstanceNameMap _hlaInstanceNameMap; // guarded by _instancesLock
         EncodedHlaInstanceHandleMap _encodedHlaInstanceHandleMap; // guarded by _instancesLock
 
+        Cache<std::wstring, HlaMoonImplPtr> _getByNameCache; // guarded by _instancesLock
+        Cache<std::wstring, HlaMoonImplPtr> _getByParentNameCache; // guarded by _instancesLock
+        Cache<LunarSimulation::SpaceTimeCoordinateState, HlaMoonImplPtr> _getByStateCache; // guarded by _instancesLock
         ListenerSet<HlaMoonManagerListenerPtr> _moonManagerListeners;
         ListenerSet<HlaMoonValueListenerPtr> _defaultInstanceValueListeners;
         ListenerSet<HlaMoonListenerPtr> _defaultInstanceListeners;
@@ -69,13 +74,18 @@ namespace LunarSimulation {
         std::vector<HlaMoonPtr> getHlaMoons();
         std::vector<HlaMoonPtr> getLocalHlaMoons();
         std::vector<HlaMoonPtr> getRemoteHlaMoons();
+        HlaMoonPtr getMoonByName(std::wstring name);
+        HlaMoonPtr getMoonByParent_name(std::wstring parentName);
+        HlaMoonPtr getMoonByState(SpaceTimeCoordinateState state);
         HlaMoonPtr getMoonByHlaInstanceName(const std::wstring& hlaInstanceName);
         HlaMoonPtr getMoonByHlaInstanceHandle(const std::vector<char>& encodedHlaInstanceHandle);
 
         HlaMoonPtr createLocalHlaMoon(
+            std::wstring name
         ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
 
-        HlaMoonPtr createLocalHlaMoon(const std::wstring& hlaInstanceName
+        HlaMoonPtr createLocalHlaMoon(const std::wstring& hlaInstanceName,
+            std::wstring name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -129,7 +139,8 @@ namespace LunarSimulation {
         LunarSimulation::SpaceTimeCoordinateStateEncoder _spaceTimeCoordinateStateEncoderEncoder;
 
     private:
-        HlaMoonPtr createLocalInstance(const std::wstring& hlaInstanceName
+        HlaMoonPtr createLocalInstance(const std::wstring& hlaInstanceName,
+             const std::wstring& name
         ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                       HlaNotConnectedException, HlaInternalException, HlaRtiException,
                       HlaSaveInProgressException, HlaRestoreInProgressException);
@@ -140,6 +151,9 @@ namespace LunarSimulation {
         void fireDeleted(HlaMoonImplPtr instance, HlaTimeStampPtr timeStamp, HlaLogicalTimePtr logicalTime);
         void clearAllInstances(bool doFireDeleted);
 
+        HlaMoonImplPtr findByName(std::wstring name); // guarded by _instancesLock
+        HlaMoonImplPtr findByParentName(std::wstring parentName); // guarded by _instancesLock
+        HlaMoonImplPtr findByState(SpaceTimeCoordinateState state); // guarded by _instancesLock
     };
 }
 #endif

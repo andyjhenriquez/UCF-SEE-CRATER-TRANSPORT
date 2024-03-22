@@ -78,18 +78,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a80132c1c485a632adc9081848fbc6461" id="r_a80132c1c485a632adc9081848fbc6461"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI std::vector&lt; HlaMoonPtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a80132c1c485a632adc9081848fbc6461">getRemoteHlaMoons</a> ()=0</td></tr>
 <tr class="memdesc:a80132c1c485a632adc9081848fbc6461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of remote HlaMoons within interest.  <br /></td></tr>
 <tr class="separator:a80132c1c485a632adc9081848fbc6461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8749489501ed97c5348a8e9b9eeb1291" id="r_a8749489501ed97c5348a8e9b9eeb1291"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a8749489501ed97c5348a8e9b9eeb1291">getMoonByName</a> (std::wstring name)=0</td></tr>
+<tr class="memdesc:a8749489501ed97c5348a8e9b9eeb1291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>name</code>.  <br /></td></tr>
+<tr class="separator:a8749489501ed97c5348a8e9b9eeb1291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9b8f4e4055ed1161e07cd7f1b70052f" id="r_ab9b8f4e4055ed1161e07cd7f1b70052f"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#ab9b8f4e4055ed1161e07cd7f1b70052f">getMoonByParent_name</a> (std::wstring parentName)=0</td></tr>
+<tr class="memdesc:ab9b8f4e4055ed1161e07cd7f1b70052f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>parentName</code>.  <br /></td></tr>
+<tr class="separator:ab9b8f4e4055ed1161e07cd7f1b70052f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a680732da07f3428d081630d88fb9338f" id="r_a680732da07f3428d081630d88fb9338f"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a680732da07f3428d081630d88fb9338f">getMoonByState</a> (<a class="el" href="class_lunar_simulation_1_1_space_time_coordinate_state.html">SpaceTimeCoordinateState</a> state)=0</td></tr>
+<tr class="memdesc:a680732da07f3428d081630d88fb9338f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>state</code>.  <br /></td></tr>
+<tr class="separator:a680732da07f3428d081630d88fb9338f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae37abd36454589d1fe3811616329a2d7" id="r_ae37abd36454589d1fe3811616329a2d7"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#ae37abd36454589d1fe3811616329a2d7">getMoonByHlaInstanceName</a> (const std::wstring &amp;hlaInstanceName)=0</td></tr>
 <tr class="memdesc:ae37abd36454589d1fe3811616329a2d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>HLA instance name</code>.  <br /></td></tr>
 <tr class="separator:ae37abd36454589d1fe3811616329a2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7047e03d132745c2050c5880a59faad4" id="r_a7047e03d132745c2050c5880a59faad4"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a7047e03d132745c2050c5880a59faad4">getMoonByHlaInstanceHandle</a> (const std::vector&lt; char &gt; &amp;encodedHlaInstanceHandle)=0</td></tr>
 <tr class="memdesc:a7047e03d132745c2050c5880a59faad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>HLA instance name</code>.  <br /></td></tr>
 <tr class="separator:a7047e03d132745c2050c5880a59faad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a831eaa52991a645e9832ee0b625b6a3d" id="r_a831eaa52991a645e9832ee0b625b6a3d"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a831eaa52991a645e9832ee0b625b6a3d">createLocalHlaMoon</a> ()=0</td></tr>
-<tr class="memdesc:a831eaa52991a645e9832ee0b625b6a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, and sets all <em>Create</em> attributes.  <br /></td></tr>
-<tr class="separator:a831eaa52991a645e9832ee0b625b6a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f52aaa3510d614e4ac9fcde8d76d6d5" id="r_a2f52aaa3510d614e4ac9fcde8d76d6d5"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a2f52aaa3510d614e4ac9fcde8d76d6d5">createLocalHlaMoon</a> (const std::wstring &amp;hlaInstanceName)=0</td></tr>
-<tr class="memdesc:a2f52aaa3510d614e4ac9fcde8d76d6d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes.  <br /></td></tr>
-<tr class="separator:a2f52aaa3510d614e4ac9fcde8d76d6d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af00e9b8dd0176aa31d1f609a270cafb7" id="r_af00e9b8dd0176aa31d1f609a270cafb7"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#af00e9b8dd0176aa31d1f609a270cafb7">createLocalHlaMoon</a> (std::wstring name)=0</td></tr>
+<tr class="memdesc:af00e9b8dd0176aa31d1f609a270cafb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, and sets all <em>Create</em> attributes.  <br /></td></tr>
+<tr class="separator:af00e9b8dd0176aa31d1f609a270cafb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84fb33e38d654cb68075c2e566fbfc26" id="r_a84fb33e38d654cb68075c2e566fbfc26"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a84fb33e38d654cb68075c2e566fbfc26">createLocalHlaMoon</a> (const std::wstring &amp;hlaInstanceName, std::wstring name)=0</td></tr>
+<tr class="memdesc:a84fb33e38d654cb68075c2e566fbfc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes.  <br /></td></tr>
+<tr class="separator:a84fb33e38d654cb68075c2e566fbfc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a055a5ab48ccad731c99b44e855124a74" id="r_a055a5ab48ccad731c99b44e855124a74"><td class="memItemLeft" align="right" valign="top">virtual LIBAPI HlaMoonPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lunar_simulation_1_1_hla_moon_manager.html#a055a5ab48ccad731c99b44e855124a74">deleteLocalHlaMoon</a> (HlaMoonPtr moon)=0</td></tr>
 <tr class="memdesc:a055a5ab48ccad731c99b44e855124a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a local <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> and removes it from the federation.  <br /></td></tr>
 <tr class="separator:a055a5ab48ccad731c99b44e855124a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,46 +246,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a831eaa52991a645e9832ee0b625b6a3d" name="a831eaa52991a645e9832ee0b625b6a3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a831eaa52991a645e9832ee0b625b6a3d">&#9670;&#160;</a></span>createLocalHlaMoon() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual LIBAPI HlaMoonPtr LunarSimulation::HlaMoonManager::createLocalHlaMoon </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, and sets all <em>Create</em> attributes. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new local <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a2f52aaa3510d614e4ac9fcde8d76d6d5" name="a2f52aaa3510d614e4ac9fcde8d76d6d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f52aaa3510d614e4ac9fcde8d76d6d5">&#9670;&#160;</a></span>createLocalHlaMoon() <span class="overload">[2/2]</span></h2>
+<a id="a84fb33e38d654cb68075c2e566fbfc26" name="a84fb33e38d654cb68075c2e566fbfc26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84fb33e38d654cb68075c2e566fbfc26">&#9670;&#160;</a></span>createLocalHlaMoon() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,8 +259,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">virtual LIBAPI HlaMoonPtr LunarSimulation::HlaMoonManager::createLocalHlaMoon </td>
           <td>(</td>
           <td class="paramtype">const std::wstring &amp;&#160;</td>
-          <td class="paramname"><em>hlaInstanceName</em></td><td>)</td>
+          <td class="paramname"><em>hlaInstanceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -302,7 +283,10 @@ Public Member Functions</h2></td></tr>
 <p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with a specified <code>HLA instance name</code>, and sets all <em>Create</em> attributes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hlaInstanceName</td><td>the <code>HLA instance name</code> to register for this instance</td></tr>
+    <tr><td class="paramname">hlaInstanceName</td><td>the <code>HLA instance name</code> to register for this instance </td></tr>
+    <tr><td class="paramname">name</td><td>represents the <code>name</code> from the FOM. <br  />
+Description from the FOM: A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames. <br  />
+Description of the data type from the FOM:</td></tr>
   </table>
   </dd>
 </dl>
@@ -311,6 +295,53 @@ Public Member Functions</h2></td></tr>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_illegal_instance_name_exception.html" title="* HlaIllegalInstanceNameException">HlaIllegalInstanceNameException</a></td><td>if the name is illegal </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_instance_name_in_use_exception.html" title="* HlaInstanceNameInUseException">HlaInstanceNameInUseException</a></td><td>if the name is already in use </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_save_in_progress_exception.html" title="* HlaSaveInProgressException">HlaSaveInProgressException</a></td><td>if a federation save is in progress </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_restore_in_progress_exception.html" title="* HlaRestoreInProgressException">HlaRestoreInProgressException</a></td><td>if a federation restore is in progress </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af00e9b8dd0176aa31d1f609a270cafb7" name="af00e9b8dd0176aa31d1f609a270cafb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af00e9b8dd0176aa31d1f609a270cafb7">&#9670;&#160;</a></span>createLocalHlaMoon() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaMoonPtr LunarSimulation::HlaMoonManager::createLocalHlaMoon </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, and sets all <em>Create</em> attributes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>represents the <code>name</code> from the FOM. <br  />
+Description from the FOM: A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames. <br  />
+Description of the data type from the FOM:</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new local <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_not_connected_exception.html" title="* HlaNotConnectedException">HlaNotConnectedException</a></td><td>if the federate is not connected </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_internal_exception.html" title="* HlaInternalException">HlaInternalException</a></td><td>on internal errors </td></tr>
     <tr><td class="paramname"><a class="el" href="class_lunar_simulation_1_1_hla_rti_exception.html" title="* HlaRtiException">HlaRtiException</a></td><td>on exception from the RTI </td></tr>
@@ -703,6 +734,117 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a8749489501ed97c5348a8e9b9eeb1291" name="a8749489501ed97c5348a8e9b9eeb1291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8749489501ed97c5348a8e9b9eeb1291">&#9670;&#160;</a></span>getMoonByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaMoonPtr LunarSimulation::HlaMoonManager::getMoonByName </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>name</code>. </p>
+<p>If more than one <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>name</code> is present, one of them is returned, it is undefined which. If none is found, <code>null</code> is returned. </p>
+<p>name was selected as a <em>Lookup</em> attribute.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name that looks up which <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> to return.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, or <code>null</code> if not found. </dd></dl>
+
+</div>
+</div>
+<a id="ab9b8f4e4055ed1161e07cd7f1b70052f" name="ab9b8f4e4055ed1161e07cd7f1b70052f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9b8f4e4055ed1161e07cd7f1b70052f">&#9670;&#160;</a></span>getMoonByParent_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaMoonPtr LunarSimulation::HlaMoonManager::getMoonByParent_name </td>
+          <td>(</td>
+          <td class="paramtype">std::wstring&#160;</td>
+          <td class="paramname"><em>parentName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>parentName</code>. </p>
+<p>If more than one <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>parentName</code> is present, one of them is returned, it is undefined which. If none is found, <code>null</code> is returned. </p>
+<p>parentName was selected as a <em>Lookup</em> attribute.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parentName</td><td>The parentName that looks up which <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> to return.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, or <code>null</code> if not found. </dd></dl>
+
+</div>
+</div>
+<a id="a680732da07f3428d081630d88fb9338f" name="a680732da07f3428d081630d88fb9338f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a680732da07f3428d081630d88fb9338f">&#9670;&#160;</a></span>getMoonByState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual LIBAPI HlaMoonPtr LunarSimulation::HlaMoonManager::getMoonByState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_lunar_simulation_1_1_space_time_coordinate_state.html">SpaceTimeCoordinateState</a>&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>state</code>. </p>
+<p>If more than one <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> with the given <code>state</code> is present, one of them is returned, it is undefined which. If none is found, <code>null</code> is returned. </p>
+<p>state was selected as a <em>Lookup</em> attribute.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The state that looks up which <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a> to return.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an <a class="el" href="class_lunar_simulation_1_1_hla_moon.html" title="Interface used to represent an object instance.">HlaMoon</a>, or <code>null</code> if not found. </dd></dl>
+
+</div>
+</div>
 <a id="a80132c1c485a632adc9081848fbc6461" name="a80132c1c485a632adc9081848fbc6461"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80132c1c485a632adc9081848fbc6461">&#9670;&#160;</a></span>getRemoteHlaMoons()</h2>
 
@@ -935,7 +1077,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 16 2024 14:55:21 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Mar 21 2024 15:32:48 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

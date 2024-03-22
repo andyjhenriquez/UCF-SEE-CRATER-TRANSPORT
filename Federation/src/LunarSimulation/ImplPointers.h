@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -51,6 +51,8 @@ namespace LunarSimulation {
     class HlaHLAinteractionRootParametersImpl;
     class HlaStartStopInteractionImpl;
     class HlaStartStopParametersImpl;
+    class HlaLoadScenarioInteractionImpl;
+    class HlaLoadScenarioParametersImpl;
     class HlaModeTransitionRequestInteractionImpl;
     class HlaModeTransitionRequestParametersImpl;
     class HlaFederateIdImpl;
@@ -79,6 +81,8 @@ namespace LunarSimulation {
     typedef std::shared_ptr<HlaHLAinteractionRootParametersImpl> HlaHLAinteractionRootParametersImplPtr;
     typedef std::shared_ptr<HlaStartStopInteractionImpl> HlaStartStopInteractionImplPtr;
     typedef std::shared_ptr<HlaStartStopParametersImpl> HlaStartStopParametersImplPtr;
+    typedef std::shared_ptr<HlaLoadScenarioInteractionImpl> HlaLoadScenarioInteractionImplPtr;
+    typedef std::shared_ptr<HlaLoadScenarioParametersImpl> HlaLoadScenarioParametersImplPtr;
     typedef std::shared_ptr<HlaModeTransitionRequestInteractionImpl> HlaModeTransitionRequestInteractionImplPtr;
     typedef std::shared_ptr<HlaModeTransitionRequestParametersImpl> HlaModeTransitionRequestParametersImplPtr;
     typedef std::shared_ptr<HlaFederateIdImpl> HlaFederateIdImplPtr;

@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -20,6 +20,7 @@
 #include "ObjectManager.h"
 #include "HlaLogicalTimeImpl.h"
 
+#include <string>
 
 using namespace LunarSimulation;
 using namespace std;
@@ -34,6 +35,7 @@ _enabled(true),
 _optional(false)
 {
     _objectManager->addManager(this, wstring(HLA_OBJECT_CLASS_NAME));
+    _getByNameCache.set_function(std::bind(&HlaLauncherManagerImpl::findByName, this, std::placeholders::_1));
 }
 
 
@@ -78,6 +80,7 @@ void HlaLauncherManagerImpl::clearAllInstances(bool doFireDeleted) {
         }
         _remoteInstances.clear();
 
+        _getByNameCache.clear();
     }
 }
 
@@ -176,6 +179,9 @@ void HlaLauncherManagerImpl::removeObjectInstance(const RtiDriver::ObjectInstanc
             _remoteInstances.erase(it);
         }
 
+        if (instance->hasName()) {
+            _getByNameCache.remove(instance->getName());
+        }
     }
 
     instance->setRemoved();
@@ -235,6 +241,37 @@ std::vector<HlaLauncherPtr> HlaLauncherManagerImpl::getRemoteHlaLaunchers() {
     return res;
 }
 
+HlaLauncherImplPtr HlaLauncherManagerImpl::findByName(std::wstring name) {
+    for (InstanceMap::iterator i = _localInstances.begin(); i != _localInstances.end(); ++i) {
+        if (i->second->hasName() && name == i->second->getName()) {
+            return i->second;
+        }
+    }
+    for (InstanceMap::iterator i = _remoteInstances.begin(); i != _remoteInstances.end(); ++i) {
+        if (i->second->hasName() && name == i->second->getName()) {
+            return i->second;
+        }
+    }
+    return HlaLauncherImplPtr();
+}
+
+HlaLauncherPtr HlaLauncherManagerImpl::getLauncherByName(std::wstring name) {
+    {
+        std::lock_guard<std::mutex> lock(_instancesLock);
+        // implicit call to findByName if not found in cache
+        HlaLauncherImplPtr cachedInstance = _getByNameCache(name, _localInstances.size() + _remoteInstances.size());
+
+        if (cachedInstance && (cachedInstance->isRemoved() || cachedInstance->getName() != name)) {
+            _getByNameCache.remove(name);
+            // retry after releasing lock
+        } else {
+            return cachedInstance;
+        }
+    }
+
+    return getLauncherByName(name);
+}
+
 HlaLauncherPtr HlaLauncherManagerImpl::getLauncherByHlaInstanceName(const std::wstring& hlaInstanceName) {
     std::unique_lock<std::mutex> lock(_instancesLock);
 
@@ -258,9 +295,11 @@ HlaLauncherPtr HlaLauncherManagerImpl::getLauncherByHlaInstanceHandle(const std:
 }
 
 HlaLauncherPtr HlaLauncherManagerImpl::createLocalHlaLauncher(
+      std::wstring name
       ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException) {
     try {
-        return createLocalInstance(L""
+        return createLocalInstance(L"",
+                                   name
         );
     } catch (HlaInstanceNameInUseException) {
         //can not happen with empty hlaInstanceName
@@ -268,7 +307,8 @@ HlaLauncherPtr HlaLauncherManagerImpl::createLocalHlaLauncher(
     }
 }
 
-HlaLauncherPtr HlaLauncherManagerImpl::createLocalHlaLauncher(const std::wstring& hlaInstanceName
+HlaLauncherPtr HlaLauncherManagerImpl::createLocalHlaLauncher(const std::wstring& hlaInstanceName,
+      std::wstring name
    ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                  HlaNotConnectedException, HlaInternalException, HlaRtiException,
                  HlaSaveInProgressException, HlaRestoreInProgressException)
@@ -280,13 +320,15 @@ HlaLauncherPtr HlaLauncherManagerImpl::createLocalHlaLauncher(const std::wstring
     //Silently ignore if we could not register object instance name, we might have registered it before
     _objectManager->registerObjectInstanceName(hlaInstanceName);
 
-    return createLocalInstance(hlaInstanceName
+    return createLocalInstance(hlaInstanceName,
+         name
     );
 }
 
 
 HlaLauncherPtr HlaLauncherManagerImpl::createLocalInstance(
-      const std::wstring& hlaInstanceName
+      const std::wstring& hlaInstanceName,
+      const std::wstring& name
    ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                  HlaNotConnectedException, HlaInternalException, HlaRtiException,
                  HlaSaveInProgressException, HlaRestoreInProgressException)
@@ -320,6 +362,10 @@ HlaLauncherPtr HlaLauncherManagerImpl::createLocalInstance(
        instance->addHlaLauncherValueListener(*it);
     }
 
+    instance->setCreateAttributes(
+        std::shared_ptr<std::wstring >(new std::wstring(name)),
+        timeStamp
+    );
     checkInitializedFired(instance, timeStamp, HlaLogicalTimeImpl::getInvalid());
 
     return instance;
@@ -382,6 +428,9 @@ THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException, Hla
             _remoteInstances.erase(instanceHandle);
         }
 
+        if (launcherImpl->hasName()) {
+            _getByNameCache.remove(launcherImpl->getName());
+        }
     }
 
     launcherImpl->setRemoved();

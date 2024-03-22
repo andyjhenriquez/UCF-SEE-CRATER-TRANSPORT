@@ -2,14 +2,14 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
  */
 
 /*
- * Generated 2024-02-16 14:55:20 (-0500) by ceden using Pitch Developer Studio 6.2.0
+ * Generated 2024-03-21 15:32:44 (-0400) by guida using Pitch Developer Studio 6.2.0
  */
 #include <LunarSimulation/HlaAllHeaders.h>
 

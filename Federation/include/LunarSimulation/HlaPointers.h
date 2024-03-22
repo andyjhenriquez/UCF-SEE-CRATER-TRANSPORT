@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -80,7 +80,10 @@ namespace LunarSimulation {
    class HlaExecutionConfigurationUpdater;
    class HlaInteractionListener;
    class HlaHLAinteractionRootInteraction;
+   class HlaStartStopParameters;
    class HlaStartStopInteraction;
+   class HlaLoadScenarioParameters;
+   class HlaLoadScenarioInteraction;
    class HlaModeTransitionRequestParameters;
    class HlaModeTransitionRequestInteraction;
    class HlaSettings;
@@ -161,7 +164,10 @@ namespace LunarSimulation {
    typedef std::shared_ptr<HlaExecutionConfigurationUpdater> HlaExecutionConfigurationUpdaterPtr;
    typedef std::shared_ptr<HlaInteractionListener> HlaInteractionListenerPtr;
    typedef std::shared_ptr<HlaHLAinteractionRootInteraction> HlaHLAinteractionRootInteractionPtr;
+   typedef std::shared_ptr<HlaStartStopParameters> HlaStartStopParametersPtr;
    typedef std::shared_ptr<HlaStartStopInteraction> HlaStartStopInteractionPtr;
+   typedef std::shared_ptr<HlaLoadScenarioParameters> HlaLoadScenarioParametersPtr;
+   typedef std::shared_ptr<HlaLoadScenarioInteraction> HlaLoadScenarioInteractionPtr;
    typedef std::shared_ptr<HlaModeTransitionRequestParameters> HlaModeTransitionRequestParametersPtr;
    typedef std::shared_ptr<HlaModeTransitionRequestInteraction> HlaModeTransitionRequestInteractionPtr;
    typedef std::shared_ptr<HlaSettings> HlaSettingsPtr;

@@ -2,7 +2,7 @@
  * DO NOT EDIT!
  * 
  * Automatically generated source code by Pitch Developer Studio
- * Licensed to Roberto Cedeno, SEE, Project Edition
+ * Licensed to Guidarly Joseph, SEE, Project Edition
  *
  * Copyright (C) 2006-2023 Pitch Technologies AB. All rights reserved.
  * Use is subject to license terms.
@@ -69,6 +69,45 @@ namespace LunarSimulation {
       LIBAPI virtual std::vector<HlaReferenceFramePtr> getRemoteHlaReferenceFrames() = 0;
 
       /**
+      * Find a HlaReferenceFrame with the given <code>name</code>.
+      * If more than one HlaReferenceFrame with the given <code>name</code> is present, one of
+      * them is returned, it is undefined which. If none is found, <code>null</code> is returned.
+      * <p>
+      * name was selected as a <i>Lookup</i> attribute.
+      *
+      * @param name The name that looks up which HlaReferenceFrame to return.
+      *
+      * @return an HlaReferenceFrame, or <code>null</code> if not found.
+      */
+      LIBAPI virtual HlaReferenceFramePtr getReferenceFrameByName(std::wstring name) = 0;
+
+      /**
+      * Find a HlaReferenceFrame with the given <code>parentName</code>.
+      * If more than one HlaReferenceFrame with the given <code>parentName</code> is present, one of
+      * them is returned, it is undefined which. If none is found, <code>null</code> is returned.
+      * <p>
+      * parentName was selected as a <i>Lookup</i> attribute.
+      *
+      * @param parentName The parentName that looks up which HlaReferenceFrame to return.
+      *
+      * @return an HlaReferenceFrame, or <code>null</code> if not found.
+      */
+      LIBAPI virtual HlaReferenceFramePtr getReferenceFrameByParent_name(std::wstring parentName) = 0;
+
+      /**
+      * Find a HlaReferenceFrame with the given <code>state</code>.
+      * If more than one HlaReferenceFrame with the given <code>state</code> is present, one of
+      * them is returned, it is undefined which. If none is found, <code>null</code> is returned.
+      * <p>
+      * state was selected as a <i>Lookup</i> attribute.
+      *
+      * @param state The state that looks up which HlaReferenceFrame to return.
+      *
+      * @return an HlaReferenceFrame, or <code>null</code> if not found.
+      */
+      LIBAPI virtual HlaReferenceFramePtr getReferenceFrameByState(SpaceTimeCoordinateState state) = 0;
+
+      /**
       * Find a HlaReferenceFrame with the given <code>HLA instance name</code>.
       * If none is found, <code>null</code> is returned.
       *
@@ -90,6 +129,9 @@ namespace LunarSimulation {
 
       /**
       * Creates a new HlaReferenceFrame, and sets all <i>Create</i> attributes.
+      * @param name represents the <code>name</code> from the FOM.
+      *        <br>Description from the FOM: A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames.
+      *        <br>Description of the data type from the FOM: 
       *
       * @return Returns a new local HlaReferenceFrame.
       *
@@ -100,6 +142,7 @@ namespace LunarSimulation {
       * @throws HlaRestoreInProgressException if a federation restore is in progress
       */
       LIBAPI virtual HlaReferenceFramePtr createLocalHlaReferenceFrame(
+         std::wstring name
       ) THROW_SPEC (HlaNotConnectedException, HlaInternalException, HlaRtiException,
                     HlaSaveInProgressException, HlaRestoreInProgressException) = 0;
 
@@ -108,6 +151,9 @@ namespace LunarSimulation {
       * <i>Create</i> attributes.
       *
       * @param hlaInstanceName the <code>HLA instance name</code> to register for this instance
+      * @param name represents the <code>name</code> from the FOM.
+      *        <br>Description from the FOM: A unique name for this reference frame instance. Reference frame names are essential in forming 'links' between parent/child reference frames.
+      *        <br>Description of the data type from the FOM: 
       *
       * @return Returns a new local HlaReferenceFrame.
       *
@@ -120,7 +166,8 @@ namespace LunarSimulation {
       * @throws HlaRestoreInProgressException if a federation restore is in progress
       */
       LIBAPI virtual HlaReferenceFramePtr createLocalHlaReferenceFrame(
-         const std::wstring& hlaInstanceName
+         const std::wstring& hlaInstanceName,
+         std::wstring name
       ) THROW_SPEC (HlaIllegalInstanceNameException, HlaInstanceNameInUseException,
                     HlaNotConnectedException, HlaInternalException, HlaRtiException,
                     HlaSaveInProgressException, HlaRestoreInProgressException) = 0;
