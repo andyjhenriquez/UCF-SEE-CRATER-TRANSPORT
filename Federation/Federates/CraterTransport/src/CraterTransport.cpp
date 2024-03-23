@@ -1,6 +1,7 @@
 #include <LunarSimulation\HlaAllHeaders.h>
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
+#include <LunarSimulation\HlaMoonManager.h>
 
 #include "PhysicsManager.h"
 #include "sim_utils.h"
@@ -32,10 +33,34 @@ int main(void) {
    
     // Manages Payload instances, allows you to handle and find different instances
     HlaPayloadManagerPtr payloadManager = hlaWorld->getHlaPayloadManager();
+    HlaMoonManagerPtr moonManager = hlaWorld->getHlaMoonManager();
 
     // Single Payload instance, extends Dynamical Entity and has a number
     // of functions to retrive its values such as acceleration and position
     HlaPayloadPtr payload = payloadManager->createLocalHlaPayload(L"Payload");
+    HlaMoonPtr moon = moonManager->createLocalHlaMoon(L"Moon");
+
+    SpaceTimeCoordinateState moonState = SpaceTimeCoordinateState();
+    moonState.translationalState.position = { 0.0, 0.0, 0.0 };
+    std::vector<double> moonVelocity = { 0.0, 0.0, 0.0 };
+    moonState.translationalState.velocity = moonVelocity;
+    moonState.rotationalState.angularVelocity = { 0.0, 0.0, 0.0 };
+    moonState.rotationalState.attitudeQuaternion = AttitudeQuaternion(0.0, { 0.0, 0.0, 0.0 });
+    moonState.time = 0.0f;
+
+    HlaMoonUpdaterPtr moonUpdater = moon->getHlaMoonUpdater();
+    moonUpdater->setState(moonState);
+
+    HlaPayloadUpdaterPtr payloadUpdater = payload->getHlaPayloadUpdater();
+    payloadUpdater->setParentReferenceFrame(L"Moon");
+
+    SpaceTimeCoordinateState payloadState = SpaceTimeCoordinateState();
+    payloadState.translationalState.position = { 246.12082f, 1300.63616f, 216.73205f };
+    std::vector<double> payloadVelocity = { 0.0, 0.0, 0.0 };
+    payloadState.translationalState.velocity = payloadVelocity;
+    payloadState.rotationalState.angularVelocity = { 0.0, 0.0, 0.0 };
+    payloadState.rotationalState.attitudeQuaternion = AttitudeQuaternion(0.0, { 0.0, 0.0, 0.0 });
+    payloadUpdater->setState(payloadState);
 
     // PhysX physics instantce
     const PxScene* gScene = physicsManager->getScene();
@@ -45,7 +70,7 @@ int main(void) {
         try {
             // Manages variable/state changes and communicates them to the federation.
             // New instance must be created on every loop.
-            HlaPayloadUpdaterPtr updater = payload->getHlaPayloadUpdater();
+            payloadUpdater = payload->getHlaPayloadUpdater();
 
             PxU32 numActors = gScene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);
             PxActor* gActors[10];
@@ -57,8 +82,8 @@ int main(void) {
             for (int i = 0; i < numActors; ++i) {
                 PxActor* actor = gActors[i];
                 if (actor->is<PxRigidDynamic>() != NULL) {
-                    updater->setPosition(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getGlobalPose().p));
-                    updater->setVelocity(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getLinearVelocity()));
+                    payloadUpdater->setPosition(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getGlobalPose().p));
+                    payloadUpdater->setVelocity(sim_utils::vec3ToDouble3(actor->is<PxRigidDynamic>()->getLinearVelocity()));
                 }
                 // actor->is<PxRigidDynamic>() ? updateDynamic() : updateStatic();
             }
@@ -66,19 +91,18 @@ int main(void) {
             // Example of how to update a variable (in this case of a Payload instance)
             // Ideally we'll call something like Physics.calculateAcceleration() or an
             // equivalent function.
-            updater->setAcceleration({100.0, 100.0, 100.0});
+            // payloadUpdater->setAcceleration({100.0, 100.0, 100.0});
 
             // Packages all state/variable changes and sends them out to the federation
             // where other federates can pull the new values in and use them as needed.
-            updater->sendUpdate();
-
-            physicsManager->simulateStep();
+            payloadUpdater->sendUpdate();
         }
         catch (std::exception& e) {
             // TODO Auto-generated catch block
             std::cout << e.what() << std::endl;
         }
 
+        physicsManager->simulateStep();
         hlaWorld->advanceToNextFrame();
     }
 
