@@ -35,11 +35,15 @@ int main(void) {
     HlaPayloadManagerPtr payloadManager = hlaWorld->getHlaPayloadManager();
     HlaMoonManagerPtr moonManager = hlaWorld->getHlaMoonManager();
 
-    // Single Payload instance, extends Dynamical Entity and has a number
-    // of functions to retrive its values such as acceleration and position
+    // Instantiating an instance of our moon environment object
     HlaPayloadPtr payload = payloadManager->createLocalHlaPayload(L"Payload");
     HlaMoonPtr moon = moonManager->createLocalHlaMoon(L"Moon");
 
+    // Single Payload instance, extends Dynamical Entity and has a number
+    // of functions to retrive its values such as acceleration and position
+    HlaPayloadUpdaterPtr payloadUpdater = payload->getHlaPayloadUpdater();
+
+    // Set up the reference frames for both objects
     SpaceTimeCoordinateState moonState = SpaceTimeCoordinateState();
     moonState.translationalState.position = { 0.0, 0.0, 0.0 };
     std::vector<double> moonVelocity = { 0.0, 0.0, 0.0 };
@@ -51,11 +55,15 @@ int main(void) {
     HlaMoonUpdaterPtr moonUpdater = moon->getHlaMoonUpdater();
     moonUpdater->setState(moonState);
 
-    HlaPayloadUpdaterPtr payloadUpdater = payload->getHlaPayloadUpdater();
+    // Set the payloads parent reference frame as the moon entity
     payloadUpdater->setParentReferenceFrame(L"Moon");
 
     SpaceTimeCoordinateState payloadState = SpaceTimeCoordinateState();
+
+    // TODO: Put these hard-coded variables into a variable because they're also
+    // referenced in PhysicsManager.cpp
     payloadState.translationalState.position = { 246.12082f, 1300.63616f, 216.73205f };
+
     std::vector<double> payloadVelocity = { 0.0, 0.0, 0.0 };
     payloadState.translationalState.velocity = payloadVelocity;
     payloadState.rotationalState.angularVelocity = { 0.0, 0.0, 0.0 };
@@ -88,11 +96,6 @@ int main(void) {
                 // actor->is<PxRigidDynamic>() ? updateDynamic() : updateStatic();
             }
 
-            // Example of how to update a variable (in this case of a Payload instance)
-            // Ideally we'll call something like Physics.calculateAcceleration() or an
-            // equivalent function.
-            // payloadUpdater->setAcceleration({100.0, 100.0, 100.0});
-
             // Packages all state/variable changes and sends them out to the federation
             // where other federates can pull the new values in and use them as needed.
             payloadUpdater->sendUpdate();
@@ -102,6 +105,8 @@ int main(void) {
             std::cout << e.what() << std::endl;
         }
 
+        // Advance both simulations by a set timestep
+        // TODO: Line up timesteps for both simulations (IMPORTANT!)
         physicsManager->simulateStep();
         hlaWorld->advanceToNextFrame();
     }
