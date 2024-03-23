@@ -464,6 +464,13 @@ namespace LunarSimulation {
         LIBAPI virtual HlaSaveRestoreManagerPtr getHlaSaveRestoreManager() = 0;
 
         /**
+        * Get the synchronization manager.
+        *
+        * @return the synchronization manager
+        */
+        LIBAPI virtual HlaSynchronizationManagerPtr getHlaSynchronizationManager() = 0;
+
+        /**
         * Sets the exception handler for this HlaWorld to <code>exceptionListener</code>.
         * The exception handler is notified when this HlaWorld catches exceptions.
         *

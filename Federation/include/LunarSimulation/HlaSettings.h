@@ -55,7 +55,7 @@ localSettingsDesignator =
 federateName = DevStudio
 
 # Federation name
-federationName = Federation
+federationName = Moon PSR
 
 # HLA 1516-2000 FOM URL
 classicFomURL = 

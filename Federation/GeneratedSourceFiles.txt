@@ -114,6 +114,10 @@ src/LunarSimulation/HlaExecutionConfigurationManagerImpl.h
 src/LunarSimulation/HlaExecutionConfigurationManagerImpl.cpp
 src/LunarSimulation/HlaExecutionConfigurationUpdaterImpl.h
 src/LunarSimulation/HlaExecutionConfigurationUpdaterImpl.cpp
+src/LunarSimulation/HlaSynchronizationManagerImpl.h
+src/LunarSimulation/HlaSynchronizationManagerImpl.cpp
+src/LunarSimulation/SyncPointManager.h
+src/LunarSimulation/SyncPointManager.cpp
 src/LunarSimulation/datatypes/BaseEncoder.h
 src/LunarSimulation/datatypes/CharPair.h
 src/LunarSimulation/datatypes/BaseEncoder.cpp

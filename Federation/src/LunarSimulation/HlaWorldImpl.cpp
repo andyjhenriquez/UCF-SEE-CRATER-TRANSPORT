@@ -9,7 +9,7 @@
  */
 
 /*
- * Generated 2024-03-21 15:32:44 (-0400) by guida using Pitch Developer Studio 6.2.0
+ * Generated 2024-03-23 14:22:15 (-0400) by guida using Pitch Developer Studio 6.2.0
  */
 #include <LunarSimulation/HlaAllHeaders.h>
 
@@ -32,6 +32,7 @@
 #include "StringUtil.h"
 #include "HlaFederateIdImpl.h"
 #include "HlaLogicalTimeImpl.h"
+#include "HlaSynchronizationManagerImpl.h"
 #include "HlaInteractionManagerImpl.h"
 #include "HlaSaveRestoreManagerImpl.h"
 
@@ -74,6 +75,8 @@ HlaWorldImpl::HlaWorldImpl(HlaSettingsPtr settings, bool manualEvokeMode, HlaTim
     _referenceFrameManager(new HlaReferenceFrameManagerImpl(&_objectManager, this)),
     _moonManager(new HlaMoonManagerImpl(&_objectManager, this)),
     _executionConfigurationManager(new HlaExecutionConfigurationManagerImpl(&_objectManager, this)),
+    _syncPointManager(&_federateManager),
+    _synchronizationManager(new HlaSynchronizationManagerImpl(&_syncPointManager, this)),
     _granted(false),
     _invokeLaterExecutor(this),
     _scheduler(this),
@@ -502,6 +505,10 @@ HlaInteractionManagerPtr HlaWorldImpl::getHlaInteractionManager() {
 
 HlaSaveRestoreManagerPtr HlaWorldImpl::getHlaSaveRestoreManager() {
     return _saveRestoreManager;
+}
+
+HlaSynchronizationManagerPtr HlaWorldImpl::getHlaSynchronizationManager() {
+    return _synchronizationManager;
 }
 
 void HlaWorldImpl::setExceptionListener(ExceptionListenerPtr exceptionListener) {

@@ -2,6 +2,7 @@
 #include <LunarSimulation\HlaWorld.h>
 #include <LunarSimulation\HlaPayloadManager.h>
 #include <LunarSimulation/HlaInteractionManager.h>
+#include <LunarSimulation\HlaSynchronizationManager.h>
 
 #include <iostream>
 using namespace std;
@@ -22,7 +23,10 @@ int main(void) {
         cout << e.what() << endl;
     }
     cout << "Connected to RTI\n";
-   
+
+    
+    
+
     
     bool quit = false;
     //Initial menu
@@ -36,7 +40,9 @@ int main(void) {
         switch (in)
         {
             case 1:
+                hlaWorld->getHlaSynchronizationManager()->registerSynchronizationPoint(L"ScenarioReady");
                 LoadScenario(hlaWorld);
+                hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPoint(L"ScenarioReady");
                 break;
             case 2:
                 break;

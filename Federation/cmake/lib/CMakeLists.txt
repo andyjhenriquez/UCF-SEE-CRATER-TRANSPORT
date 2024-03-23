@@ -126,6 +126,10 @@ ${CMAKE_SOURCE_DIR}/src/LunarSimulation/HlaExecutionConfigurationManagerImpl.h
 ${CMAKE_SOURCE_DIR}/src/LunarSimulation/HlaExecutionConfigurationManagerImpl.cpp
 ${CMAKE_SOURCE_DIR}/src/LunarSimulation/HlaExecutionConfigurationUpdaterImpl.h
 ${CMAKE_SOURCE_DIR}/src/LunarSimulation/HlaExecutionConfigurationUpdaterImpl.cpp
+${CMAKE_SOURCE_DIR}/src/LunarSimulation/HlaSynchronizationManagerImpl.h
+${CMAKE_SOURCE_DIR}/src/LunarSimulation/HlaSynchronizationManagerImpl.cpp
+${CMAKE_SOURCE_DIR}/src/LunarSimulation/SyncPointManager.h
+${CMAKE_SOURCE_DIR}/src/LunarSimulation/SyncPointManager.cpp
 ${CMAKE_SOURCE_DIR}/src/LunarSimulation/datatypes/BaseEncoder.h
 ${CMAKE_SOURCE_DIR}/src/LunarSimulation/datatypes/CharPair.h
 ${CMAKE_SOURCE_DIR}/src/LunarSimulation/datatypes/BaseEncoder.cpp
@@ -255,6 +259,8 @@ ${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaWorldListener.h
 ${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaSaveRestoreManager.h
 ${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaSaveRestoreListener.h
 ${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaInteractionListener.h
+${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaSynchronizationListener.h
+${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaSynchronizationManager.h
 ${CMAKE_SOURCE_DIR}/include/LunarSimulation/HlaAllHeaders.h
 )
 

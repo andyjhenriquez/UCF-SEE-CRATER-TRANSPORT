@@ -31,6 +31,7 @@ namespace LunarSimulation {
     class RtiInteractionManager;
     class HlaWorldImpl;
     class SaveRestManager;
+    class SyncPointManager;
 
     class FederateManagerDdmListener {
     public:
@@ -47,10 +48,16 @@ namespace LunarSimulation {
         ObjectManager* _objectManager;
         RtiInteractionManager* _interactionManager;
         SaveRestManager* _saveRestManager;
+        SyncPointManager* _syncPointManager;
         HlaWorldImpl* _hlaWorld;
         HlaTimeStampFactoryPtr _timeStampFactory;
         FederateManagerDdmListener* _ddmListener;
 
+
+        bool _synchPointRegisterSucceeded;
+        mutable std::mutex _synchPointRegistrationSemaphore;
+        ConditionVariable _synchPointRegistrationCondition;
+        bool _synchPointRegistrationComplete;
 
         bool _nameReservationSucceeded;
         bool _nameReservationCompleted;
@@ -100,6 +107,10 @@ namespace LunarSimulation {
         void init(RtiInteractionManager* interactionManager, ObjectManager* objectManager, HlaTimeStampFactoryPtr timeStampFactory);
         
         ~FederateManager();
+
+        void setSynchronizationPointManager(SyncPointManager* syncPointManager) {
+            _syncPointManager = syncPointManager;
+        }
 
         void setSaveRestManager(SaveRestManager* saveRestManager);
         void setDdmListener(FederateManagerDdmListener *listener) {
@@ -282,6 +293,13 @@ namespace LunarSimulation {
         /*
          * Synchronization points
          */
+
+        bool registerFederationSynchronizationPoint(const std::wstring& synchPointLabel, const std::set<std::vector<char> >& encodedFederateHandles,
+            HlaTimeStampPtr timeStamp)
+            THROW_SPEC (HlaNotConnectedException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
+
+        bool synchronizationPointAchieved(const std::wstring& synchPointLabel)
+            THROW_SPEC (HlaNotConnectedException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException);
 
         void synchronizationPointRegistrationSucceeded(const std::wstring& synchPointName);
         void synchronizationPointRegistrationFailed(const std::wstring& synchPointName, RtiDriver::SynchronizationPointFailureReason failureReason);

@@ -80,6 +80,8 @@ include/LunarSimulation/HlaWorldListener.h
 include/LunarSimulation/HlaSaveRestoreManager.h
 include/LunarSimulation/HlaSaveRestoreListener.h
 include/LunarSimulation/HlaInteractionListener.h
+include/LunarSimulation/HlaSynchronizationListener.h
+include/LunarSimulation/HlaSynchronizationManager.h
 include/LunarSimulation/HlaAllHeaders.h
 include/LunarSimulation/datatypes/ExecutionMode.h
 include/LunarSimulation/datatypes/MTRMode.h

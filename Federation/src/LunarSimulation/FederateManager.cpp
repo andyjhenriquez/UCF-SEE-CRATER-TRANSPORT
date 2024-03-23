@@ -20,6 +20,7 @@
 #include <LunarSimulation/HlaTimeStampFactory.h>
 #include "HlaWorldImpl.h"
 #include "StringUtil.h"
+#include "SyncPointManager.h"
 #include "HlaFederateIdImpl.h"
 #include "HlaLogicalTimeImpl.h"
 
@@ -29,6 +30,8 @@ using namespace LunarSimulation;
 
 FederateManager::FederateManager(HlaWorldImpl* hlaWorld) :
     _hlaWorld(hlaWorld),
+    _synchPointRegisterSucceeded(false),
+    _synchPointRegistrationComplete(false),
     _ddmListener(NULL),
     _nameReservationSucceeded(false),
     _nameReservationCompleted(false),
@@ -389,6 +392,7 @@ THROW_SPEC (HlaConnectException, HlaInvalidLicenseException, HlaFomException, Hl
         _interactionManager->connected();
         _objectManager->connected();
         _saveRestManager->connected();
+        _syncPointManager->connected();
     } catch (HlaFomException& e) {
         disconnectAndThrow(destroyFederationOnDisconnect, e);
     } catch (HlaRtiException& e) {
@@ -585,6 +589,7 @@ void FederateManager::disconnected() {
     _objectManager->disconnect();
     _interactionManager->disconnect();
     _saveRestManager->disconnect();
+    _syncPointManager->disconnect();
 
     if (_ddmListener != NULL) {
         _ddmListener->disconnected();
@@ -1268,34 +1273,112 @@ THROW_SPEC (HlaRtiException, HlaInternalException, HlaNotConnectedException,HlaI
     }
 }
 
+template <class V> class vector_ptr_deleter {
+public:
+    vector_ptr_deleter(const V& vector) : _vector(vector) {
+    }
 
-void FederateManager::synchronizationPointRegistrationSucceeded(const std::wstring& synchPointName) {
-     //ignore
-}
+    ~vector_ptr_deleter() {
+        for (typename V::const_iterator iter = _vector.begin(); iter != _vector.end(); iter++) {
+            delete *iter;
+        }
+    }
+private:
+    const V& _vector;
+};
 
-void FederateManager::synchronizationPointRegistrationFailed(const std::wstring& synchPointName, RtiDriver::SynchronizationPointFailureReason failureReason) {
-     //ignore
-}
 
-void FederateManager::announceSynchronizationPoint(const std::wstring& synchPointName, const RtiDriver::VariableLengthData& userSuppliedTag) {
-    if (_hlaWorld->getTuning()->AUTO_ACHIEVE) {
-        struct FederateAutoAchieve {
-            static void run(RtiDriver::RtiAmbassador* rtiAmbassador, HlaWorldImpl*  hlaWorld, std::wstring syncPointLabel) {
-                try {
-                    rtiAmbassador->synchronizationPointAchieved(syncPointLabel);
-                } catch (RtiDriver::BaseException& e) {
-                    HlaExceptionPtr ex(new HlaRtiException(L"Failed to achieve synchronization point: " + e.what()));
-                    hlaWorld->postException(ex);
+bool FederateManager::registerFederationSynchronizationPoint(const std::wstring& synchPointLabel, const std::set<std::vector<char> >& encodedFederateHandles, HlaTimeStampPtr timeStamp)
+THROW_SPEC (HlaNotConnectedException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException) {
+
+    _synchPointRegistrationComplete = false;
+    _synchPointRegisterSucceeded = false;
+
+    std::unique_lock<std::mutex> lock(_synchPointRegistrationSemaphore);
+    try {
+        if (encodedFederateHandles.empty()) {
+            _rtiAmbassador->registerFederationSynchronizationPoint(synchPointLabel, timeStamp->getUserSuppliedTag());
+        } else {
+            RtiDriver::FederateHandleSet federateHandles;
+            {
+                vector_ptr_deleter<RtiDriver::FederateHandleSet> deleter(federateHandles);
+
+                std::set<std::vector<char> >::const_iterator iter;
+                for (iter = encodedFederateHandles.begin(); iter != encodedFederateHandles.end(); iter++) {
+                    try {
+                        federateHandles.insert(_rtiAmbassador->decodeFederateHandle(*iter));
+                    } catch (RtiDriver::CouldNotDecode e) {
+                        return false;
+                    }
                 }
+                _rtiAmbassador->registerFederationSynchronizationPoint(synchPointLabel, timeStamp->getUserSuppliedTag(), federateHandles);
             }
-        };
-        std::function<void()> callback = std::bind(&FederateAutoAchieve::run, _rtiAmbassador.get(), _hlaWorld, synchPointName);
-        _hlaWorld->invokeLater(callback);
+        }
+
+        //Wait for response from RTI
+        while (!_synchPointRegistrationComplete) {
+            _synchPointRegistrationCondition.wait(lock);
+        }
+        return _synchPointRegisterSucceeded;
+    } catch (RtiDriver::InvalidFederateHandle) {
+        return false;
+    } catch (RtiDriver::FederateNotExecutionMember& e) {
+        disconnectDetected();
+        throw HlaNotConnectedException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::NotConnected& e) {
+        disconnectDetected();
+        throw HlaNotConnectedException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::RestoreInProgress& e) {
+        throw HlaRestoreInProgressException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::SaveInProgress& e) {
+        throw HlaSaveInProgressException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::RTIinternalError& e) {
+        throw HlaRtiException(L"Failed to register synchronization point: " + e.what());
     }
 }
 
+bool FederateManager::synchronizationPointAchieved(const std::wstring& synchPointLabel)
+THROW_SPEC (HlaNotConnectedException, HlaRtiException, HlaSaveInProgressException, HlaRestoreInProgressException) {
+    try {
+        _rtiAmbassador->synchronizationPointAchieved(synchPointLabel);
+        return true;
+    } catch (RtiDriver::SynchronizationPointLabelNotAnnounced) {
+        return false;
+    } catch (RtiDriver::FederateNotExecutionMember& e) {
+        disconnectDetected();
+        throw HlaNotConnectedException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::NotConnected& e) {
+        disconnectDetected();
+        throw HlaNotConnectedException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::RestoreInProgress& e) {
+        throw HlaRestoreInProgressException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::SaveInProgress& e) {
+        throw HlaSaveInProgressException(L"Failed to register synchronization point: " + e.what());
+    } catch (RtiDriver::RTIinternalError& e) {
+        throw HlaRtiException(L"Failed to register synchronization point: " + e.what());
+    }
+}
+
+void FederateManager::synchronizationPointRegistrationSucceeded(const std::wstring& synchPointName) {
+    std::unique_lock<std::mutex> lock(_synchPointRegistrationSemaphore);
+    _synchPointRegisterSucceeded = true;
+    _synchPointRegistrationComplete = true;
+    _synchPointRegistrationCondition.notify_all();
+}
+
+void FederateManager::synchronizationPointRegistrationFailed(const std::wstring& synchPointName, RtiDriver::SynchronizationPointFailureReason failureReason) {
+    std::unique_lock<std::mutex> lock(_synchPointRegistrationSemaphore);
+    _synchPointRegisterSucceeded = false;
+    _synchPointRegistrationComplete = true;
+    _synchPointRegistrationCondition.notify_all();
+}
+
+void FederateManager::announceSynchronizationPoint(const std::wstring& synchPointName, const RtiDriver::VariableLengthData& userSuppliedTag) {
+    _syncPointManager->announceSynchronizationPoint(synchPointName, _timeStampFactory->create(userSuppliedTag));
+}
+
 void FederateManager::federationSynchronized(const std::wstring& synchPointName) {
-    //Ignore
+    _syncPointManager->federationSynchronized(synchPointName);
 }
 
 void FederateManager::timeRegulationEnabled(const RtiDriver::LogicalTime theTime) {

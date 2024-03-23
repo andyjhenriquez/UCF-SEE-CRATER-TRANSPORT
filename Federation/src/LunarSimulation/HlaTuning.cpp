@@ -22,7 +22,6 @@ HlaTuning::HlaTuning(HlaSettingsPtr settings) :
     REQUEST_MAX_DELAY_MS(inRange(REQUEST_MIN_DELAY_MS, getSetting("requestMaxDelayMs", 50), 60*60*1000)), //in ms
     PROVIDE(getSetting("provide", true)),
     CONVEY_PRODUCING_FEDERATE(getSetting("conveyProducingFederate", true)),
-    AUTO_ACHIEVE(getSetting("autoAchieve", true)),
     INCLUDE_DATA_IN_DECODE_EXCEPTION(getSetting("includeDataInDecodeException", false)),
     VERIFY_RECEIVED_DATA_LENGTH(getSetting("verifyReceivedDataLength", false)),
     RESIGN_ACTION(getSetting("resignAction", 4)),

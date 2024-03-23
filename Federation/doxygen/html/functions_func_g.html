@@ -141,6 +141,7 @@ $(function() {
 <li>getHlaReferenceFrameUpdater()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_reference_frame.html#a8f35c5f59b792164b5d94b78ee500278">LunarSimulation::HlaReferenceFrame</a></li>
 <li>getHlaSaveRestoreManager()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_world.html#a778f9724b2516b6be197d3f9cd0d501d">LunarSimulation::HlaWorld</a></li>
 <li>getHlaStartStopInteraction()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_interaction_manager.html#ae9e8c0db60fc4afb85ceea03fa769703">LunarSimulation::HlaInteractionManager</a></li>
+<li>getHlaSynchronizationManager()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_world.html#aa275fa4bfa7ece6ed942b96a59b1f750">LunarSimulation::HlaWorld</a></li>
 <li>getHlaTimeStampFactory()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_time_stamp_factory.html#aabf540c2fc98e459bc34030ac4a1751d">LunarSimulation::HlaTimeStampFactory</a></li>
 <li>getInertia()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_dynamical_entity_attributes.html#aa01ac3757ea88f4b87b09b2d71af5784">LunarSimulation::HlaDynamicalEntityAttributes</a>, <a class="el" href="class_lunar_simulation_1_1_hla_payload_attributes.html#a84a9858eb14f45e735a962f73d3b30ba">LunarSimulation::HlaPayloadAttributes</a></li>
 <li>getInertiaRate()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_dynamical_entity_attributes.html#adff823a9de92d72c6bd1b6302236ac93">LunarSimulation::HlaDynamicalEntityAttributes</a>, <a class="el" href="class_lunar_simulation_1_1_hla_payload_attributes.html#a0624b7339187d4b48acdc1dca74eabe5">LunarSimulation::HlaPayloadAttributes</a></li>
@@ -195,6 +196,7 @@ $(function() {
 <li>getPayloadByHlaInstanceName()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#a92017c5368c8757599eb3662dd016e41">LunarSimulation::HlaPayloadManager</a></li>
 <li>getPayloadByName()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_payload_manager.html#af6adb95b1206a440cb3fb7148ebcc05b">LunarSimulation::HlaPayloadManager</a></li>
 <li>getPayloadMass()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_load_scenario_parameters.html#af014fdcb56535967c5a454a88a27da4d">LunarSimulation::HlaLoadScenarioParameters</a></li>
+<li>getPendingAchieveSynchronizationPointLabels()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_synchronization_manager.html#a19b4072db561dad6847b8adb58e84494">LunarSimulation::HlaSynchronizationManager</a></li>
 <li>getPhysicalEntityByHlaInstanceHandle()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_physical_entity_manager.html#af91e962df6901a5b9df871d79ff46de0">LunarSimulation::HlaPhysicalEntityManager</a></li>
 <li>getPhysicalEntityByHlaInstanceName()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_physical_entity_manager.html#a47f879201d40f75e531133211a9c816c">LunarSimulation::HlaPhysicalEntityManager</a></li>
 <li>getPhysicalEntityByName()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_physical_entity_manager.html#a41db4835a8e905ebe0d35ec8fe16ed16">LunarSimulation::HlaPhysicalEntityManager</a></li>
@@ -210,6 +212,7 @@ $(function() {
 <li>getReferenceFrameByName()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_reference_frame_manager.html#ac1a36de279bd214f1cc8621cc98b5370">LunarSimulation::HlaReferenceFrameManager</a></li>
 <li>getReferenceFrameByParent_name()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_reference_frame_manager.html#af3b18fe6ba8320df4492443e1badd6a6">LunarSimulation::HlaReferenceFrameManager</a></li>
 <li>getReferenceFrameByState()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_reference_frame_manager.html#a4b8b89ed91d77f23695de196a5e8110d">LunarSimulation::HlaReferenceFrameManager</a></li>
+<li>getRegisteredSynchronizationPointLabels()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_synchronization_manager.html#a2fc4ffec8bce747466405fcece7ac52e">LunarSimulation::HlaSynchronizationManager</a></li>
 <li>getRemoteHlaDynamicalEntitys()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_dynamical_entity_manager.html#a7cd9142e2095d0375ec7358e53587975">LunarSimulation::HlaDynamicalEntityManager</a></li>
 <li>getRemoteHlaExecutionConfigurations()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_execution_configuration_manager.html#abdb644a879759a6c93d276cb4a84bd09">LunarSimulation::HlaExecutionConfigurationManager</a></li>
 <li>getRemoteHlaHLAobjectRoots()&#160;:&#160;<a class="el" href="class_lunar_simulation_1_1_hla_h_l_aobject_root_manager.html#aceb0ad3ba0f4d673a7698b9fd466cc58">LunarSimulation::HlaHLAobjectRootManager</a></li>
@@ -262,7 +265,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 21 2024 15:32:49 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Mar 23 2024 14:22:20 for Developer Studio Project by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

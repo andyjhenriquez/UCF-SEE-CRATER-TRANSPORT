@@ -79,6 +79,8 @@ namespace LunarSimulation {
    class HlaExecutionConfigurationValueListener;
    class HlaExecutionConfigurationUpdater;
    class HlaInteractionListener;
+   class HlaSynchronizationListener;
+   class HlaSynchronizationManager;
    class HlaHLAinteractionRootInteraction;
    class HlaStartStopParameters;
    class HlaStartStopInteraction;
@@ -163,6 +165,8 @@ namespace LunarSimulation {
    typedef std::shared_ptr<HlaExecutionConfigurationValueListener> HlaExecutionConfigurationValueListenerPtr;
    typedef std::shared_ptr<HlaExecutionConfigurationUpdater> HlaExecutionConfigurationUpdaterPtr;
    typedef std::shared_ptr<HlaInteractionListener> HlaInteractionListenerPtr;
+   typedef std::shared_ptr<HlaSynchronizationListener> HlaSynchronizationListenerPtr;
+   typedef std::shared_ptr<HlaSynchronizationManager> HlaSynchronizationManagerPtr;
    typedef std::shared_ptr<HlaHLAinteractionRootInteraction> HlaHLAinteractionRootInteractionPtr;
    typedef std::shared_ptr<HlaStartStopParameters> HlaStartStopParametersPtr;
    typedef std::shared_ptr<HlaStartStopInteraction> HlaStartStopInteractionPtr;

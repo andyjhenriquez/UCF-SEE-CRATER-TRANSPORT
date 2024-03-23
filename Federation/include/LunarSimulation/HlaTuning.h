@@ -89,14 +89,6 @@ namespace LunarSimulation {
         const bool CONVEY_PRODUCING_FEDERATE;  
 
         /**
-        * Perform automatic achieve on all announced synchronization points.
-        *
-        * The default value is <code>true</code>.
-        * The <code>FederateConfig.txt</code> key is <code>autoAchieve</code>.
-        */
-        const bool AUTO_ACHIEVE;
-
-        /**
         * Include a dump of the data in <code>HlaDecodeException</code>.
         *
         * The default value is <code>false</code>.
