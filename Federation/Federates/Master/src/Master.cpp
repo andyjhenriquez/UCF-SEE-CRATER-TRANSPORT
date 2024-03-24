@@ -91,13 +91,35 @@ void LoadScenario(HlaWorldPtr hlaWorld) {
         loadScenario->setRoverInitialPosition(posVector);
 
         loadScenario->sendInteraction();
+        system("CLS");
+        cout << endl << "-Scenario loaded-\n\n";
         
         break;
         //For Exit Simulation
     case 2:
         loadScenario->setSimulationScenario(L"Exit");
+
+        cout << "Enter Payload Mass(kg): ";
+        cin >> in;
+        loadScenario->setPayloadMass(in);
+
+        cout << "Enter Launcher position formatted as x y z: ";
+        getline(cin >> ws, strInput);
+        posVector = convertToDoubleVector(strInput);
+        loadScenario->setLauncherPosition(posVector);
+
+        cout << "Enter Launch velocity formatted as x y z: ";
+        getline(cin >> ws, strInput);
+        posVector = convertToDoubleVector(strInput);
+        loadScenario->setLaunchSpeedVector(posVector);
+
+        loadScenario->sendInteraction();
+        system("CLS");
+        cout << endl << "-Scenario loaded-\n\n";
         break;
     default:
+        system("CLS");
+        cout << "Error: Invalid option\n\n";
         break;
     }
 }

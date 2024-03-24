@@ -12,10 +12,6 @@
 #include <iostream>
 
 using namespace LunarSimulation;
-//Load
-HlaLoadScenarioParametersPtr scenarioParameters;
-
-bool Initialize(HlaWorldPtr hlaWorld);
 
 //implementation of the HlaInteractionListener interface
 class MyInteractionListener : public HlaInteractionListener::Adapter {
@@ -24,18 +20,23 @@ public:
         HlaLoadScenarioParametersPtr parameters,
         HlaTimeStampPtr timeStamp,
         HlaLogicalTimePtr logicalTime) {
-        
-        scenarioParameters = parameters;
+
+        scenarioData = parameters;
     }
 
-    HlaLoadScenarioParametersPtr data;
-    string nar = "print print";
+    HlaLoadScenarioParametersPtr scenarioData;
+    HlaStartStopParametersPtr startStopData;
 };
+
+bool Initialize(HlaWorldPtr hlaWorld, MyInteractionListener* listener);
+
+
 
 int main(void) {
     // Creates federation if this is the first federate connected,
     // connects to existing federation otherwise
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
+    MyInteractionListener* interactionListener = new MyInteractionListener();
     Physics::PhysicsManager* physicsManager = new Physics::PhysicsManager();
 
     if (!physicsManager->initPhysics()) {
@@ -53,7 +54,11 @@ int main(void) {
     }
     std::cout << "Connected\n";
 
-    Initialize(hlaWorld);
+    Initialize(hlaWorld, interactionListener);
+
+
+    //Scenario info printed out
+    //cout << "Rover Health: " << interactionListener->scenarioData->getRoverHealth() << endl;
     
     // Manages Payload instances, allows you to handle and find different instances
     HlaPayloadManagerPtr payloadManager = hlaWorld->getHlaPayloadManager();
@@ -98,23 +103,22 @@ int main(void) {
 }
 
 //Initializes crater transport simulation
-//Takes in HlaWoorldPtr
-bool Initialize(HlaWorldPtr hlaWorld) {
-    //adding interaction listener to hla manager
-    HlaInteractionListenerPtr myInteractionListener(new MyInteractionListener());
+//Takes in HlaWorldPtr
+bool Initialize(HlaWorldPtr hlaWorld, MyInteractionListener* listener) {
+    //adding interaction listener to hlaWorld
+    HlaInteractionListenerPtr myInteractionListener(listener);
     hlaWorld->getHlaInteractionManager()->addHlaInteractionListener(myInteractionListener);
 
     //waiting for user to set scenario in Master before continuing
     cout << "Waiting for scenario info" << endl;
-    if (!hlaWorld->getHlaSynchronizationManager()->waitForSynchronizationPointRegistration(L"ScenarioReady", 60 * 1000)){
+    if (!hlaWorld->getHlaSynchronizationManager()->waitForSynchronizationPointRegistration(L"ScenarioReady", 120 * 1000)){
         cout << "Failed to get scenario information" << endl;
         return false;
     }
-    hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPointAndWaitForSynchronized(L"ScenarioReady", 600 * 1000);
+    if (!hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPointAndWaitForSynchronized(L"ScenarioReady", 600 * 1000)) {
+        cout << "Connection to other federates timed out" << endl;
+    }
     cout << "Federation synched" << endl;
-    
-    //Scenario info printed out
-    cout << "Rover Health: " << scenarioParameters->getRoverHealth() << endl;
 
     return true;
 }
