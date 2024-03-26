@@ -165,6 +165,7 @@ namespace Physics {
         PX_RELEASE(gPhysics);
         PX_RELEASE(gFoundation);
         PX_RELEASE(gOmniPvd);
+        PX_RELEASE(gCudaContextManager);
 
         printf("Simulation Complete\n");
     }
@@ -214,5 +215,9 @@ namespace Physics {
 
     const char* PhysicsManager::getOmniPvdPath() {
         return gOmniPvdPath;
+    }
+
+    const PxCudaContextManager* PhysicsManager::getCudaContextManager() {
+        return gCudaContextManager;
     }
 }
