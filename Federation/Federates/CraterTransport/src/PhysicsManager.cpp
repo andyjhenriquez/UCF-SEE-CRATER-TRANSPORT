@@ -19,6 +19,15 @@ namespace Physics {
             return false;
         }
 
+        // Initializing cuda
+        PxCudaContextManagerDesc cudaContextManagerDesc;
+        gCudaContextManager = PxCreateCudaContextManager(*gFoundation, cudaContextManagerDesc, PxGetProfilerCallback());
+        if (gCudaContextManager && !gCudaContextManager->contextIsValid()) {
+            gCudaContextManager->release();
+            gCudaContextManager = NULL;
+            printf("Failed to initialize cuda context.\n");
+        }
+
         // OmniPvd only works in debug mode
         #if _DEBUG
         gOmniPvd = OmniPvd::initOmniPvd(*gFoundation);
@@ -36,20 +45,33 @@ namespace Physics {
             return false;
         }
         #endif
-        
-        return true;
-    }
 
-    void PhysicsManager::loadSampleScene() {
+        // Base parameters for the PhysX scene
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
         gDispatcher = PxDefaultCpuDispatcherCreate(2);
         sceneDesc.cpuDispatcher = gDispatcher;
         sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+
+        if (!sceneDesc.cudaContextManager) {
+            sceneDesc.cudaContextManager = gCudaContextManager;
+        }
+
+        sceneDesc.flags |= PxSceneFlag::eENABLE_GPU_DYNAMICS;
+        sceneDesc.flags |= PxSceneFlag::eENABLE_PCM;
+
+        sceneDesc.broadPhaseType = PxBroadPhaseType::eGPU;
+        sceneDesc.gpuMaxNumPartitions = 8;
+
+        sceneDesc.solverType = PxSolverType::eTGS;
+
         gScene = gPhysics->createScene(sceneDesc);
+        gMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
+        
+        return true;
+    }
 
-        gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
-
+    void PhysicsManager::loadSampleScene() {
         PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
         gScene->addActor(*groundPlane);
 
@@ -58,37 +80,63 @@ namespace Physics {
     }
 
     void PhysicsManager::loadSampleEntryScene() {
-        // Base parameters for the PhysX scene
-        PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-        sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
-        gDispatcher = PxDefaultCpuDispatcherCreate(2);
-        sceneDesc.cpuDispatcher = gDispatcher;
-        sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+        // Loads the moon environment model
+        ModelLoader* moonLoader = new ModelLoader();
 
-        gScene = gPhysics->createScene(sceneDesc);
-        gMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
-
-        // Loads triangle mesh
-        ModelLoader* obj = new ModelLoader();
-        PxTriangleMesh* moonMesh = obj->loadMesh(gPhysics, "../../../Models/AmundsenRim_100mpp_triangulated.obj");
-
-        if (moonMesh == NULL) {
-            return;
-        }
+        PxTriangleMesh* moonMesh = moonLoader->loadMesh(gPhysics, "../../../Models/shackleton_highres_triangulated_scaled.obj");
         
         // Cooked triangle mesh neds to be stored in a separate handler
         // that has more robust functionality
         PxTriangleMeshGeometry moonMeshHandler(moonMesh);
 
+        // Temporary material property for the crater environment (NEEDS UPDATE)
+        PxMaterial* moonMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
+
         // Creating the rigid actor which will hold the moon crater mesh
         PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
-        PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
+        PxRigidActorExt::createExclusiveShape(*groundActor, moonMeshHandler, *moonMaterial, PxShapeFlag::eSIMULATION_SHAPE);
 
+        groundActor->setGlobalPose(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
         gScene->addActor(*groundActor);
-        groundActor->setGlobalPose(PxTransform(PxVec3(0.0f, 0.0f, 0.0f), PxQuat(PxDegToRad(-0.0f), PxVec3(0.0f, 0.0f, 1.0f))));
+        
+        ModelLoader* launcherLoader = new ModelLoader();
+        PxTriangleMesh* launcherMesh = launcherLoader->loadMesh(gPhysics, "../../../Models/SledCrateExport.obj", true);
 
-        // Create the dynamic cube used in our samples using a hard-coded starting position to ensure deterministic outcome
-        createDynamic(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
+        // -------------------------------------------------------------------------------------------------------------
+        // Loading and setting up the sled model
+        PxTriangleMeshGeometry launcherMeshHandler;
+        launcherMeshHandler.triangleMesh = launcherMesh;
+        launcherMeshHandler.scale = PxVec3(1.0f);
+
+        PxRigidDynamic* launcherActor = gPhysics->createRigidDynamic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
+
+        // Damping values
+        launcherActor->setLinearDamping(0.2f);
+        launcherActor->setAngularDamping(0.1f);
+
+        // Setting collision related flags
+        launcherActor->setRigidBodyFlag(PxRigidBodyFlag::eENABLE_GYROSCOPIC_FORCES, true);
+        launcherActor->setRigidBodyFlag(PxRigidBodyFlag::eENABLE_SPECULATIVE_CCD, true);
+
+        // Temporary material property for the sled (NEEDS UPDATE)
+        PxMaterial* launcherMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
+
+        PxShape* launcherShape = PxRigidActorExt::createExclusiveShape(*launcherActor, launcherMeshHandler, *launcherMaterial);
+
+        // Offset from created SDF for collision resolution
+        launcherShape->setContactOffset(0.1f);
+        launcherShape->setRestOffset(0.02f);
+
+        // Setting mass and density values, mass not currently being set (default 1)
+        PxReal density = 100.0f;
+        PxRigidBodyExt::updateMassAndInertia(*launcherActor, density);
+
+        gScene->addActor(*launcherActor);
+
+        // Custom settings
+        launcherActor->setSolverIterationCounts(50, 1);
+        launcherActor->setMaxDepenetrationVelocity(5.0f);
+        launcherActor->setGlobalPose(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f), PxQuat(PxPi, PxVec3(0.0f, 1.0f, 0.0f))));
     }
 
     // Moves the simulation by the specified time-step
@@ -103,6 +151,7 @@ namespace Physics {
         PX_RELEASE(gPhysics);
         PX_RELEASE(gFoundation);
         PX_RELEASE(gOmniPvd);
+        PX_RELEASE(gCudaContextManager);
 
         printf("Simulation Complete\n");
     }
@@ -152,5 +201,9 @@ namespace Physics {
 
     const char* PhysicsManager::getOmniPvdPath() {
         return gOmniPvdPath;
+    }
+
+    const PxCudaContextManager* PhysicsManager::getCudaContextManager() {
+        return gCudaContextManager;
     }
 }
