@@ -8,7 +8,7 @@ PxTriangleMesh* ModelLoader::loadMesh(PxPhysics* gPhysics, string filepath) {
         status = loadOBJ(filepath);
     }
     else {
-        cout << "Couldn't open crater model, loading sample cube mesh instead.\n\n";
+        cout << "Couldn't open model, loading sample cube mesh instead.\n\n";
         return loadSampleCubeMesh(gPhysics);
     }
 
