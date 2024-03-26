@@ -55,6 +55,7 @@ namespace Physics {
         PxScene*                 gScene = nullptr;
         PxMaterial*              gMaterial = nullptr;
         PxOmniPvd*               gOmniPvd = nullptr;
+        PxCudaContextManager*    gCudaContextManager = nullptr;
         const char*              gOmniPvdPath = nullptr;
     };
 }

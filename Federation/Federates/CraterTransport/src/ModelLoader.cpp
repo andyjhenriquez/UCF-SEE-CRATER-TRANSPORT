@@ -1,6 +1,6 @@
 #include "ModelLoader.h"
 
-PxTriangleMesh* ModelLoader::loadMesh(PxPhysics* gPhysics, string filepath) {
+PxTriangleMesh* ModelLoader::loadMesh(PxPhysics* gPhysics, string filepath, bool createSDF) {
     bool status;
 
     // Attempt to open the specified crater mesh file
@@ -30,15 +30,30 @@ PxTriangleMesh* ModelLoader::loadMesh(PxPhysics* gPhysics, string filepath) {
     meshDesc.triangles.data = vecf.begin();
     meshDesc.triangles.stride = 3 * sizeof(PxU32);
     
+    if (createSDF) {
+        PxSDFDesc sdfDesc;
+        sdfDesc.spacing = 0.05f;
+        sdfDesc.subgridSize = 6;
+        sdfDesc.bitsPerSubgridPixel = PxSdfBitsPerSubgridPixel::e16_BIT_PER_PIXEL;
+        sdfDesc.numThreadsForSdfConstruction = 8;
+
+        meshDesc.sdfDesc = &sdfDesc;
+    }
+
     PxTolerancesScale scale;
     PxCookingParams params(scale);
+
+    params.meshWeldTolerance = 0.001f;
+    params.meshPreprocessParams = PxMeshPreprocessingFlags(PxMeshPreprocessingFlag::eWELD_VERTICES);
+    params.buildTriangleAdjacencies = false;
+    params.buildGPUData = true;
 
     // Structure used for fast collision calculations
     params.midphaseDesc = PxMeshMidPhase::eBVH33;
     params.suppressTriangleMeshRemapTable = true;
 
-    params.meshPreprocessParams &= PxMeshPreprocessingFlag::eDISABLE_CLEAN_MESH;
-    params.meshPreprocessParams &= PxMeshPreprocessingFlag::eDISABLE_ACTIVE_EDGES_PRECOMPUTE;
+    //params.meshPreprocessParams &= PxMeshPreprocessingFlag::eDISABLE_CLEAN_MESH;
+    //params.meshPreprocessParams &= PxMeshPreprocessingFlag::eDISABLE_ACTIVE_EDGES_PRECOMPUTE;
 
     // Value between 0 and 1 used to determine how much of the mesh is cooked before
     // simulation start

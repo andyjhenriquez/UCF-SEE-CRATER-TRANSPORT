@@ -19,6 +19,15 @@ namespace Physics {
             return false;
         }
 
+        // Initializing cuda
+        PxCudaContextManagerDesc cudaContextManagerDesc;
+        gCudaContextManager = PxCreateCudaContextManager(*gFoundation, cudaContextManagerDesc, PxGetProfilerCallback());
+        if (gCudaContextManager && !gCudaContextManager->contextIsValid()) {
+            gCudaContextManager->release();
+            gCudaContextManager = NULL;
+            printf("Failed to initialize cuda context.\n");
+        }
+
         // OmniPvd only works in debug mode
         #if _DEBUG
         gOmniPvd = OmniPvd::initOmniPvd(*gFoundation);
@@ -46,6 +55,19 @@ namespace Physics {
         gDispatcher = PxDefaultCpuDispatcherCreate(2);
         sceneDesc.cpuDispatcher = gDispatcher;
         sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+        
+        if (!sceneDesc.cudaContextManager) {
+            sceneDesc.cudaContextManager = gCudaContextManager;
+        }
+
+        sceneDesc.flags |= PxSceneFlag::eENABLE_GPU_DYNAMICS;
+        sceneDesc.flags |= PxSceneFlag::eENABLE_PCM;
+
+        sceneDesc.broadPhaseType = PxBroadPhaseType::eGPU;
+        sceneDesc.gpuMaxNumPartitions = 8;
+
+        sceneDesc.solverType = PxSolverType::eTGS;
+
         gScene = gPhysics->createScene(sceneDesc);
 
         gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
@@ -64,6 +86,20 @@ namespace Physics {
         gDispatcher = PxDefaultCpuDispatcherCreate(2);
         sceneDesc.cpuDispatcher = gDispatcher;
         sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+
+        if (!sceneDesc.cudaContextManager) {
+            sceneDesc.cudaContextManager = gCudaContextManager;
+        }
+
+        sceneDesc.flags |= PxSceneFlag::eENABLE_GPU_DYNAMICS;
+        sceneDesc.flags |= PxSceneFlag::eENABLE_PCM;
+
+        sceneDesc.broadPhaseType = PxBroadPhaseType::eGPU;
+        sceneDesc.gpuMaxNumPartitions = 8;
+
+        sceneDesc.solverType = PxSolverType::eTGS;
+
+        gScene = gPhysics->createScene(sceneDesc);
 
         gScene = gPhysics->createScene(sceneDesc);
         gMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
@@ -89,24 +125,32 @@ namespace Physics {
         gScene->addActor(*groundActor);
         
         ModelLoader* launcherLoader = new ModelLoader();
-        PxTriangleMesh* launcherMesh = launcherLoader->loadMesh(gPhysics, "../../../Models/SledCrateExport.obj");
+        PxTriangleMesh* launcherMesh = launcherLoader->loadMesh(gPhysics, "../../../Models/SledCrateExport.obj", true);
         
         if (launcherMesh == NULL) {
             return;
         }
 
-        PxTriangleMeshGeometry launcherMeshHandler(launcherMesh);
+        PxTriangleMeshGeometry launcherMeshHandler;
+        launcherMeshHandler.triangleMesh = launcherMesh;
+        launcherMeshHandler.scale = PxVec3(1.0f);
 
         PxRigidDynamic* launcherActor = gPhysics->createRigidDynamic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
-        launcherActor->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-        PxRigidActorExt::createExclusiveShape(*launcherActor, launcherMeshHandler, *gMaterial, PxShapeFlag::eSIMULATION_SHAPE);
+        launcherActor->setLinearDamping(0.2f);
+        launcherActor->setAngularDamping(0.1f);
+        launcherActor->setRigidBodyFlag(PxRigidBodyFlag::eENABLE_GYROSCOPIC_FORCES, true);
+        launcherActor->setRigidBodyFlag(PxRigidBodyFlag::eENABLE_SPECULATIVE_CCD, true);
+        PxShape* launcherShape = PxRigidActorExt::createExclusiveShape(*launcherActor, launcherMeshHandler, *gMaterial);
+        launcherShape->setContactOffset(0.1f);
+        launcherShape->setRestOffset(0.02f);
 
-        launcherActor->setGlobalPose(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f)));
+        PxReal density = 100.0f;
+        PxRigidBodyExt::updateMassAndInertia(*launcherActor, density);
+
         gScene->addActor(*launcherActor);
-
-
-        // Create the dynamic cube used in our samples using a hard-coded starting position to ensure deterministic outcome
-        // createDynamic(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f)), PxBoxGeometry(PxVec3(1.0f, 1.0f, 1.0f)), PxVec3(0, 0, 0));
+        launcherActor->setSolverIterationCounts(50, 1);
+        launcherActor->setMaxDepenetrationVelocity(5.0f);
+        launcherActor->setGlobalPose(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f)));
     }
 
     // Moves the simulation by the specified time-step
