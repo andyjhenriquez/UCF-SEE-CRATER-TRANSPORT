@@ -15,7 +15,7 @@ using namespace std;
 
 class ModelLoader {
 public:
-    PxTriangleMesh* loadMesh(PxPhysics *gPhysics, string filepath);
+    PxTriangleMesh* loadMesh(PxPhysics *gPhysics, string filepath, bool createSDF = false);
     PxTriangleMesh* loadSampleCubeMesh(PxPhysics* gPhysics);
 
 private:
