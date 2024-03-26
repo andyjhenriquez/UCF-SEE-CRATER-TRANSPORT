@@ -84,10 +84,6 @@ namespace Physics {
         ModelLoader* moonLoader = new ModelLoader();
 
         PxTriangleMesh* moonMesh = moonLoader->loadMesh(gPhysics, "../../../Models/shackleton_highres_triangulated_scaled.obj");
-
-        if (moonMesh == NULL) {
-            return;
-        }
         
         // Cooked triangle mesh neds to be stored in a separate handler
         // that has more robust functionality
@@ -102,11 +98,8 @@ namespace Physics {
         
         ModelLoader* launcherLoader = new ModelLoader();
         PxTriangleMesh* launcherMesh = launcherLoader->loadMesh(gPhysics, "../../../Models/SledCrateExport.obj", true);
-        
-        if (launcherMesh == NULL) {
-            return;
-        }
 
+        // Loading and setting up the sled model
         PxTriangleMeshGeometry launcherMeshHandler;
         launcherMeshHandler.triangleMesh = launcherMesh;
         launcherMeshHandler.scale = PxVec3(1.0f);
