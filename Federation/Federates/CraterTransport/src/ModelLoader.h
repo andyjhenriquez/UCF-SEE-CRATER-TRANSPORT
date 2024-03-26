@@ -15,11 +15,11 @@ using namespace std;
 
 class ModelLoader {
 public:
-    PxTriangleMesh* loadCraterMesh(PxPhysics *gPhysics);
+    PxTriangleMesh* loadMesh(PxPhysics *gPhysics, string filepath, bool createSDF = false);
     PxTriangleMesh* loadSampleCubeMesh(PxPhysics* gPhysics);
 
 private:
-    bool loadOBJ();
+    bool loadOBJ(string filepath);
     inline bool fileExists(const std::string& name);
 
     PxTriangleMeshDesc meshDesc;
