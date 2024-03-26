@@ -70,7 +70,7 @@ namespace Physics {
 
         // Loads triangle mesh
         ModelLoader* obj = new ModelLoader();
-        PxTriangleMesh* moonMesh = obj->loadCraterMesh(gPhysics);
+        PxTriangleMesh* moonMesh = obj->loadMesh(gPhysics, "../../../Models/AmundsenRim_100mpp_triangulated.obj");
 
         if (moonMesh == NULL) {
             return;

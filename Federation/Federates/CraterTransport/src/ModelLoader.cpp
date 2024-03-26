@@ -1,11 +1,11 @@
 #include "ModelLoader.h"
 
-PxTriangleMesh* ModelLoader::loadCraterMesh(PxPhysics* gPhysics) {
+PxTriangleMesh* ModelLoader::loadMesh(PxPhysics* gPhysics, string filepath) {
     bool status;
 
     // Attempt to open the specified crater mesh file
-    if (fileExists("../../../Models/AmundsenRim_100mpp_triangulated.obj")) {
-        status = loadOBJ();
+    if (fileExists(filepath)) {
+        status = loadOBJ(filepath);
     }
     else {
         cout << "Couldn't open crater model, loading sample cube mesh instead.\n\n";
@@ -153,12 +153,12 @@ PxTriangleMesh* ModelLoader::loadSampleCubeMesh(PxPhysics* gPhysics) {
 }
 
 // Parses .obj and loads it into two arrays
-bool ModelLoader::loadOBJ() {
+bool ModelLoader::loadOBJ(string filepath) {
     ifstream inFile;
 
     // Put this model in a folder titled "Models" in the base
     // of the repository.
-    inFile.open("../../../Models/shackleton_highres_triangulated_scaled.obj");
+    inFile.open(filepath);
 
     string line;
 
