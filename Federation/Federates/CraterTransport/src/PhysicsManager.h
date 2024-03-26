@@ -44,7 +44,6 @@ namespace Physics {
         const PxMaterial* getMaterial();
         const PxOmniPvd* getOmniPvd();
         const char* getOmniPvdPath();
-        const PxCudaContextManager* getCudaContextManager();
 
         PxRigidDynamic* createDynamic(const PxTransform& t, const PxGeometry& geometry, const PxVec3& velocity = PxVec3(0));
     private:
@@ -56,7 +55,6 @@ namespace Physics {
         PxScene*                 gScene = nullptr;
         PxMaterial*              gMaterial = nullptr;
         PxOmniPvd*               gOmniPvd = nullptr;
-        PxCudaContextManager*    gCudaContextManager = nullptr;
         const char*              gOmniPvdPath = nullptr;
     };
 }
