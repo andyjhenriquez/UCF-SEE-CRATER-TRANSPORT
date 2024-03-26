@@ -45,41 +45,7 @@ namespace Physics {
             return false;
         }
         #endif
-        
-        return true;
-    }
 
-    void PhysicsManager::loadSampleScene() {
-        PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-        sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
-        gDispatcher = PxDefaultCpuDispatcherCreate(2);
-        sceneDesc.cpuDispatcher = gDispatcher;
-        sceneDesc.filterShader = PxDefaultSimulationFilterShader;
-        
-        if (!sceneDesc.cudaContextManager) {
-            sceneDesc.cudaContextManager = gCudaContextManager;
-        }
-
-        sceneDesc.flags |= PxSceneFlag::eENABLE_GPU_DYNAMICS;
-        sceneDesc.flags |= PxSceneFlag::eENABLE_PCM;
-
-        sceneDesc.broadPhaseType = PxBroadPhaseType::eGPU;
-        sceneDesc.gpuMaxNumPartitions = 8;
-
-        sceneDesc.solverType = PxSolverType::eTGS;
-
-        gScene = gPhysics->createScene(sceneDesc);
-
-        gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.5f);
-
-        PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
-        gScene->addActor(*groundPlane);
-
-        // Create the dynamic cube used in our samples
-        createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
-    }
-
-    void PhysicsManager::loadSampleEntryScene() {
         // Base parameters for the PhysX scene
         PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
         sceneDesc.gravity = PxVec3(0.0f, -1.62f, 0.0f);
@@ -100,10 +66,20 @@ namespace Physics {
         sceneDesc.solverType = PxSolverType::eTGS;
 
         gScene = gPhysics->createScene(sceneDesc);
-
-        gScene = gPhysics->createScene(sceneDesc);
         gMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
+        
+        return true;
+    }
 
+    void PhysicsManager::loadSampleScene() {
+        PxRigidStatic* groundPlane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
+        gScene->addActor(*groundPlane);
+
+        // Create the dynamic cube used in our samples
+        createDynamic(PxTransform(PxVec3(0, 40, 100)), PxSphereGeometry(10), PxVec3(0, -50, -100));
+    }
+
+    void PhysicsManager::loadSampleEntryScene() {
         // Loads triangle mesh
         ModelLoader* moonLoader = new ModelLoader();
 
