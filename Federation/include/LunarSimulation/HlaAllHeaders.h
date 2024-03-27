@@ -168,6 +168,8 @@
 #include <LunarSimulation/HlaSaveRestoreManager.h>
 #include <LunarSimulation/HlaSaveRestoreListener.h>
 #include <LunarSimulation/HlaInteractionListener.h>
+#include <LunarSimulation/HlaSynchronizationListener.h>
+#include <LunarSimulation/HlaSynchronizationManager.h>
 
 #include <LunarSimulation/datatypes/ExecutionMode.h>
 #include <LunarSimulation/datatypes/MTRMode.h>
@@ -248,6 +250,8 @@
 #include <LunarSimulation/HlaExecutionConfigurationImpl.h>
 #include <LunarSimulation/HlaExecutionConfigurationManagerImpl.h>
 #include <LunarSimulation/HlaExecutionConfigurationUpdaterImpl.h>
+#include <LunarSimulation/HlaSynchronizationManagerImpl.h>
+#include <LunarSimulation/SyncPointManager.h>
 
 #include <LunarSimulation/datatypes/BaseEncoder.h>
 #include <LunarSimulation/datatypes/CharPair.h>

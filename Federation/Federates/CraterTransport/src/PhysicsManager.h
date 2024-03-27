@@ -3,11 +3,14 @@
 
 #include <PhysX/PxConfig.h>
 #include <PhysX/PxPhysicsAPI.h>
+#include <LunarSimulation\HlaAllHeaders.h>
+#include <LunarSimulation\HlaWorld.h>
 
 #include "OmniPvd.h"
 #include "ModelLoader.h"
 
 using namespace physx;
+using namespace LunarSimulation;
 
 // Holds most of the PhysX simulation information
 namespace Physics {
@@ -15,6 +18,8 @@ namespace Physics {
     public:
         // Default constructor
         PhysicsManager();
+
+        PhysicsManager(HlaWorldPtr hlaPtr);
 
         // Default destructor
         ~PhysicsManager();
@@ -58,6 +63,7 @@ namespace Physics {
         PxOmniPvd*               gOmniPvd = nullptr;
         PxCudaContextManager*    gCudaContextManager = nullptr;
         const char*              gOmniPvdPath = nullptr;
+        HlaWorldPtr              hlaWorld;
     };
 }
 #endif

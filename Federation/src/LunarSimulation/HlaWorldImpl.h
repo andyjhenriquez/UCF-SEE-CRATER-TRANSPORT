@@ -26,12 +26,14 @@
 #include "InvokeLaterExecutor.h"
 #include "ListenerSet.h"
 #include "SaveRestManager.h"
+#include "SyncPointManager.h"
 #include "FederateManager.h"
 #include "ObjectManager.h"
 #include "RtiInteractionManager.h"
 #include "PersistentHelper.h"
 
 namespace LunarSimulation {
+    class HlaSynchronizationManagerImpl;
     class HlaInteractionManagerImpl;
     class HlaSaveRestoreManagerImpl;
 
@@ -68,6 +70,8 @@ namespace LunarSimulation {
         std::shared_ptr<HlaReferenceFrameManagerImpl> _referenceFrameManager;
         std::shared_ptr<HlaMoonManagerImpl> _moonManager;
         std::shared_ptr<HlaExecutionConfigurationManagerImpl> _executionConfigurationManager;
+        SyncPointManager _syncPointManager;
+        std::shared_ptr<HlaSynchronizationManagerImpl> _synchronizationManager;
         void addHlaWorldListener(HlaWorldListenerPtr listener);
         void removeHlaWorldListener(HlaWorldListenerPtr listener);
         void fireConnected(HlaTimeStampPtr timeStamp);
@@ -193,6 +197,7 @@ namespace LunarSimulation {
         HlaExecutionConfigurationManagerPtr getHlaExecutionConfigurationManager();
         HlaInteractionManagerPtr getHlaInteractionManager();
         HlaSaveRestoreManagerPtr getHlaSaveRestoreManager();
+        HlaSynchronizationManagerPtr getHlaSynchronizationManager();
 
         void setExceptionListener(ExceptionListenerPtr exceptionListener);
         ExceptionListenerPtr getExceptionListener();

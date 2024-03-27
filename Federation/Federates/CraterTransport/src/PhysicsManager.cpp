@@ -1,15 +1,25 @@
 #include "PhysicsManager.h"
+#include <LunarSimulation\HlaAllHeaders.h>
+#include <LunarSimulation\HlaWorld.h>
 
 #include <iostream>
+using namespace std;
+
+using namespace LunarSimulation;
 
 namespace Physics {
     PhysicsManager::PhysicsManager() {
 
     }
 
+    PhysicsManager::PhysicsManager(HlaWorldPtr hlaPtr) {
+        this->hlaWorld = hlaPtr;
+    }
+
     PhysicsManager::~PhysicsManager() {
         delete this;
     }
+
 
     bool PhysicsManager::initPhysics() {
         gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, gErrorCallback);
@@ -83,7 +93,7 @@ namespace Physics {
         // Loads the moon environment model
         ModelLoader* moonLoader = new ModelLoader();
 
-        PxTriangleMesh* moonMesh = moonLoader->loadMesh(gPhysics, "../../../Models/shackleton_highres_triangulated_scaled.obj");
+        PxTriangleMesh* moonMesh = moonLoader->loadMesh(gPhysics, "../../../Models/Crater.obj");
         
         // Cooked triangle mesh neds to be stored in a separate handler
         // that has more robust functionality
