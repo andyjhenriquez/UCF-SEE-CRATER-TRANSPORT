@@ -93,7 +93,7 @@ namespace Physics {
         // Loads the moon environment model
         ModelLoader* moonLoader = new ModelLoader();
 
-        PxTriangleMesh* moonMesh = moonLoader->loadMesh(gPhysics, "../../../Models/shackleton_highres_triangulated_scaled.obj");
+        PxTriangleMesh* moonMesh = moonLoader->loadMesh(gPhysics, "../../../Models/Crater.obj");
         
         // Cooked triangle mesh neds to be stored in a separate handler
         // that has more robust functionality

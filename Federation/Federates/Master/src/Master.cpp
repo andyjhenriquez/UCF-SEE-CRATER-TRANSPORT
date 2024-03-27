@@ -9,29 +9,28 @@ using namespace std;
 
 using namespace LunarSimulation;
 
+void StartSimulation(HlaWorldPtr hlaWorld);
 void LoadScenario(HlaWorldPtr hlaWorld);
 vector<double> convertToDoubleVector(string str);
 
 int main(void) {
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
-
+    //Connecting to rti
     try {
         hlaWorld->connect();
     }
     catch (std::exception& e) {
-        // TODO Auto-generated catch block
         cout << e.what() << endl;
     }
     cout << "Connected to RTI\n";
-
-    
-    
-
     
     bool quit = false;
     //Initial menu
     while (!quit) {
         int in;
+        hlaWorld->getHlaSynchronizationManager()->
+            registerSynchronizationPoint(L"Start");
+
         cout << "1 - Load Scenario" << endl
             << "2 - Start Simulation" << endl
             << "3 - Exit" << endl << endl;
@@ -39,13 +38,19 @@ int main(void) {
 
         switch (in)
         {
+            //Load Scenario
             case 1:
-                hlaWorld->getHlaSynchronizationManager()->registerSynchronizationPoint(L"ScenarioReady");
+                hlaWorld->getHlaSynchronizationManager()->
+                    registerSynchronizationPoint(L"ScenarioReady");
                 LoadScenario(hlaWorld);
-                hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPoint(L"ScenarioReady");
+                hlaWorld->getHlaSynchronizationManager()->
+                    achieveSynchronizationPoint(L"ScenarioReady");
                 break;
+            //Start simulation
             case 2:
+                StartSimulation(hlaWorld);
                 break;
+            //Exit simulation
             case 3:
                 quit = true;
                 break;
@@ -53,24 +58,62 @@ int main(void) {
                 cout << "Error: Invalid Command";
                 break;
         }
-
-        //hlaWorld->advanceToNextFrame();
     }
 
     hlaWorld->disconnect();
+}
+
+void StartSimulation(HlaWorldPtr hlaWorld) {
+    int in = 10000;
+    string strInput;
+    bool paused = false;
+    HlaStartStopInteractionPtr simulationPlayback = 
+        hlaWorld->getHlaInteractionManager()->getHlaStartStopInteraction();
+    simulationPlayback->setHaltSimulation(paused);
+    simulationPlayback->sendInteraction();
+    hlaWorld->getHlaSynchronizationManager()->
+        registerSynchronizationPoint(L"Start");
+    hlaWorld->getHlaSynchronizationManager()->
+        achieveSynchronizationPoint(L"Start");
+
+    cout << "Running...\n\n";
+
+    cout << "1 - End Simulation\n";
+
+    cin >> in;
+
+    while (in != 1) {
+        cin >> in;
+    }
+
+    paused = true;
+    simulationPlayback->setHaltSimulation(paused);
+    simulationPlayback->sendInteraction();
+
+    /*cout << "1 - " << (paused ? "Resume\n" : "Pause\n")
+        << "2 - End\n";
+    cin >> in;
+
+    switch (in) {
+    default:
+        system("CLS");
+        cout << "Error: Invalid option\n\n";
+        break;
+    }*/
 }
 
 void LoadScenario(HlaWorldPtr hlaWorld) {
     int in = 10000;
     string strInput;
     vector<double> posVector;
-    HlaLoadScenarioInteractionPtr loadScenario = hlaWorld->getHlaInteractionManager()->getHlaLoadScenarioInteraction();
+    HlaLoadScenarioInteractionPtr loadScenario = 
+        hlaWorld->getHlaInteractionManager()->getHlaLoadScenarioInteraction();
 
     cout << "Which scenario?" << endl
         << "1 - Crater Entry" << endl
         << "2 - Crater Exit" << endl;
-
     cin >> in;
+
     switch (in)
     {
         //For Entry Simulation

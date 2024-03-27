@@ -13,7 +13,8 @@
 
 using namespace LunarSimulation;
 
-//implementation of the HlaInteractionListener interface
+//implementation of the HlaInteractionListener interface. 
+//This class is used to pull data from interactions that are sent to the RTI
 class MyInteractionListener : public HlaInteractionListener::Adapter {
 public:
     void loadScenario(bool local,
@@ -24,12 +25,18 @@ public:
         scenarioData = parameters;
     }
 
+    void startStop(bool local, 
+        HlaStartStopParametersPtr parameters, 
+        HlaTimeStampPtr timeStamp, 
+        HlaLogicalTimePtr logicalTime) {
+        startStopData = parameters;
+    }
+
     HlaLoadScenarioParametersPtr scenarioData;
     HlaStartStopParametersPtr startStopData;
 };
 
-bool Initialize(HlaWorldPtr hlaWorld, MyInteractionListener* listener);
-
+bool Initialize(HlaWorldPtr hlaWorld, MyInteractionListener* listener, int timeout_s);
 
 
 int main(void) {
@@ -54,10 +61,33 @@ int main(void) {
     }
     std::cout << "Connected\n";
 
-    Initialize(hlaWorld, interactionListener);
+    if (Initialize(hlaWorld, interactionListener, 5)) {
+
+    }
+    else {
+        cout << "No master federate detected. Continue without?(y or n) ";
+        char tmp;
+        cin >> tmp;
+
+        if(tmp == 'y' || tmp == 'Y'){
+        
+        }
+        else {
+            cout << "Alright then. Waiting for Master...\n";
+            if (Initialize(hlaWorld, interactionListener, 180)) {
+                
+            }
+            else {
+                cout << "\nFailed to find Master Federate\n\n";
+                return -1;
+            }
+            
+        }
+
+    }
 
 
-    //Scenario info printed out
+    //Example of we'd use the MyInteractionListener class to pull data from a hla interaction
     //cout << "Rover Health: " << interactionListener->scenarioData->getRoverHealth() << endl;
     
     // Manages Payload instances, allows you to handle and find different instances
@@ -67,8 +97,15 @@ int main(void) {
     // of functions to retrive its values such as acceleration and position
     HlaPayloadPtr payload = payloadManager->createLocalHlaPayload(L"Payload");
 
+    //Waiting for start from master federate
+    cout << "Waiting for start from master...\n\n";
+    hlaWorld->getHlaSynchronizationManager()->waitForSynchronizationPointRegistration(L"Start", 180 * 1000);
+    hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPointAndWaitForSynchronized(L"Start", 120 * 1000);
+
+    cout << "Starting crater entry simulation";
+
     // TODO: Find a stopping point for our federate
-    while (true) {
+    while (!interactionListener->startStopData->getHaltSimulation()) {
         try {
             physicsManager->simulateStep();
 
@@ -102,20 +139,20 @@ int main(void) {
     hlaWorld->disconnect();
 }
 
-//Initializes crater transport simulation
+//Syncs this simulation with other simulations in the federation
 //Takes in HlaWorldPtr
-bool Initialize(HlaWorldPtr hlaWorld, MyInteractionListener* listener) {
+bool Initialize(HlaWorldPtr hlaWorld, MyInteractionListener* listener, int timeout_s) {
     //adding interaction listener to hlaWorld
     HlaInteractionListenerPtr myInteractionListener(listener);
     hlaWorld->getHlaInteractionManager()->addHlaInteractionListener(myInteractionListener);
 
     //waiting for user to set scenario in Master before continuing
     cout << "Waiting for scenario info" << endl;
-    if (!hlaWorld->getHlaSynchronizationManager()->waitForSynchronizationPointRegistration(L"ScenarioReady", 120 * 1000)){
+    if (!hlaWorld->getHlaSynchronizationManager()->waitForSynchronizationPointRegistration(L"ScenarioReady", timeout_s * 1000)){
         cout << "Failed to get scenario information" << endl;
         return false;
     }
-    if (!hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPointAndWaitForSynchronized(L"ScenarioReady", 600 * 1000)) {
+    if (!hlaWorld->getHlaSynchronizationManager()->achieveSynchronizationPointAndWaitForSynchronized(L"ScenarioReady", timeout_s * 1000)) {
         cout << "Connection to other federates timed out" << endl;
     }
     cout << "Federation synched" << endl;
