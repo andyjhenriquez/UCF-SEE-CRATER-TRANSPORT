@@ -1,5 +1,11 @@
 set(TARGET_NAME CraterTransport)
 
+# Option to run the code without using HLA to avoid errors and focusing only on the physics of the simulation
+option(USE_HLA "Choose whether to attempt an HLA connection when running the simulation" ON)
+if (USE_HLA)
+	add_compile_definitions(USE_HLA)
+endif()
+
 add_executable(${TARGET_NAME}
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/CraterTransport.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/PhysicsManager.h"

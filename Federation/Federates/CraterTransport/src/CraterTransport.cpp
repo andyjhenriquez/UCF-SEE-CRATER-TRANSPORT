@@ -11,7 +11,10 @@ using namespace LunarSimulation;
 int main(void) {
     // Creates federation if this is the first federate connected,
     // connects to existing federation otherwise
+    #if USE_HLA
     HlaWorldPtr hlaWorld = HlaWorld::Factory::create();
+    #endif
+
     Physics::PhysicsManager* physicsManager = new Physics::PhysicsManager();
 
     if (!physicsManager->initPhysics()) {
@@ -20,6 +23,7 @@ int main(void) {
 
     physicsManager->loadSampleEntryScene();
 
+    #if USE_HLA
     try {
         hlaWorld->connect();
     }
@@ -35,12 +39,14 @@ int main(void) {
     // Single Payload instance, extends Dynamical Entity and has a number
     // of functions to retrive its values such as acceleration and position
     HlaPayloadPtr payload = payloadManager->createLocalHlaPayload(L"Payload");
+    #endif
 
     // TODO: Find a stopping point for our federate
     while (true) {
         try {
             physicsManager->simulateStep();
 
+            #if USE_HLA
             // Manages variable/state changes and communicates them to the federation.
             // New instance must be created on every loop.
             HlaPayloadUpdaterPtr updater = payload->getHlaPayloadUpdater();
@@ -53,13 +59,16 @@ int main(void) {
             // Packages all state/variable changes and sends them out to the federation
             // where other federates can pull the new values in and use them as needed.
             updater->sendUpdate();
+            #endif
         }
         catch (std::exception& e) {
             // TODO Auto-generated catch block
             std::cout << e.what() << std::endl;
         }
 
+        #if USE_HLA
         hlaWorld->advanceToNextFrame();
+        #endif
     }
 
     physicsManager->cleanupPhysics();
@@ -67,5 +76,7 @@ int main(void) {
     // Here we will do all of the federate cleanup necessary after it has finished running.
     // Unfortunately we can't run this code right now because we don't have a valid stopping
     // condition for our main loop.
+    #if USE_HLA
     hlaWorld->disconnect();
+    #endif
 }
