@@ -90,7 +90,7 @@ namespace Physics {
         PxTriangleMeshGeometry moonMeshHandler(moonMesh);
 
         // Temporary material property for the crater environment (NEEDS UPDATE)
-        PxMaterial* moonMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
+        PxMaterial* moonMaterial = gPhysics->createMaterial(0.75f, 0.6f, 0.4f);
 
         // Creating the rigid actor which will hold the moon crater mesh
         PxRigidStatic* groundActor = gPhysics->createRigidStatic(PxTransform(PxVec3(0.0f, 0.0f, 0.0f)));
@@ -119,7 +119,7 @@ namespace Physics {
         launcherActor->setRigidBodyFlag(PxRigidBodyFlag::eENABLE_SPECULATIVE_CCD, true);
 
         // Temporary material property for the sled (NEEDS UPDATE)
-        PxMaterial* launcherMaterial = gPhysics->createMaterial(0.1f, 0.1f, 0.1f);
+        PxMaterial* launcherMaterial = gPhysics->createMaterial(0.75f, 0.6f, 0.4f);
 
         PxShape* launcherShape = PxRigidActorExt::createExclusiveShape(*launcherActor, launcherMeshHandler, *launcherMaterial);
 
@@ -128,15 +128,16 @@ namespace Physics {
         launcherShape->setRestOffset(0.02f);
 
         // Setting mass and density values, mass not currently being set (default 1)
-        PxReal density = 100.0f;
+        PxReal density = 39763.82f;
         PxRigidBodyExt::updateMassAndInertia(*launcherActor, density);
 
         gScene->addActor(*launcherActor);
-
         // Custom settings
         launcherActor->setSolverIterationCounts(50, 1);
         launcherActor->setMaxDepenetrationVelocity(5.0f);
-        launcherActor->setGlobalPose(PxTransform(PxVec3(246.12082f, 1300.63616f, 216.73205f), PxQuat(PxPi, PxVec3(0.0f, 1.0f, 0.0f))));
+
+        // Starting position/rotation for the launcher
+        launcherActor->setGlobalPose(PxTransform(PxVec3(246.12082f, 1261.58712f, 216.73205f), PxQuat(53.981f, PxVec3(0.0f, 1.0f, 0.0f))));
     }
 
     // Moves the simulation by the specified time-step
